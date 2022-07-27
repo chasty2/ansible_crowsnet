@@ -9,8 +9,10 @@ RUN chown ansible:ansible /home/ansible/.ssh/id_ed25519* \
   && chmod 600 /home/ansible/.ssh/id_ed25519 \
   && chmod 644 /home/ansible/.ssh/id_ed25519.pub
 
+# Switch to ansible user to run playbooks
+USER ansible
+
 # Set 'entrypoint.sh' as the default entrypoint
 COPY ./entrypoint.sh /entrypoint.sh
 
-# Switch to ansible user to run playbooks
-USER ansible
+
