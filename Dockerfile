@@ -14,5 +14,4 @@ USER ansible
 
 # Set 'entrypoint.sh' as the default entrypoint
 COPY ./entrypoint.sh /entrypoint.sh
-
-
+ENTRYPOINT ["bash","/entrypoint.sh"]
