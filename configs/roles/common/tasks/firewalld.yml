@@ -1,0 +1,59 @@
+#
+## firewalld
+#
+- name: start and enable firewalld
+  become: true
+  ansible.builtin.systemd:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: create firewalld zone 'crowsnet'
+  become: yes
+  ansible.posix.firewalld:
+    zone: crowsnet
+    state: present
+    permanent: yes
+  notify: reload firewalld
+
+- name: enable ssh on firewalld zone 'crowsnet'
+  become: yes
+  ansible.posix.firewalld:
+    zone: crowsnet
+    service: ssh
+    state: enabled
+    permanent: yes
+  notify: set default firewalld zone 
+
+# ansible 2.9 cannot set default zone for firewalld
+# flushing handlers here allows setting default zone without
+# making changes every playbook  
+- meta: flush_handlers
+
+- name: add interface ens18 to firewalld zone 'crowsnet'
+  become: yes
+  ansible.posix.firewalld:
+    zone: crowsnet
+    interface: ens18
+    state: enabled
+    permanent: yes
+  notify: reload firewalld
+
+- name: disable ssh in firewalld zone 'public'
+  become: yes
+  ansible.posix.firewalld:
+    zone: public
+    service: ssh
+    state: disabled
+    permanent: yes 
+  notify: reload firewalld
+
+- name: disable dhcpv6-client in firewalld zone 'public'
+  become: yes
+  ansible.posix.firewalld:
+    zone: public
+    service: dhcpv6-client
+    state: disabled
+    permanent: yes
+  notify: reload firewalld
+
