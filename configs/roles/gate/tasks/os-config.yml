@@ -1,0 +1,11 @@
+## Set hostname
+- name: Set hostname to gate.crowsnet.io
+  become: true
+  ansible.builtin.hostname:
+    name: gate.crowsnet.io
+
+## Mount /dev/sdb to /mnt
+#- name: Mount /dev/sdb to /mnt
+#  ansible.posix.mount:
+#    path: /mnt
+#    src: 

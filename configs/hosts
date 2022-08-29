@@ -49,3 +49,7 @@ test:
 rocky8_vms:
   hosts:
     192.168.4.100:             ## gate
+
+gate_vm:
+  hosts:
+    192.168.4.100:             ## gate

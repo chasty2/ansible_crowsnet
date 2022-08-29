@@ -1,0 +1,3 @@
+---
+# tasks file for gate
+- ansible.builtin.include_tasks: os-config.yml

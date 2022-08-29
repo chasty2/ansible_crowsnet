@@ -1,3 +1,7 @@
 - hosts: rocky8_vms
   roles:
     - common
+
+- hosts: gate_vm
+  roles:
+    - gate
