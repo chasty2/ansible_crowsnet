@@ -45,3 +45,7 @@
 test:
   hosts:
     192.168.4.102:             ## labrat
+
+rocky8_vms:
+  hosts:
+    192.168.4.100:             ## gate
