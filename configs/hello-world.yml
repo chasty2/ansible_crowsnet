@@ -1,0 +1,4 @@
+- hosts: test
+  tasks:
+    - name: ping localhost
+      ping:

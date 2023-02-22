@@ -16,4 +16,4 @@
 # ansible_crowsnet					specify container
 # $1 							specify a playbook at command line when running this script              
 
-docker run -it --rm --network host --volume /home/chasty2/Safe/ansible_crowsnet/configs:/etc/ansible -w /etc/ansible ansible-crowsnet $1
+docker run -it --rm --network host --volume /home/chasty2/Documents/ansible_crowsnet/configs:/etc/ansible -w /etc/ansible ansible-crowsnet $1

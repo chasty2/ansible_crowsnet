@@ -44,7 +44,7 @@
 
 test:
   hosts:
-    192.168.4.102:             ## labrat
+    192.168.4.151:             ## labrat
 
 rocky8_vms:
   hosts:
