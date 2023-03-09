@@ -44,12 +44,8 @@
 
 test:
   hosts:
-    192.168.4.151:             ## labrat
+    192.168.4.163:             ## labrat
 
-rocky8_vms:
-  hosts:
-    192.168.4.100:             ## gate
-
-gate_vm:
-  hosts:
-    192.168.4.100:             ## gate
+#gate_vm:
+#  hosts:
+#    192.168.4.100:             ## gate
