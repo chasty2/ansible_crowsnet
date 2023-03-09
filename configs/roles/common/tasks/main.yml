@@ -1,4 +1,4 @@
 ---
 # tasks file for common
-- ansible.builtin.include_tasks: firewalld.yml
-- ansible.builtin.include_tasks: dnf.yml
+- ansible.builtin.include_tasks: apt.yml
+- ansible.builtin.include_tasks: firewalld.yml  

@@ -1,0 +1,8 @@
+## Start softwares at boot
+- name: start qemu-guest-agent
+  become: true
+  ansible.builtin.systemd:
+    name: qemu-guest-agent
+    state: started
+    enabled: yes
+

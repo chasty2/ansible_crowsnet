@@ -1,0 +1,22 @@
+#
+## dnf tasks: install/configure base softwares and repositories.
+#
+
+## Install softwares
+- name: install base softwares
+  become: true
+  ansible.builtin.package:
+    name:
+      - qemu-guest-agent # installed on template
+      - vim
+      - nmap
+      - wget
+      - firewalld
+    state: present
+
+- name: remove unnecessary packages
+  become: true
+  ansible.builtin.package:
+    name:
+      - ufw
+    state: absent
