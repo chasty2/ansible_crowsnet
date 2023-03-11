@@ -1,0 +1,32 @@
+- name: Add sudo group
+  become: true
+  group:
+    name: sudo
+    state: present
+
+- name: Add local user
+  become: true
+  user:
+    name: chasty2
+    group: sudo
+    shell: /bin/bash
+    home: /home/chasty2
+    create_home: yes
+    state: present
+
+- name: Add SSH public key for local user
+  become: true
+  authorized_key:
+    user: chasty2
+    key: "{{ lookup('file', 'id_ed25519.pub') }}"
+    state: present
+
+- name: Add sudoer rule for local user
+  become: true
+  copy:
+    dest: /etc/sudoers.d/chasty2
+    src: sudoer_chasty2
+    owner: root
+    group: root
+    mode: 0440
+    validate: /usr/sbin/visudo -csf %s
