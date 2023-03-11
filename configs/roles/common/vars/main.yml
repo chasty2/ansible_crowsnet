@@ -1,2 +1,19 @@
 ---
 # vars file for common
+base_packages:
+  - qemu-guest-agent # installed on template
+  - vim
+  - nmap
+  - wget
+  - firewalld
+
+base_services:
+  - qemu-guest-agent
+  - firewalld
+  - sshd
+
+removed_packages:
+  - ufw
+
+# disabled_services:
+#   - ufw

@@ -6,17 +6,11 @@
 - name: install base softwares
   become: true
   ansible.builtin.package:
-    name:
-      - qemu-guest-agent # installed on template
-      - vim
-      - nmap
-      - wget
-      - firewalld
+    name: "{{ base_packages }}"
     state: present
 
 - name: remove unnecessary packages
   become: true
   ansible.builtin.package:
-    name:
-      - ufw
+    name: "{{ removed_packages }}"
     state: absent

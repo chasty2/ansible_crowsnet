@@ -1,8 +1,18 @@
 ## Start softwares at boot
-- name: start qemu-guest-agent
+- name: start/enable base services
   become: true
-  ansible.builtin.systemd:
-    name: qemu-guest-agent
+  ansible.builtin.service:
+    name: "{{ item }}"
     state: started
     enabled: yes
+  with_items: "{{ base_services }}"
+
+# - name: disable unnecessary services
+#   become: true
+#   ansible.builtin.service:
+#     name: "{{ item }}"
+#     state: stopped
+#     enabled: no
+#   with_items: "{{ disabled_services }}"
+#   ignore_errors: yes
 
