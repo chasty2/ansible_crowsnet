@@ -17,3 +17,14 @@ removed_packages:
 
 # disabled_services:
 #   - ufw
+
+permitted_networks:
+  - 192.168.4.0/22
+
+permitted_ports:
+  - ssh
+
+closed_ports:
+  - dhcpv6-client
+  - mdns
+  - samba-client

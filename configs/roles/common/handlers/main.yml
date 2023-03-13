@@ -2,14 +2,10 @@
 # handlers file for common
 
 ## firewalld handlers
-- name: reload firewalld
-  become: true
-  systemd:
-    name: firewalld
-    state: reloaded
-  listen: "set crowsnet zone"
+# - name: reload firewalld
+#   become: true
+#   systemd:
+#     name: firewalld
+#     state: reloaded
+#   listen: "set crowsnet zone"
 
-- name: set default firewalld zone
-  become: true
-  command: firewall-cmd --set-default-zone=crowsnet
-  listen: "set crowsnet zone"
