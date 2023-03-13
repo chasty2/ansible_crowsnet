@@ -1,4 +1,4 @@
-## Start softwares at boot
+## Base configuration
 - name: start/enable base services
   become: true
   ansible.builtin.service:

@@ -7,15 +7,12 @@
 
 - name: Package Config
   ansible.builtin.include_tasks: packages.yml
-  tags:
-    - packages
+  tags: packages
 
 - name: Service Config
   ansible.builtin.include_tasks: services.yml
-  tags:
-    - services
+  tags: services
 
 - name: Firewall Config
   ansible.builtin.include_tasks: firewalld.yml  
-  tags:
-    - firewall
+  tags: firewall
