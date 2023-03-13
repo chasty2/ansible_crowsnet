@@ -16,13 +16,13 @@
     service: ssh
     state: enabled
     permanent: yes
-  notify: set default firewalld zone 
+  notify: reload firewalld
 
 # ansible.posix.firewalld cannot set default zone for firewalld
 # flushing handlers here allows setting default zone without
 # making changes every playbook  
-- name: set firewalld zone 'crowsnet' as default zone
-  meta: flush_handlers
+#- name: set firewalld zone 'crowsnet' as default zone
+#  meta: flush_handlers
 
 - name: add interface ens18 to firewalld zone 'crowsnet'
   become: yes
