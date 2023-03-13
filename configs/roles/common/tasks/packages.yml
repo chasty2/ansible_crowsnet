@@ -1,8 +1,4 @@
-#
-## dnf tasks: install/configure base softwares and repositories.
-#
-
-## Install softwares
+## Install/configure base softwares and repositories.
 - name: install base softwares
   become: true
   ansible.builtin.package:
