@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ## script to run ansible container with a given playbook
-## Written by Cody Hasty on 08/2022
+## Written by Cody Hasty
 
 # Example use: ./run_ansible.sh playbook_file
 
 #
-## Arguments to Docker
+## Arguments to podman
 #
 # -it							interactive mode 
 # --rm							delete container after use
@@ -16,4 +16,4 @@
 # ansible_crowsnet					specify container
 # $1 							specify a playbook at command line when running this script              
 
-docker run -it --rm --network host --volume /home/chasty2/Documents/ansible_crowsnet/configs:/etc/ansible -w /etc/ansible ansible-crowsnet $@
+podman run -it --rm --network host --volume /home/chasty2/Documents/ansible_crowsnet/configs:/etc/ansible -w /etc/ansible ansible-crowsnet $@
