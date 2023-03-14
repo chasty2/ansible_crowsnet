@@ -2,6 +2,7 @@
 # vars file for common
 base_packages:
   - qemu-guest-agent # installed on template
+  - sudo
   - vim
   - nmap
   - wget
