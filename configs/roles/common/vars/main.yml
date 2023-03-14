@@ -28,3 +28,4 @@ closed_ports:
   - dhcpv6-client
   - mdns
   - samba-client
+  

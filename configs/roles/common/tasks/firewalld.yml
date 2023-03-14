@@ -30,5 +30,3 @@
     permanent: yes
     immediate: yes
   with_items: "{{ closed_ports }}"
-
-
