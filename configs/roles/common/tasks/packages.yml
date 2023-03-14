@@ -1,12 +1,16 @@
 ## Install/configure base softwares and repositories.
-- name: install base softwares
-  become: true
-  ansible.builtin.package:
-    name: "{{ base_packages }}"
-    state: present
+- name: Package Config block
+  block:
+  - name: install base softwares
+    become: true
+    ansible.builtin.package:
+      name: "{{ base_packages }}"
+      state: present
 
-- name: remove unnecessary packages
-  become: true
-  ansible.builtin.package:
-    name: "{{ removed_packages }}"
-    state: absent
+  - name: remove unnecessary packages
+    become: true
+    ansible.builtin.package:
+      name: "{{ removed_packages }}"
+      state: absent
+  become: true    
+  tags: packages

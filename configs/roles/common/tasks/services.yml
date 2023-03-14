@@ -1,11 +1,15 @@
 ## Base configuration
-- name: start/enable base services
+- name: Service Config block
+  block:
+  - name: start/enable base services
+    become: true
+    ansible.builtin.service:
+      name: "{{ item }}"
+      state: started
+      enabled: yes
+    with_items: "{{ base_services }}"
   become: true
-  ansible.builtin.service:
-    name: "{{ item }}"
-    state: started
-    enabled: yes
-  with_items: "{{ base_services }}"
+  tags: services
 
 # - name: disable unnecessary services
 #   become: true
@@ -15,3 +19,4 @@
 #     enabled: no
 #   with_items: "{{ disabled_services }}"
 #   ignore_errors: yes
+  

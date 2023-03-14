@@ -1,32 +1,34 @@
 #
 ## configure firewalld
 #
-- name: add permitted network(s) to firewalld zone 'internal'
-  become: yes
-  ansible.posix.firewalld:
-    zone: internal
-    source: "{{ item }}"
-    state: enabled
-    permanent: yes
-    immediate: yes
-  with_items: "{{ permitted_networks }}"
+- name: Firewall Config block
+  block:
+  - name: add permitted network(s) to firewalld zone 'internal'
+    ansible.posix.firewalld:
+      zone: internal
+      source: "{{ item }}"
+      state: enabled
+      permanent: yes
+      immediate: yes
+    with_items: "{{ permitted_networks }}"
 
-- name: open permitted ports on firewalld zone 'internal'
-  become: yes
-  ansible.posix.firewalld:
-    zone: internal
-    service: "{{ item }}"
-    state: enabled
-    permanent: yes
-    immediate: yes
-  with_items: "{{ permitted_ports }}"
+  - name: open permitted ports on firewalld zone 'internal'
+    ansible.posix.firewalld:
+      zone: internal
+      service: "{{ item }}"
+      state: enabled
+      permanent: yes
+      immediate: yes
+    with_items: "{{ permitted_ports }}"
 
-- name: close unnecessary ports in firewalld zone 'internal'
-  become: yes
-  ansible.posix.firewalld:
-    zone: internal
-    service: "{{ item }}"
-    state: disabled
-    permanent: yes
-    immediate: yes
-  with_items: "{{ closed_ports }}"
+  - name: close unnecessary ports in firewalld zone 'internal'
+    ansible.posix.firewalld:
+      zone: internal
+      service: "{{ item }}"
+      state: disabled
+      permanent: yes
+      immediate: yes
+    with_items: "{{ closed_ports }}"
+  become: true
+  tags: firewall
+
