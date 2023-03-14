@@ -1,5 +1,0 @@
-# example playbook
-- hosts: test
-  tasks:
-    - name: hit labrat
-      ping:
