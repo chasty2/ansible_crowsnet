@@ -6,6 +6,7 @@ base_packages:
   - nmap
   - wget
   - firewalld
+  - less
 
 base_services:
   - qemu-guest-agent
@@ -28,4 +29,3 @@ closed_ports:
   - dhcpv6-client
   - mdns
   - samba-client
-  
