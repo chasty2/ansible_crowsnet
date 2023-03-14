@@ -1,7 +1,7 @@
-- hosts: rocky8_vms
+- hosts: prod
   roles:
     - common
 
-- hosts: gate_vm
-  roles:
-    - gate
+# - hosts: gate_vm
+#   roles:
+#     - gate

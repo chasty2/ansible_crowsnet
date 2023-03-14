@@ -44,8 +44,12 @@
 
 test:
   hosts:
-    192.168.4.163:             ## labrat
+    192.168.4.163:
+      hostname: "labrat"
 
-#gate_vm:
+# prod:
+#  hosts:
+#    192.168.4.125:          ## spire
+# gate_vm:
 #  hosts:
 #    192.168.4.100:             ## gate
