@@ -2,13 +2,11 @@
 - name: Package Config block
   block:
   - name: install base softwares
-    become: true
     ansible.builtin.package:
       name: "{{ base_packages }}"
       state: present
 
   - name: remove unnecessary packages
-    become: true
     ansible.builtin.package:
       name: "{{ removed_packages }}"
       state: absent
