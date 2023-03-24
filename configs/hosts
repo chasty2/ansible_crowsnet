@@ -44,7 +44,7 @@
 
 test:
   hosts:
-    192.168.4.163:
+    192.168.4.165:
       hostname: "labrat"
 
 prod:

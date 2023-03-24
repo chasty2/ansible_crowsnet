@@ -3,12 +3,14 @@
   block:
   - name: install base softwares
     ansible.builtin.package:
-      name: "{{ base_packages }}"
+      name: "{{ item }}"
       state: present
+    with_items: "{{ base_packages }}"
 
   - name: remove unnecessary packages
     ansible.builtin.package:
-      name: "{{ removed_packages }}"
+      name: "{{ item }}"
       state: absent
+    with_items: "{{ removed_packages }}"
   become: true    
   tags: packages
