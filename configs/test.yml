@@ -1,3 +1,4 @@
 - hosts: test
   roles:
-    - common
+    #- common
+    - virtual

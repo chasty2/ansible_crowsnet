@@ -1,0 +1,7 @@
+- name: install VM software
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ vm_packages }}"
+  tags: packages

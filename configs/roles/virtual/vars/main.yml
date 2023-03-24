@@ -1,0 +1,7 @@
+---
+# vars file for virtual
+vm_packages:
+  - qemu-guest-agent # installed on template
+
+vm_services:
+  - qemu-guest-agent

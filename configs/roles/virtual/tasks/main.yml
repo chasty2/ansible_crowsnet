@@ -1,0 +1,9 @@
+---
+# tasks file for common- 
+- name: Virtual Machine Package Config
+  ansible.builtin.include_tasks: vm_packages.yml
+  tags: packages
+
+- name: Virtual Machine Service Config
+  ansible.builtin.include_tasks: vm_services.yml
+  tags: services
