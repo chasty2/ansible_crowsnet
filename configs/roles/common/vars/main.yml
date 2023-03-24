@@ -1,17 +1,14 @@
 ---
 # vars file for common
 base_packages:
-  - qemu-guest-agent # installed on template
   - sudo
   - vim
   - nmap
   - wget
   - firewalld
   - less
-  - podman
 
 base_services:
-  - qemu-guest-agent
   - firewalld
   - sshd
 
