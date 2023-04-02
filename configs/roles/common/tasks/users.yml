@@ -1,12 +1,12 @@
 - name: User Config block
   block:
     - name: Add sudo group
-      group:
+      ansible.builtin.group:
         name: sudo
         state: present
 
     - name: Add local user
-      user:
+      ansible.builtin.user:
         name: chasty2
         group: sudo
         shell: /bin/bash
@@ -15,13 +15,13 @@
         state: present
 
     - name: Add SSH public key for local user
-      authorized_key:
+      ansible.posix.authorized_key:
         user: chasty2
         key: "{{ lookup('file', 'id_ed25519.pub') }}"
         state: present
 
     - name: Add sudoer rule for local user
-      copy:
+      ansible.builtin.copy:
         dest: /etc/sudoers.d/chasty2
         src: sudoer_chasty2
         owner: root
