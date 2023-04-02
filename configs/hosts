@@ -49,9 +49,15 @@ test:
 
 prod:
   hosts:
-    192.168.4.125:
-      hostname: "spire"
+    #192.168.4.125:
+    #  hostname: "spire"
+    192.168.4.11:
+      hostname: "esper"
 
+physical:
+  hosts:
+    192.168.4.11:
+    
 # gate_vm:
 #  hosts:
 #    192.168.4.100:             ## gate

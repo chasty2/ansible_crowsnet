@@ -2,6 +2,10 @@
   roles:
     - common
 
+- hosts: physical
+  roles:
+    - proxmox
+
 # - hosts: gate_vm
 #   roles:
 #     - gate
