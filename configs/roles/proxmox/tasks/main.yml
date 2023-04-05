@@ -1,5 +1,5 @@
 ---
 # tasks file for proxmox role
 - name: Firewall Config
-  ansible.builtin.include_tasks: firewalld.yml  
+  ansible.builtin.include_tasks: proxmox_firewalld.yml  
   tags: firewall
