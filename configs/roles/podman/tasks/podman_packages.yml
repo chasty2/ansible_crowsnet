@@ -1,4 +1,4 @@
-- name: install Podman software
+- name: install software
   become: true
   ansible.builtin.package:
     name: "{{ item }}"

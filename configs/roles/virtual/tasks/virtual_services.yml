@@ -1,4 +1,4 @@
-- name: start/enable VM services
+- name: start/enable services
   become: true
   ansible.builtin.service:
     name: "{{ item }}"
