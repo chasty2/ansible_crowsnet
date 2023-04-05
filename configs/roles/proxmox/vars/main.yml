@@ -3,5 +3,5 @@
 proxmox_packages:
   - nfs-kernel-server
 
-permitted_ports:
+proxmox_ports:
   - 8006/tcp

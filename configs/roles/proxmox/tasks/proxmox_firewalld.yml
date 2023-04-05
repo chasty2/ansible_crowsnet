@@ -9,5 +9,5 @@
     state: enabled
     permanent: yes
     immediate: yes
-  with_items: "{{ permitted_ports }}"
+  with_items: "{{ proxmox_ports }}"
   tags: firewall
