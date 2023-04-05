@@ -7,6 +7,9 @@ base_packages:
   - wget
   - firewalld
   - less
+  - nfs-common
+  - htop
+  - nmon
 
 base_services:
   - firewalld
