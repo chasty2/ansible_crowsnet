@@ -1,4 +1,7 @@
 ---
 # vars file for proxmox role
+proxmox_packages:
+  - nfs-kernel-server
+
 permitted_ports:
   - 8006/tcp

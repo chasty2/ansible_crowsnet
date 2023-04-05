@@ -1,0 +1,7 @@
+- name: install Proxmox software
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ proxmox_packages }}"
+  tags: packages
