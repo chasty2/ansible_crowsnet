@@ -1,0 +1,5 @@
+---
+# vars file for podman role
+podman_packages:
+  - podman
+

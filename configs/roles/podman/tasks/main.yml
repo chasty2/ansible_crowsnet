@@ -1,0 +1,5 @@
+---
+# tasks file for podman role
+- name: Podman Package Config
+  ansible.builtin.include_tasks: podman_packages.yml
+  tags: packages
