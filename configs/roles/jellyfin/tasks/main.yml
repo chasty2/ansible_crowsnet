@@ -1,0 +1,5 @@
+---
+# tasks file for jellyfin role
+- name: Service Config
+  ansible.builtin.include_tasks: jellyfin_services.yml
+  tags: services
