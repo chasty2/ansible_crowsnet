@@ -5,8 +5,6 @@
     ansible.builtin.file:
       path: /mnt/jellyfin
       state: directory
-      group: sudo
-      mode: 0775
 
   - name: mount jellyfin NFS volume
     ansible.posix.mount:
