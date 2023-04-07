@@ -13,6 +13,19 @@
       opts: rw,sync,hard
       state: mounted
       fstype: nfs
+
+  - name: create /mnt/media
+    ansible.builtin.file:
+      path: /mnt/jellyfin
+      state: directory
+
+  - name: mount media NFS volume
+    ansible.posix.mount:
+      src: 192.168.4.11:/hdd_mirror/media
+      path: /mnt/media
+      opts: rw,sync,hard
+      state: mounted
+      fstype: nfs
   become: true
   tags: services
 
