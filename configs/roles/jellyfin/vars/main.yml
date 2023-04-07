@@ -1,3 +1,4 @@
 ---
 # vars file for jellyfin role
-
+jellyfin_ports:
+  - 8096/tcp  # jellyfin web app
