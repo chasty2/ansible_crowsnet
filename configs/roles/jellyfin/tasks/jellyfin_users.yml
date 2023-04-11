@@ -1,0 +1,16 @@
+- name: User Config block
+  block:
+    - name: Add jellyfin group
+      ansible.builtin.group:
+        name: jellyfin
+        gid: 2000
+        state: present
+
+    - name: Add users to jellyfin group
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: jellyfin
+        append: yes
+      with_items: "{{ jellyfin_users }}"
+  become: true
+  tags: users
