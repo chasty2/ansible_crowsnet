@@ -3,6 +3,9 @@
 proxmox_packages:
   - nfs-kernel-server
 
+proxmox_services:
+  - nfs-kernel-server
+
 proxmox_ports:
   - 8006/tcp  # proxmox web app
   - 2049/tcp  # nfs

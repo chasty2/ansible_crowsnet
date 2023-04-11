@@ -1,0 +1,13 @@
+---
+# handlers file for proxmox
+- name: reload NFS
+  become: true
+  command: 'exportfs -arv'
+
+## firewalld handlers
+# - name: reload firewalld
+#   become: true
+#   systemd:
+#     name: firewalld
+#     state: reloaded
+#   listen: "set crowsnet zone"

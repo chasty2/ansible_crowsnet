@@ -4,6 +4,10 @@
   ansible.builtin.include_tasks: proxmox_packages.yml
   tags: packages
 
+- name: Service Config
+  ansible.builtin.include_tasks: proxmox_services.yml
+  tags: services
+
 - name: Firewall Config
   ansible.builtin.include_tasks: proxmox_firewalld.yml  
   tags: firewall
