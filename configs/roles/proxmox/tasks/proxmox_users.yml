@@ -1,0 +1,17 @@
+- name: User Config block
+  block:
+    - name: Create NFS groups
+      ansible.builtin.group:
+        name: "{{ item.name }}"
+        gid: "{{ item.gid }}"
+        state: present
+      with_items: "{{ nfs_groups }}"
+
+    - name: Add users to jellyfin group
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: jellyfin
+        append: yes
+      with_items: "{{ jellyfin_users }}"
+  become: true
+  tags: users

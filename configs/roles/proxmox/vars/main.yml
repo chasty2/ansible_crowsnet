@@ -6,6 +6,17 @@ proxmox_packages:
 proxmox_services:
   - nfs-kernel-server
 
+## These groups/users must also specified in the NFS client roles
+nfs_groups:
+  - { name: 'jellyfin', gid: '2000'}
+
+jellyfin_users:
+  - ansible
+  - chasty2
+
 proxmox_ports:
   - 8006/tcp  # proxmox web app
   - 2049/tcp  # nfs
+
+
+
