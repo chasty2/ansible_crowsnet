@@ -28,6 +28,7 @@
       group: "{{ item.group }}"
       mode: "{{ item.mode }}" 
     with_items: "{{ nfs_mounts }}"
+    notify: reload NFS
 
   - name: start/enable base services
     ansible.builtin.service:
