@@ -6,6 +6,10 @@
     name: "{{ hostname }}"  ## declared in hosts file
     use: systemd
 
+- name: User Config
+  ansible.builtin.include_tasks: users.yml
+  tags: users
+  
 - name: Package Config
   ansible.builtin.include_tasks: packages.yml
   tags: packages
@@ -13,10 +17,6 @@
 - name: Service Config
   ansible.builtin.include_tasks: services.yml
   tags: services
-
-- name: User Config
-  ansible.builtin.include_tasks: users.yml
-  tags: users
 
 - name: Firewall Config
   ansible.builtin.include_tasks: firewalld.yml  

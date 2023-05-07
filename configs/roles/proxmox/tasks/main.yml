@@ -1,5 +1,9 @@
 ---
 # tasks file for proxmox role
+- name: User Config
+  ansible.builtin.include_tasks: proxmox_users.yml
+  tags: users
+
 - name: Package Config
   ansible.builtin.include_tasks: proxmox_packages.yml
   tags: packages
@@ -7,10 +11,6 @@
 - name: Service Config
   ansible.builtin.include_tasks: proxmox_services.yml
   tags: services
-
-- name: User Config
-  ansible.builtin.include_tasks: proxmox_users.yml
-  tags: users
 
 - name: Firewall Config
   ansible.builtin.include_tasks: proxmox_firewalld.yml  
