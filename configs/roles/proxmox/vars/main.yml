@@ -10,6 +10,12 @@ proxmox_services:
 nfs_groups:
   - { name: 'jellyfin', gid: '2000'}
 
+nfs_mounts:
+  - { path: '/hdd_mirror/media', owner: chasty2,
+   group: jellyfin, mode: '0750'}
+  - { path: '/ssd_mirror/jellyfin', owner: chasty2,
+   group: jellyfin, mode: '0770'}
+
 jellyfin_users:
   - ansible
   - chasty2

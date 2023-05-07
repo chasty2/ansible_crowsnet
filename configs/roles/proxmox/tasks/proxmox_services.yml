@@ -10,6 +10,25 @@
       mode: 0644
     notify: reload NFS
 
+  - name: Set permissions on /hdd_mirror/media
+    ansible.builtin.file:
+      path: /hdd_mirror/media
+      state: directory
+      recurse: yes
+      owner: chasty2
+      group: jellyfin
+      mode: '0750'
+
+  - name: Set permissions of NFS mounts ## declared in proxmox vars
+    ansible.builtin.file:
+      path: "{{ item.path }}"
+      state: directory
+      recurse: yes
+      owner: "{{ item.owner }}"
+      group: "{{ item.group }}"
+      mode: "{{ item.mode }}" 
+    with_items: "{{ nfs_mounts }}"
+
   - name: start/enable base services
     ansible.builtin.service:
       name: "{{ item }}"
