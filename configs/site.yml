@@ -1,4 +1,4 @@
-- hosts: prod
+- hosts: virtual
   roles:
     - common
 

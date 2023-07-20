@@ -44,19 +44,22 @@
 
 test:
   hosts:
-    192.168.4.165:
-      hostname: "labrat"
+    192.168.4.150:
+      hostname: "lab"
 
-prod:
+virtual:
   hosts:
-    #192.168.4.125:
-    #  hostname: "spire"
-    192.168.4.11:
-      hostname: "esper"
+    192.168.4.100:
+      hostname: "gate"
+    192.168.4.125:
+      hostname: "bailey"
+    192.168.4.150:
+      hostname: "lab"
 
 physical:
   hosts:
     192.168.4.11:
+      hostname: "esper"
     
 # gate_vm:
 #  hosts:
