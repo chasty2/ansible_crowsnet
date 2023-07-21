@@ -1,0 +1,4 @@
+- hosts: physical
+  roles:
+    - common
+    - proxmox
