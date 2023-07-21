@@ -1,5 +1,5 @@
 - name: Configure Virtual Machines
-  ansible.builtin.include_tasks: virtual.yml
+  ansible.builtin.import_playbook: virtual.yml
 
 - name: Configure Physical Machines
-  ansible.builtin.include_tasks: physical.yml
+  ansible.builtin.import_playbook: physical.yml
