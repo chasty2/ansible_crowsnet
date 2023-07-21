@@ -12,9 +12,9 @@ nfs_groups:
 
 nfs_mounts:
   - { path: '/hdd_mirror/media', owner: chasty2,
-   group: jellyfin, mode: '0750'}
+      group: jellyfin, mode: '0750'}
   - { path: '/ssd_mirror/jellyfin', owner: chasty2,
-   group: jellyfin, mode: '0770'}
+      group: jellyfin, mode: '0770'}
 
 jellyfin_users:
   - ansible
@@ -23,6 +23,3 @@ jellyfin_users:
 proxmox_ports:
   - 8006/tcp  # proxmox web app
   - 2049/tcp  # nfs
-
-
-
