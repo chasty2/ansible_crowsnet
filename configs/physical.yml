@@ -1,4 +1,5 @@
-- hosts: physical
+- name: Assign roles to physical machines
+  hosts: physical
   roles:
     - common
     - proxmox

@@ -1,3 +1,4 @@
-- hosts: virtual
+- name: Assign roles to virtual machines
+  hosts: virtual
   roles:
     - common

@@ -1,4 +1,5 @@
-- hosts: test
+- name: Test roles
+  hosts: test
   roles:
     - common
     - virtual
