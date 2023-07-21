@@ -1,4 +1,4 @@
-- name: Test roles
+- name: Testing
   hosts: test
   roles:
     - common

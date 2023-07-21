@@ -1,4 +1,4 @@
-- name: Assign roles to physical machines
+- name: Physical Machines
   hosts: physical
   roles:
     - common
