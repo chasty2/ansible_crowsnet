@@ -1,11 +1,5 @@
-- hosts: virtual
-  roles:
-    - common
+- name: Configure Virtual Machines
+  ansible.builtin.include_tasks: virtual.yml
 
-- hosts: physical
-  roles:
-    - proxmox
-
-# - hosts: gate_vm
-#   roles:
-#     - gate
+- name: Configure Physical Machines
+  ansible.builtin.include_tasks: physical.yml
