@@ -1,8 +1,8 @@
-- name: start/enable services
+- name: Start/enable services
   become: true
   ansible.builtin.service:
     name: "{{ item }}"
     state: started
-    enabled: yes
+    enabled: true
   with_items: "{{ vm_services }}"
   tags: services

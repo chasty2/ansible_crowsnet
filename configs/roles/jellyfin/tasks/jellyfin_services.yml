@@ -1,47 +1,48 @@
 - name: Service Config block
-  block:
-  - name: create /mnt/jellyfin
-    become: true
-    ansible.builtin.file:
-      path: /mnt/jellyfin
-      state: directory
-
-  - name: mount jellyfin NFS volume
-    become: true
-    ansible.posix.mount:
-      src: 192.168.4.11:/ssd_mirror/jellyfin
-      path: /mnt/jellyfin
-      opts: rw,sync,hard
-      state: mounted
-      fstype: nfs
-
-  - name: create /mnt/media
-    become: true
-    ansible.builtin.file:
-      path: /mnt/jellyfin
-      state: directory
-
-  - name: mount media NFS volume
-    become: true
-    ansible.posix.mount:
-      src: 192.168.4.11:/hdd_mirror/media
-      path: /mnt/media
-      opts: rw,sync,hard
-      state: mounted
-      fstype: nfs
-
-  - name: start jellyfin container
-    containers.podman.podman_container:
-      name: jellyfin
-      image: docker.io/jellyfin/jellyfin
-      network: host
-      mount:
-        - "type=bind,source=/mnt/media,destination=/media,ro=true"
-        - "type=bind,source=/mnt/jellyfin/cache,destination=/cache,rw=true"
-        - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
-      rm: true
-      state: started
   tags: services
+  block:
+    - name: Create /mnt/jellyfin
+      become: true
+      ansible.builtin.file:
+        path: /mnt/jellyfin
+        state: directory
+
+    - name: Mount jellyfin NFS volume
+      become: true
+      ansible.posix.mount:
+        src: 192.168.4.11:/ssd_mirror/jellyfin
+        path: /mnt/jellyfin
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+
+    - name: Create /mnt/media
+      become: true
+      ansible.builtin.file:
+        path: /mnt/jellyfin
+        state: directory
+
+    - name: Mount media NFS volume
+      become: true
+      ansible.posix.mount:
+        src: 192.168.4.11:/hdd_mirror/media
+        path: /mnt/media
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+
+    - name: Start jellyfin container
+      containers.podman.podman_container:
+        name: jellyfin
+        image: docker.io/jellyfin/jellyfin
+        network: host
+        mount:
+          - "type=bind,source=/mnt/media,destination=/media,ro=true"
+          - "type=bind,source=/mnt/jellyfin/cache,destination=/cache,rw=true"
+          - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
+        rm: true
+        state: started
+
 
 # - name: disable unnecessary services
 #   become: true
@@ -51,4 +52,4 @@
 #     enabled: no
 #   with_items: "{{ disabled_services }}"
 #   ignore_errors: yes
-  
+

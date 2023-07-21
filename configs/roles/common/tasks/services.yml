@@ -1,23 +1,24 @@
 ## Base configuration
 - name: Service Config block
-  block:
-  - name: configure SSH
-    ansible.builtin.copy:
-      dest: /etc/ssh/sshd_config
-      src: sshd_config
-      owner: root
-      group: root
-      mode: 0600
-    notify: reload SSH
-
-  - name: start/enable base services
-    ansible.builtin.service:
-      name: "{{ item }}"
-      state: started
-      enabled: yes
-    with_items: "{{ base_services }}"
   become: true
   tags: services
+  block:
+    - name: Configure SSH
+      ansible.builtin.copy:
+        dest: /etc/ssh/sshd_config
+        src: sshd_config
+        owner: root
+        group: root
+        mode: "0600"
+      notify: reload SSH
+
+    - name: Start/enable base services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      with_items: "{{ base_services }}"
+
 
 # - name: disable unnecessary services
 #   become: true
@@ -27,4 +28,3 @@
 #     enabled: no
 #   with_items: "{{ disabled_services }}"
 #   ignore_errors: yes
-  

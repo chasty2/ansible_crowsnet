@@ -1,34 +1,35 @@
 ## Base configuration
 - name: Service Config block
-  block:
-  - name: configure NFS
-    ansible.builtin.copy:
-      dest: /etc/exports
-      src: nfs_exports
-      owner: root
-      group: root
-      mode: 0644
-    notify: reload NFS
-
-  - name: Set permissions of NFS mounts ## declared in proxmox vars
-    ansible.builtin.file:
-      path: "{{ item.path }}"
-      state: directory
-      recurse: yes
-      owner: "{{ item.owner }}"
-      group: "{{ item.group }}"
-      mode: "{{ item.mode }}" 
-    with_items: "{{ nfs_mounts }}"
-    notify: reload NFS
-
-  - name: start/enable base services
-    ansible.builtin.service:
-      name: "{{ item }}"
-      state: started
-      enabled: yes
-    with_items: "{{ proxmox_services }}"
   become: true
   tags: services
+  block:
+    - name: Configure NFS
+      ansible.builtin.copy:
+        dest: /etc/exports
+        src: nfs_exports
+        owner: root
+        group: root
+        mode: "0644"
+      notify: reload NFS
+
+    - name: Set permissions of NFS mounts ## declared in proxmox vars
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: directory
+        recurse: true
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: "{{ item.mode }}"
+      with_items: "{{ nfs_mounts }}"
+      notify: reload NFS
+
+    - name: Start/enable base services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      with_items: "{{ proxmox_services }}"
+
 
 # - name: disable unnecessary services
 #   become: true
@@ -38,4 +39,3 @@
 #     enabled: no
 #   with_items: "{{ disabled_services }}"
 #   ignore_errors: yes
-  

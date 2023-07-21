@@ -1,13 +1,13 @@
 #
 ## configure firewalld on proxmmox hosts
 #
-- name: open permitted ports on firewalld zone 'internal'
+- name: Open permitted ports on firewalld zone 'internal'
   become: true
   ansible.posix.firewalld:
     zone: internal
     port: "{{ item }}"
     state: enabled
-    permanent: yes
-    immediate: yes
+    permanent: true
+    immediate: true
   with_items: "{{ jellyfin_ports }}"
   tags: firewall

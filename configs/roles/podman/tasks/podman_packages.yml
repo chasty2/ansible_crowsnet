@@ -1,4 +1,4 @@
-- name: install software
+- name: Install software
   become: true
   ansible.builtin.package:
     name: "{{ item }}"

@@ -1,6 +1,6 @@
 ---
 # handlers file for common
-- name: reload SSH
+- name: Reload SSH
   become: true
   ansible.builtin.service:
     name: sshd

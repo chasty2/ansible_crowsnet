@@ -1,4 +1,6 @@
 - name: User Config block
+  become: true
+  tags: users
   block:
     - name: Add sudo group
       ansible.builtin.group:
@@ -11,7 +13,7 @@
         group: sudo
         shell: /bin/bash
         home: /home/chasty2
-        create_home: yes
+        create_home: true
         state: present
 
     - name: Add SSH public key for local user
@@ -26,7 +28,5 @@
         src: sudoer_chasty2
         owner: root
         group: root
-        mode: 0440
+        mode: "0440"
         validate: /usr/sbin/visudo -csf %s
-  become: true
-  tags: users

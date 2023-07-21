@@ -9,5 +9,5 @@
   tags: services
 
 - name: Firewall Config
-  ansible.builtin.include_tasks: jellyfin_firewalld.yml  
+  ansible.builtin.include_tasks: jellyfin_firewalld.yml
   tags: firewall

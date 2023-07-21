@@ -1,4 +1,6 @@
 - name: User Config block
+  become: true
+  tags: users
   block:
     - name: Create NFS groups
       ansible.builtin.group:
@@ -11,7 +13,5 @@
       ansible.builtin.user:
         name: "{{ item }}"
         groups: jellyfin
-        append: yes
+        append: true
       with_items: "{{ jellyfin_users }}"
-  become: true
-  tags: users
