@@ -1,4 +1,10 @@
-- name: Testing
+- name: Is ansible working?
+  hosts: localhost
+  tasks:
+    - name: Ping localhost
+      ansible.builtin.ping:
+
+- name: Test components
   hosts: test
   roles:
     - common
