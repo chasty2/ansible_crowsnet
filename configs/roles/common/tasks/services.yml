@@ -10,7 +10,7 @@
         owner: root
         group: root
         mode: "0600"
-      notify: reload SSH
+      notify: Reload SSH
 
     - name: Start/enable base services
       ansible.builtin.service:
