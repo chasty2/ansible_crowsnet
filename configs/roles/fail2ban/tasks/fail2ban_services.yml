@@ -1,0 +1,30 @@
+## fail2ban configuration
+- name: Service Config block
+  become: true
+  tags: services
+  block:
+    ## TODO: create jail files
+    - name: Configure fail2ban defaults
+      ansible.builtin.copy:
+        dest: /etc/fail2ban/jail.local
+        src: jail_local
+        owner: root
+        group: root
+        mode: "0600"
+      notify: Reload fail2ban
+
+    - name: Configure sshd jail
+      ansible.builtin.copy:
+        dest: /etc/fail2ban/jail.d/sshd.conf
+        src: jail_sshd
+        owner: root
+        group: root
+        mode: "0600"
+      notify: Reload fail2ban
+
+    - name: Start/enable fail2ban services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      with_items: "{{ fail2ban_services }}"
