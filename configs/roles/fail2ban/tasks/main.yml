@@ -1,0 +1,5 @@
+---
+# tasks file for fail2ban
+- name: Package Config
+  ansible.builtin.include_tasks: fail2ban_packages.yml
+  tags: packages
