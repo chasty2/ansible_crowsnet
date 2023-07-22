@@ -10,7 +10,7 @@
         owner: root
         group: root
         mode: "0644"
-      notify: reload NFS
+      notify: Reload NFS
 
     - name: Set permissions of NFS mounts ## declared in proxmox vars
       ansible.builtin.file:
@@ -21,7 +21,7 @@
         group: "{{ item.group }}"
         mode: "{{ item.mode }}"
       with_items: "{{ nfs_mounts }}"
-      notify: reload NFS
+      notify: Reload NFS
 
     - name: Start/enable base services
       ansible.builtin.service:
