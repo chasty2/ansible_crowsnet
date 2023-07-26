@@ -1,0 +1,6 @@
+[DEFAULTS]
+bantime = 30m
+findtime = 10m
+maxretry = 5
+banaction = firewallcmd-ipset
+banaction_allports = firewallcmd-ipset
