@@ -3,7 +3,7 @@
 - name: Set hostname
   become: true
   ansible.builtin.hostname:
-    name: "{{ hostname }}"  ## declared in hosts file
+    name: "{{ inventory_hostname }}" ## See host_vars for naming convention
     use: systemd
 
 - name: User Config
