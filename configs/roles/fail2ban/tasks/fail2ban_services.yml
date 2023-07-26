@@ -3,7 +3,6 @@
   become: true
   tags: services
   block:
-    ## TODO: create jail files
     - name: Configure fail2ban defaults
       ansible.builtin.copy:
         dest: /etc/fail2ban/jail.local
