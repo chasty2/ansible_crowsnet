@@ -1,6 +1,7 @@
 ---
 # vars file for fail2ban role
 fail2ban_packages:
+  - ipset
   - fail2ban
 
 fail2ban_services:
