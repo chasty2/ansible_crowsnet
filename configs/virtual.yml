@@ -2,3 +2,8 @@
   hosts: virtual
   roles:
     - common
+
+- name: Public-facing Machines
+  hosts: gate
+  roles:
+    - fail2ban
