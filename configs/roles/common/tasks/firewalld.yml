@@ -4,15 +4,6 @@
   become: true
   tags: firewall
   block:
-    - name: Add permitted network(s) to firewalld zone 'internal'
-      ansible.posix.firewalld:
-        zone: internal
-        source: "{{ item }}"
-        state: enabled
-        permanent: true
-        immediate: true
-      with_items: "{{ permitted_networks }}"
-
     - name: Open permitted ports on firewalld zone 'internal'
       ansible.posix.firewalld:
         zone: internal
@@ -30,3 +21,12 @@
         permanent: true
         immediate: true
       with_items: "{{ closed_ports }}"
+
+    - name: Add permitted network(s) to firewalld zone 'internal'
+      ansible.posix.firewalld:
+        zone: internal
+        source: "{{ item }}"
+        state: enabled
+        permanent: true
+        immediate: true
+      with_items: "{{ permitted_networks }}"
