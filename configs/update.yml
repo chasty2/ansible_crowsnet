@@ -1,0 +1,10 @@
+- name: Update and Reboot VM's
+  hosts: virtual
+  tasks:
+    - name: Update all packages
+      ansible.builtin.package:
+        name: '*'
+        state: latest
+
+    - name: Reboot
+      ansible.builtin.reboot:
