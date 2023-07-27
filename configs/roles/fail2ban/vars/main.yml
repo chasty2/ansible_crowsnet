@@ -6,3 +6,12 @@ fail2ban_packages:
 
 fail2ban_services:
   - fail2ban
+
+public_permitted_ports:
+  - ssh
+
+public_closed_ports:
+  - dhcpv6-client
+
+public_permitted_interfaces:
+  - ens18

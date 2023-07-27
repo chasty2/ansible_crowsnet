@@ -7,3 +7,7 @@
 - name: Service Config
   ansible.builtin.include_tasks: fail2ban_services.yml
   tags: services
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: fail2ban_firewalld.yml
+  tags: firewall

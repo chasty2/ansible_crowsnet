@@ -4,29 +4,29 @@
   become: true
   tags: firewall
   block:
-    - name: Open permitted ports on firewalld zone 'internal'
+    - name: Open permitted ports on firewalld zone 'public'
       ansible.posix.firewalld:
-        zone: internal
+        zone: public
         service: "{{ item }}"
         state: enabled
         permanent: true
         immediate: true
-      with_items: "{{ permitted_ports }}"
+      with_items: "{{ public_permitted_ports }}"
 
-    - name: Close unnecessary ports on firewalld zone 'internal'
+    - name: Close unnecessary ports on firewalld zone 'public'
       ansible.posix.firewalld:
-        zone: internal
+        zone: public
         service: "{{ item }}"
         state: disabled
         permanent: true
         immediate: true
-      with_items: "{{ closed_ports }}"
+      with_items: "{{ public_closed_ports }}"
 
-    - name: Add permitted network(s) to firewalld zone 'internal'
+    - name: Add permitted interface(s) to firewalld zone 'public'
       ansible.posix.firewalld:
-        zone: internal
-        source: "{{ item }}"
+        zone: public
+        interface: "{{ item }}"
         state: enabled
         permanent: true
         immediate: true
-      with_items: "{{ permitted_networks }}"
+      with_items: "{{ public_permitted_interfaces }}"
