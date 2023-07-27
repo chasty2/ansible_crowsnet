@@ -20,7 +20,7 @@
 
     - name: Configure sshd jail
       ansible.builtin.copy:
-        dest: /etc/fail2ban/jail.d/sshd.conf
+        dest: /etc/fail2ban/jail.d/sshd.local
         src: jail_sshd
         owner: root
         group: root
