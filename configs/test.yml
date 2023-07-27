@@ -4,17 +4,8 @@
     - name: Ping localhost
       ansible.builtin.ping:
 
-- name: Test inventory_hostname
+- name: Test components
   hosts: lab
-  tasks:
-    - name: Print inventory_hostname
-      ansible.builtin.debug:
-        msg: "{{ inventory_hostname }}"
-
-# - name: Test components
-#   hosts: test
-#   roles:
-#     - common
-#     # - virtual
-#     # - podman
-#     # - jellyfin
+  roles:
+    - common
+    - fail2ban
