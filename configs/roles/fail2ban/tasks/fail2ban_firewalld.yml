@@ -1,5 +1,5 @@
 ---
-# Configure firewalld
+# Configure firewalld public zone
 - name: Firewall Config block
   become: true
   tags: firewall
