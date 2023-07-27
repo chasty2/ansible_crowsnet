@@ -1,3 +1,4 @@
+---
 - name: Install software
   become: true
   ansible.builtin.package:
