@@ -1,10 +1,19 @@
 - name: Update and Reboot VM's
   hosts: virtual
+  become: true
   tasks:
     - name: Update all packages
       ansible.builtin.package:
         name: '*'
         state: latest
+
+    - name: Remove unused dependencies
+      ansible.builtin.apt:
+        autoremove: true
+
+    - name: Clear apt caches
+      ansible.builtin.apt:
+        autoclean: true
 
     - name: Reboot
       ansible.builtin.reboot:
