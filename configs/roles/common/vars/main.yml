@@ -11,6 +11,7 @@ base_packages:
   - htop
   - nmon
   - rsyslog
+  - bind9-dnsutils
 
 base_services:
   - firewalld
