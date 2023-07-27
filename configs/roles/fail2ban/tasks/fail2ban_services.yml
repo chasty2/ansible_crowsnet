@@ -9,8 +9,10 @@
         src: jail_local
         owner: root
         group: root
-        mode: "0600"
+        mode: "0640"
       notify: Reload fail2ban
+
+    # delete defaults-debian.conf
 
     - name: Configure sshd jail
       ansible.builtin.copy:
@@ -18,7 +20,7 @@
         src: jail_sshd
         owner: root
         group: root
-        mode: "0600"
+        mode: "0640"
       notify: Reload fail2ban
 
     - name: Start/enable fail2ban services
