@@ -10,6 +10,7 @@ base_packages:
   - nfs-common
   - htop
   - nmon
+  - rsyslog
 
 base_services:
   - firewalld
