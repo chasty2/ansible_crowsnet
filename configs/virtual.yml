@@ -2,6 +2,7 @@
   hosts: virtual
   roles:
     - common
+    - virtual
 
 - name: Public-facing Machines
   hosts: gate
