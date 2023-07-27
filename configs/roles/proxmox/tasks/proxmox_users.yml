@@ -1,3 +1,4 @@
+---
 - name: User Config block
   become: true
   tags: users

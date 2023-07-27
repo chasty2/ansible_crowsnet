@@ -1,6 +1,4 @@
-#
-## configure firewalld on proxmmox hosts
-#
+---
 - name: Open permitted ports on firewalld zone 'internal'
   become: true
   ansible.posix.firewalld:
