@@ -1,6 +1,5 @@
-#
-## configure firewalld
-#
+---
+# Configure firewalld
 - name: Firewall Config block
   become: true
   tags: firewall
