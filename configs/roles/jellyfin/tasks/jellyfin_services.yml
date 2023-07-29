@@ -29,7 +29,7 @@
       ansible.posix.mount:
         src: 192.168.4.11:/hdd_mirror/media
         path: /mnt/media
-        opts: rw,sync,hard
+        opts: ro,sync,hard
         state: mounted
         fstype: nfs
 
