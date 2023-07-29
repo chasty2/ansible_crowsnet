@@ -8,6 +8,9 @@
       ansible.builtin.file:
         path: /mnt/jellyfin
         state: directory
+        owner: ansible
+        group: jellyfin
+        mode: '0770'
 
     - name: Mount jellyfin NFS volume
       become: true
@@ -23,6 +26,9 @@
       ansible.builtin.file:
         path: /mnt/jellyfin
         state: directory
+        owner: ansible
+        group: jellyfin
+        mode: '0550'
 
     - name: Mount media NFS volume
       become: true
