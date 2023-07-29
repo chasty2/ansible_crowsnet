@@ -48,8 +48,8 @@
           - "type=bind,source=/mnt/media,destination=/media,ro=true"
           - "type=bind,source=/mnt/jellyfin/cache,destination=/cache,rw=true"
           - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
-        rm: true
         state: started
+        restart_policy: 'on-failure[:3]'
 
 # - name: disable unnecessary services
 #   become: true
