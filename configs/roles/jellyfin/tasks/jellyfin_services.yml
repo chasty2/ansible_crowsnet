@@ -24,11 +24,11 @@
     - name: Create /mnt/media
       become: true
       ansible.builtin.file:
-        path: /mnt/jellyfin
+        path: /mnt/media
         state: directory
-        owner: ansible
+        owner: chasty2
         group: jellyfin
-        mode: '0550'
+        mode: '0750'
 
     - name: Mount media NFS volume
       become: true
@@ -39,6 +39,7 @@
         state: mounted
         fstype: nfs
 
+    ## TODO: run as root or configure rootless mode
     - name: Start jellyfin container
       containers.podman.podman_container:
         name: jellyfin
