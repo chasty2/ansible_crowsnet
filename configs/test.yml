@@ -8,4 +8,4 @@
   hosts: lab
   roles:
     - common
-    - fail2ban
+    - jellyfin
