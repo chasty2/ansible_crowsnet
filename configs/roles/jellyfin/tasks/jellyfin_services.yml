@@ -21,6 +21,7 @@
         state: mounted
         fstype: nfs
 
+    ## TODO: put mount points in a loop
     - name: Create /mnt/media
       become: true
       ansible.builtin.file:
@@ -39,8 +40,9 @@
         state: mounted
         fstype: nfs
 
-    ## TODO: run as root or configure rootless mode
+    ## TODO: Configure rootless mode
     - name: Start jellyfin container
+      become: true
       containers.podman.podman_container:
         name: jellyfin
         image: docker.io/jellyfin/jellyfin
@@ -50,7 +52,7 @@
           - "type=bind,source=/mnt/jellyfin/cache,destination=/cache,rw=true"
           - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
         state: started
-        restart_policy: 'on-failure[:3]'
+        restart_policy: on-failure:3
 
 # - name: disable unnecessary services
 #   become: true
