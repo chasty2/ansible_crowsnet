@@ -8,3 +8,10 @@
   hosts: gate
   roles:
     - fail2ban
+
+# As of now, all web services depend on podman
+- name: Web services
+  hosts: bailey
+  roles:
+    - podman
+    - jellyfin
