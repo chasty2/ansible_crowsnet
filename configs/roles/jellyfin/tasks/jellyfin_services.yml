@@ -1,10 +1,10 @@
 ---
 # Setup NFS mounts and jellyfin container
 - name: Service Config block
+  become: true
   tags: services
   block:
     - name: Create /mnt/jellyfin
-      become: true
       ansible.builtin.file:
         path: /mnt/jellyfin
         state: directory
@@ -13,7 +13,6 @@
         mode: '0770'
 
     - name: Mount jellyfin NFS volume
-      become: true
       ansible.posix.mount:
         src: 192.168.4.11:/ssd_mirror/jellyfin
         path: /mnt/jellyfin
@@ -23,7 +22,6 @@
 
     ## TODO: put mount points in a loop
     - name: Create /mnt/media
-      become: true
       ansible.builtin.file:
         path: /mnt/media
         state: directory
@@ -32,7 +30,6 @@
         mode: '0750'
 
     - name: Mount media NFS volume
-      become: true
       ansible.posix.mount:
         src: 192.168.4.11:/hdd_mirror/media
         path: /mnt/media
@@ -42,7 +39,6 @@
 
     ## TODO: Configure rootless mode
     - name: Start jellyfin container
-      become: true
       containers.podman.podman_container:
         name: jellyfin
         image: docker.io/jellyfin/jellyfin
