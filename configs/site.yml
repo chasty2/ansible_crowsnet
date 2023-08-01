@@ -1,5 +1,5 @@
-- name: Configure Virtual Machines
-  ansible.builtin.import_playbook: virtual.yml
-
 - name: Configure Physical Machines
   ansible.builtin.import_playbook: physical.yml
+
+- name: Configure Virtual Machines
+  ansible.builtin.import_playbook: virtual.yml
