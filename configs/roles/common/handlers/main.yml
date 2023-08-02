@@ -9,7 +9,7 @@
 - name: Restart crond
   become: true
   ansible.builtin.service:
-    name: crond
+    name: cron
     state: restarted
 
 ## firewalld handlers
