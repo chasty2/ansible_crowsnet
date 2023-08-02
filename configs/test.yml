@@ -7,5 +7,4 @@
 - name: Test components
   hosts: lab
   roles:
-    - podman
-    - jellyfin
+    - common
