@@ -12,10 +12,12 @@ base_packages:
   - nmon
   - rsyslog
   - bind9-dnsutils
+  - crond
 
 base_services:
   - firewalld
   - sshd
+  - crond
 
 removed_packages:
   - ufw

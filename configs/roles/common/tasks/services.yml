@@ -13,6 +13,11 @@
         mode: "0600"
       notify: Reload SSH
 
+    - name: Set timezone
+      community.general.timezone:
+        name: America/Chicago
+      notify: Restart crond
+
     - name: Start/enable base services
       ansible.builtin.service:
         name: "{{ item }}"

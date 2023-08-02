@@ -6,6 +6,12 @@
     name: sshd
     state: reloaded
 
+- name: Restart crond
+  become: true
+  ansible.builtin.service:
+    name: crond
+    state: restarted
+
 ## firewalld handlers
 # - name: reload firewalld
 #   become: true
