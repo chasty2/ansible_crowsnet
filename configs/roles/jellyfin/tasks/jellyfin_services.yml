@@ -10,7 +10,7 @@
         state: directory
         owner: ansible
         group: jellyfin
-        mode: '0770'
+        mode: "0770"
 
     - name: Mount jellyfin NFS volume
       ansible.posix.mount:
@@ -27,7 +27,7 @@
         state: directory
         owner: chasty2
         group: jellyfin
-        mode: '0750'
+        mode: "0750"
 
     - name: Mount media NFS volume
       ansible.posix.mount:
@@ -49,7 +49,6 @@
           - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
         state: started
         restart_policy: on-failure:3
-
 # - name: disable unnecessary services
 #   become: true
 #   ansible.builtin.service:
