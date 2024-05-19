@@ -27,7 +27,8 @@
         state: directory
         owner: chasty2
         group: jellyfin
-        mode: "0750"
+        mode: "0770"
+      ignore_errors: true
 
     - name: Mount media NFS volume
       ansible.posix.mount:
