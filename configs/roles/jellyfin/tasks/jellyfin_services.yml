@@ -28,13 +28,12 @@
         owner: chasty2
         group: jellyfin
         mode: "0770"
-      ignore_errors: true
 
     - name: Mount media NFS volume
       ansible.posix.mount:
         src: 192.168.4.11:/hdd_mirror/media
         path: /mnt/media
-        opts: ro,sync,hard
+        opts: rw,sync,hard
         state: mounted
         fstype: nfs
 
@@ -45,7 +44,7 @@
         image: docker.io/jellyfin/jellyfin
         network: host
         mount:
-          - "type=bind,source=/mnt/media,destination=/media,ro=true"
+          - "type=bind,source=/mnt/media,destination=/media,rw=true"
           - "type=bind,source=/mnt/jellyfin/cache,destination=/cache,rw=true"
           - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
         state: started

@@ -8,18 +8,21 @@ proxmox_services:
 
 ## These groups/users must also specified in the NFS client roles
 nfs_groups:
-  - { name: 'jellyfin', gid: '2000'}
+  - { name: "jellyfin", gid: "2000" }
 
 nfs_mounts:
-  - { path: '/hdd_mirror/media', owner: chasty2,
-      group: jellyfin, mode: '0750'}
-  - { path: '/ssd_mirror/jellyfin', owner: ansible,
-      group: jellyfin, mode: '0770'}
+  - { path: "/hdd_mirror/media", owner: chasty2, group: jellyfin, mode: "0770" }
+  - {
+      path: "/ssd_mirror/jellyfin",
+      owner: ansible,
+      group: jellyfin,
+      mode: "0770",
+    }
 
 jellyfin_users:
   - ansible
   - chasty2
 
 proxmox_ports:
-  - 8006/tcp  # proxmox web app
-  - 2049/tcp  # nfs
+  - 8006/tcp # proxmox web app
+  - 2049/tcp # nfs
