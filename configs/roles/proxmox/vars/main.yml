@@ -11,13 +11,10 @@ nfs_groups:
   - { name: "jellyfin", gid: "2000" }
 
 nfs_mounts:
-  - { path: "/hdd_mirror/media", owner: chasty2, group: jellyfin, mode: "0770" }
-  - {
-      path: "/ssd_mirror/jellyfin",
-      owner: ansible,
-      group: jellyfin,
-      mode: "0770",
-    }
+  - { path: "/hdd_mirror/media", owner: chasty2,
+      group: jellyfin, mode: "0770" }
+  - { path: "/ssd_mirror/jellyfin", owner: ansible,
+      group: jellyfin, mode: "0770" }
 
 jellyfin_users:
   - ansible
