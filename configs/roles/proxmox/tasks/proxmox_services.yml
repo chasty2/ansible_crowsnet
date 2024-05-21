@@ -4,7 +4,7 @@
   become: true
   tags: services
   block:
-    - name: Set permissions of NFS mounts ## declared in proxmox vars
+    - name: Configure NFS directories ## declared in proxmox vars
       ansible.builtin.file:
         path: "{{ item.path }}"
         state: directory
@@ -15,7 +15,7 @@
       with_items: "{{ nfs_mounts }}"
       notify: Reload NFS
 
-    - name: Configure NFS
+    - name: Configure NFS exports
       ansible.builtin.template:
         dest: /etc/exports
         src: nfs_exports.j2
