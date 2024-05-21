@@ -11,6 +11,7 @@
 # /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)
 # /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)
 #
-# sharenfs must be set on these ZFS volumes 
+# sharenfs must be set on these ZFS volumes
+# TODO: put mounts in a loop
 /hdd_mirror/media               192.168.4.0/22(rw,sync,no_subtree_check,no_root_squash)
 /ssd_mirror/jellyfin            192.168.4.0/22(rw,sync,no_subtree_check,no_root_squash)
