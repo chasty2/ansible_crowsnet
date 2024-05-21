@@ -4,15 +4,6 @@
   become: true
   tags: services
   block:
-    - name: Configure NFS
-      ansible.builtin.template:
-        dest: /etc/exports
-        src: nfs_exports.j2
-        owner: root
-        group: root
-        mode: "0644"
-      notify: Reload NFS
-
     - name: Set permissions of NFS mounts ## declared in proxmox vars
       ansible.builtin.file:
         path: "{{ item.path }}"
@@ -22,6 +13,15 @@
         group: "{{ item.group }}"
         mode: "{{ item.mode }}"
       with_items: "{{ nfs_mounts }}"
+      notify: Reload NFS
+
+    - name: Configure NFS
+      ansible.builtin.template:
+        dest: /etc/exports
+        src: nfs_exports.j2
+        owner: root
+        group: root
+        mode: "0644"
       notify: Reload NFS
 
     - name: Start/enable base services
