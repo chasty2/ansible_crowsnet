@@ -16,3 +16,10 @@
         groups: jellyfin
         append: true
       with_items: "{{ jellyfin_users }}"
+
+    - name: Add users to proxy group
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: proxy
+        append: true
+      with_items: "{{ proxy_users }}"
