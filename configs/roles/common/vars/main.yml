@@ -13,6 +13,7 @@ base_packages:
   - rsyslog
   - bind9-dnsutils
   - cron
+  - ncdu
 
 base_services:
   - firewalld
