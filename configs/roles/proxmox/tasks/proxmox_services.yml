@@ -5,9 +5,9 @@
   tags: services
   block:
     - name: Configure NFS
-      ansible.builtin.copy:
+      ansible.builtin.template:
         dest: /etc/exports
-        src: nfs_exports
+        src: nfs_exports.j2
         owner: root
         group: root
         mode: "0644"
