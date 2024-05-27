@@ -1,0 +1,13 @@
+---
+# tasks file for proxy role
+- name: User Config
+  ansible.builtin.include_tasks: proxy_users.yml
+  tags: users
+
+- name: Service Config
+  ansible.builtin.include_tasks: proxy_services.yml
+  tags: services
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: proxy_firewalld.yml
+  tags: firewall

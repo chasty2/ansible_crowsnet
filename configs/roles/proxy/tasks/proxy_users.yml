@@ -1,0 +1,17 @@
+---
+- name: User Config block
+  become: true
+  tags: users
+  block:
+    - name: Add proxy group
+      ansible.builtin.group:
+        name: proxy
+        gid: 2001
+        state: present
+
+    - name: Add users to proxy group
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: proxy
+        append: true
+      with_items: "{{ proxy_users }}"

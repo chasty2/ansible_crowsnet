@@ -1,0 +1,10 @@
+---
+# vars file for proxy role
+proxy_ports:
+  - http
+  - https
+  - 81/tcp  # npm web app
+
+proxy_users:
+  - ansible
+  - chasty2
