@@ -1,4 +1,4 @@
-FROM docker.io/chasty2/ansible:5.1
+FROM docker.io/chasty2/ansible:9.5.1
 
 # Copy SSH keys to ansible .ssh directory
 COPY ./ssh-keys/ansible_ed25519 /home/ansible/.ssh/id_ed25519
