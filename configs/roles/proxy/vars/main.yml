@@ -1,9 +1,11 @@
 ---
 # vars file for proxy role
-proxy_ports:
+internal_ports:
+  - 81/tcp  # npm web app
+
+public_ports:
   - 80/tcp  # http
   - 443/tcp # https
-  - 81/tcp  # npm web app
 
 proxy_users:
   - ansible

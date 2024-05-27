@@ -7,5 +7,16 @@
     state: enabled
     permanent: true
     immediate: true
-  with_items: "{{ proxy_ports }}"
+  with_items: "{{ internal_ports }}"
+  tags: firewall
+
+- name: Open permitted ports on firewalld zone 'public'
+  become: true
+  ansible.posix.firewalld:
+    zone: public
+    port: "{{ item }}"
+    state: enabled
+    permanent: true
+    immediate: true
+  with_items: "{{ public_ports }}"
   tags: firewall
