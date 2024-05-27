@@ -14,7 +14,7 @@
   become: true
   ansible.posix.firewalld:
     zone: public
-    port: "{{ item }}"
+    service: "{{ item }}"
     state: enabled
     permanent: true
     immediate: true

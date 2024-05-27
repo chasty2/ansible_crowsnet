@@ -4,8 +4,8 @@ internal_ports:
   - 81/tcp  # npm web app
 
 public_ports:
-  - 80/tcp  # http
-  - 443/tcp # https
+  - http
+  - https
 
 proxy_users:
   - ansible
