@@ -49,6 +49,7 @@
           - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
         state: started
         restart_policy: on-failure:3
+
 # - name: disable unnecessary services
 #   become: true
 #   ansible.builtin.service:
