@@ -1,8 +1,8 @@
 ---
 # vars file for proxy role
 proxy_ports:
-  - http
-  - https
+  - 80/tcp  # http
+  - 443/tcp # https
   - 81/tcp  # npm web app
 
 proxy_users:
