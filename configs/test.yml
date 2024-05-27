@@ -7,5 +7,5 @@
 - name: Test components
   hosts: lab
   roles:
-    - common
+    - fail2ban
     - proxy
