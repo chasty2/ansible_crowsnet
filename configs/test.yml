@@ -8,4 +8,5 @@
   hosts: lab
   roles:
     - fail2ban
+    - podman
     - proxy
