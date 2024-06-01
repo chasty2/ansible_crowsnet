@@ -23,17 +23,16 @@
     ## TODO: Mount jellyfin logs for fail2ban?
 
     ## TODO: Configure rootless mode
-    # - name: Start npm container
-    #   containers.podman.podman_container:
-    #     name: proxy
-    #     image: docker.io/jellyfin/jellyfin
-    #     network: host
-    #     mount:
-    #       - "type=bind,source=/mnt/media,destination=/media,rw=true"
-    #       - "type=bind,source=/mnt/jellyfin/cache,destination=/cache,rw=true"
-    #       - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
-    #     state: started
-    #     restart_policy: on-failure:3
+    - name: Start npm container
+      containers.podman.podman_container:
+        name: proxy
+        image: docker.io/jc21/nginx-proxy-manager:latest
+        network: host
+        mount:
+          - "type=bind,source=/mnt/proxy/data,destination=/data,rw=true"
+          - "type=bind,source=/mnt/proxy/letsencrypt,destination=/etc/letsencrypt,rw=true"
+        state: started
+        restart_policy: on-failure:3
 
 # - name: disable unnecessary services
 #   become: true
