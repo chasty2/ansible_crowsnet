@@ -1,3 +1,0 @@
-[sshd]
-enabled = true
-ignoreip = 192.168.4.0/22
