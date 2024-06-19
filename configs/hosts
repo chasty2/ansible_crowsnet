@@ -8,16 +8,23 @@
 #   - You can enter hostnames or ip addresses
 #   - A hostname/ip can be a member of multiple groups
 
+physical:
+  hosts:
+    esper:
+      ansible_host: 192.168.4.11
+
 virtual:
   hosts:
     gate:
       ansible_host: 192.168.4.100
+    proxy:
+      ansible_host: 192.168.4.101
     bailey:
       ansible_host: 192.168.4.125
     lab:
       ansible_host: 192.168.4.150
 
-physical:
+dmz:
   hosts:
-    esper:
-      ansible_host: 192.168.4.11
+    gate:
+    proxy:
