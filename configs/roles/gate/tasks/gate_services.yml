@@ -1,0 +1,14 @@
+---
+## sshd/fail2ban configuration
+- name: Service Config block
+  become: true
+  tags: services
+  block:
+    - name: Configure sshd jail
+      ansible.builtin.copy:
+        dest: /etc/fail2ban/jail.d/sshd.local
+        src: jail_sshd
+        owner: root
+        group: root
+        mode: "0640"
+      notify: Reload fail2ban

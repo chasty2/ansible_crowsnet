@@ -1,0 +1,6 @@
+# handlers file for gate
+- name: Reload fail2ban
+  become: true
+  ansible.builtin.service:
+    name: fail2ban
+    state: reloaded

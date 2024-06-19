@@ -1,0 +1,9 @@
+---
+# tasks file for gate
+- name: Service Config
+  ansible.builtin.include_tasks: gate_services.yml
+  tags: services
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: gate_firewalld.yml
+  tags: firewall

@@ -1,0 +1,4 @@
+---
+# vars file for gate role
+public_permitted_ports:
+  - ssh
