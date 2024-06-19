@@ -5,10 +5,14 @@
     - virtual
 
 - name: Public-facing Machines
-  hosts: gate
+  hosts: dmz
   roles:
     - public
-    - gate  # configure fail2ban for sshd
+
+- name: SSH Bastion
+  hosts: gate
+  roles:
+    - gate
 
 # As of now, all web services depend on podman
 - name: Web services
