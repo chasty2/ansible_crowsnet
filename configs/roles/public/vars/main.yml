@@ -1,10 +1,10 @@
 ---
 # vars file for fail2ban role
-fail2ban_packages:
+public_packages:
   - ipset
   - fail2ban
 
-fail2ban_services:
+public_services:
   - fail2ban
 
 # Opened in gate role

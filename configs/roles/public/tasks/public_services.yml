@@ -24,4 +24,4 @@
         name: "{{ item }}"
         state: started
         enabled: true
-      with_items: "{{ fail2ban_services }}"
+      with_items: "{{ public_services }}"

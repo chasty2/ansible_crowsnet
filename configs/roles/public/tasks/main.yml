@@ -1,0 +1,13 @@
+---
+# tasks file for public role
+- name: Package Config
+  ansible.builtin.include_tasks: public_packages.yml
+  tags: packages
+
+- name: Service Config
+  ansible.builtin.include_tasks: public_services.yml
+  tags: services
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: public_firewalld.yml
+  tags: firewall

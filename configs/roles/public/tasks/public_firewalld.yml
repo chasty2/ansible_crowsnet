@@ -4,14 +4,14 @@
   become: true
   tags: firewall
   block:
-    - name: Open permitted ports on firewalld zone 'public'
-      ansible.posix.firewalld:
-        zone: public
-        service: "{{ item }}"
-        state: enabled
-        permanent: true
-        immediate: true
-      with_items: "{{ public_permitted_ports }}"
+    # - name: Open permitted ports on firewalld zone 'public'
+    #   ansible.posix.firewalld:
+    #     zone: public
+    #     service: "{{ item }}"
+    #     state: enabled
+    #     permanent: true
+    #     immediate: true
+    #   with_items: "{{ public_permitted_ports }}"
 
     - name: Close unnecessary ports on firewalld zone 'public'
       ansible.posix.firewalld:

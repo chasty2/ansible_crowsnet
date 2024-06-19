@@ -4,5 +4,5 @@
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
-  with_items: "{{ fail2ban_packages }}"
+  with_items: "{{ public_packages }}"
   tags: packages
