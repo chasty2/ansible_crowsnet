@@ -17,16 +17,3 @@ nfs_mounts:
       group: jellyfin, mode: "0770" }
   - { path: "/ssd_mirror/proxy", owner: ansible,
       group: proxy, mode: "0770"}
-
-## These groups/users must also specified in the NFS client roles
-# nfs_groups:
-#   - { name: "jellyfin", gid: "2000" }
-#   - { name: "proxy", gid: "2001" }
-
-# jellyfin_users:
-#   - ansible
-#   - chasty2
-
-# proxy_users:
-#   - ansible
-#   - chasty2

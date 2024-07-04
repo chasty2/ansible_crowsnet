@@ -1,10 +1,8 @@
 ---
 # tasks file for proxmox role
 
-# Groups made in common role, users added to groups by roles that employ them
-# - name: User Config
-#   ansible.builtin.include_tasks: proxmox_users.yml
-#   tags: users
+# Groups made in common role
+# Users added to groups by roles that employ them
 
 - name: Package Config
   ansible.builtin.include_tasks: proxmox_packages.yml
