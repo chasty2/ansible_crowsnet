@@ -1,3 +1,5 @@
+nfs_server: esper
+
 all_groups:
   - { name: "jellyfin", gid: "2000" }
   - { name: "proxy", gid: "2001" }
