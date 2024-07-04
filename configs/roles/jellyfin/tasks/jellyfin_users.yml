@@ -3,15 +3,21 @@
   become: true
   tags: users
   block:
-    - name: Add jellyfin group
-      ansible.builtin.group:
-        name: jellyfin
-        gid: 2000
-        state: present
-
     - name: Add users to jellyfin group
       ansible.builtin.user:
         name: "{{ item }}"
         groups: jellyfin
         append: true
       with_items: "{{ jellyfin_users }}"
+
+    - name: Add users to jellyfin group on NFS server
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: jellyfin
+        append: true
+      with_items: "{{ jellyfin_users }}"
+      delegate_to: "{{ nfs_server }}"
+      notify: Reload NFS
+
+    - name: Flush handlers
+      ansible.builtin.meta: flush_handlers
