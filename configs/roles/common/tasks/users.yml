@@ -32,3 +32,10 @@
         group: root
         mode: "0440"
         validate: /usr/sbin/visudo -csf %s
+
+    - name: Create user groups
+      ansible.builtin.group:
+        name: "{{ item.name }}"
+        gid: "{{ item.gid }}"
+        state: present
+      with_items: "{{ all_groups }}"
