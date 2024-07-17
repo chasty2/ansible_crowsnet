@@ -28,6 +28,7 @@
         network: host
         env:
           FOUNDRY_RELEASE_URL='https://r2.foundryvtt.com/releases/12.328/FoundryVTT-12.328.zip?verify=1721256628-CzGfMpTSX1U4T%2F0%2BZ05swyddE%2F8AbKOioGDcPQkRe9w%3D'
+          CONTAINER_PRESERVE_CONFIG='true'
         mount:
           - "type=bind,source=/mnt/foundry,destination=/data,rw=true"
         state: started
