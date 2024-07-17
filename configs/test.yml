@@ -7,6 +7,5 @@
 - name: Test components
   hosts: lab
   roles:
-    - public
     - podman
-    - proxy
+    - foundry
