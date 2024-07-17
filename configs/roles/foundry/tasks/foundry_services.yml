@@ -1,0 +1,43 @@
+---
+# Setup NFS mounts and foundry container
+- name: Service Config block
+  become: true
+  tags: services
+  block:
+    - name: Create /mnt/foundry
+      ansible.builtin.file:
+        path: /mnt/foundry
+        state: directory
+        owner: ansible
+        group: foundry
+        mode: "0770"
+
+    - name: Mount foundry NFS volume
+      ansible.posix.mount:
+        src: 192.168.4.11:/ssd_mirror/foundry
+        path: /mnt/foundry
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+
+    ## TODO: Configure rootless mode
+    - name: Start foundry container
+      containers.podman.podman_container:
+        name: foundry
+        image: docker.io/felddy/foundryvtt
+        network: host
+        env:
+          FOUNDRY_RELEASE_URL='https://r2.foundryvtt.com/releases/12.328/FoundryVTT-12.328.zip?verify=1721251268-WtU3jLQiKNFeRM4dQ4lNoxKlpJEErBd4msTom%2FEATM8%3D'
+        mount:
+          - "type=bind,source=/mnt/foundry,destination=/data,rw=true"
+        state: started
+        restart_policy: on-failure:3
+
+# - name: disable unnecessary services
+#   become: true
+#   ansible.builtin.service:
+#     name: "{{ item }}"
+#     state: stopped
+#     enabled: no
+#   with_items: "{{ disabled_services }}"
+#   ignore_errors: yes

@@ -1,0 +1,23 @@
+---
+- name: User Config block
+  become: true
+  tags: users
+  block:
+    - name: Add users to foundry group
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: foundry
+        append: true
+      with_items: "{{ foundry_users }}"
+
+    - name: Add users to foundry group on NFS server
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: foundry
+        append: true
+      with_items: "{{ foundry_users }}"
+      delegate_to: "{{ nfs_server }}"
+      notify: Reload NFS
+
+    - name: Flush handlers
+      ansible.builtin.meta: flush_handlers

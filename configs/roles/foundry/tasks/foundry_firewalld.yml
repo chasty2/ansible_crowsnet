@@ -1,0 +1,11 @@
+---
+- name: Open permitted ports on firewalld zone 'internal'
+  become: true
+  ansible.posix.firewalld:
+    zone: internal
+    port: "{{ item }}"
+    state: enabled
+    permanent: true
+    immediate: true
+  with_items: "{{ foundry_ports }}"
+  tags: firewall

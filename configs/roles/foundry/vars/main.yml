@@ -1,0 +1,8 @@
+---
+# vars file for jellyfin role
+foundry_ports:
+  - 30000/tcp  # foundry web app
+
+foundry_users:
+  - ansible
+  - chasty2
