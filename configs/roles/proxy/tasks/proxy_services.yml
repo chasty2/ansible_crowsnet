@@ -26,13 +26,10 @@
     - name: Start npm container
       containers.podman.podman_container:
         name: proxy
+        network: host
         image: docker.io/jc21/nginx-proxy-manager:latest
         env:
           DISABLE_IPV6: true
-        ports:
-          - "80:80"   # public http
-          - "443:443" # public https
-          - "81:81"   # local admin interface
         mount:
           - "type=bind,source=/mnt/proxy/data,destination=/data,rw=true"
           - "type=bind,source=/mnt/proxy/letsencrypt,destination=/etc/letsencrypt,rw=true"
