@@ -27,7 +27,7 @@
         image: docker.io/felddy/foundryvtt
         network: host
         env:
-          FOUNDRY_RELEASE_URL='https://r2.foundryvtt.com/releases/12.328/FoundryVTT-12.328.zip?verify=1721256628-CzGfMpTSX1U4T%2F0%2BZ05swyddE%2F8AbKOioGDcPQkRe9w%3D'
+          FOUNDRY_RELEASE_URL='https://r2.foundryvtt.com/releases/12.330/FoundryVTT-12.330.zip?verify=1722482937-VK7Km5QMsPLLBD3v%2F0wnoLHF4jDKfj%2B2K9AcPnzd3F0%3D'
           CONTAINER_PRESERVE_CONFIG='true'
         mount:
           - "type=bind,source=/mnt/foundry,destination=/data,rw=true"
