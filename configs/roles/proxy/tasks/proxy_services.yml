@@ -23,6 +23,7 @@
     ## TODO: Mount jellyfin logs for fail2ban?
 
     ## TODO: Configure rootless mode
+    ## TODO: dont use host networking
     - name: Start npm container
       containers.podman.podman_container:
         name: proxy
