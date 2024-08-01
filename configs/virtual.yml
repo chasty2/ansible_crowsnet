@@ -14,6 +14,11 @@
   roles:
     - gate
 
+- name: Web Proxy
+  hosts: proxy
+  roles:
+    - proxy
+
 # As of now, all web services depend on podman
 - name: Web services
   hosts: bailey
