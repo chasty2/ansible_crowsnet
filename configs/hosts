@@ -22,7 +22,7 @@ virtual:
     bailey:
       ansible_host: 192.168.4.125
     lab:
-      ansible_host: 192.168.4.150
+      ansible_host: 192.168.4.200
 
 dmz:
   hosts:
