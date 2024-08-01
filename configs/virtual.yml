@@ -17,6 +17,7 @@
 - name: Web Proxy
   hosts: proxy
   roles:
+    - podman
     - proxy
 
 # As of now, all web services depend on podman
