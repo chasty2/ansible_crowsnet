@@ -27,7 +27,10 @@
     - name: Start npm container
       containers.podman.podman_container:
         name: proxy
-        network: host
+        ports:
+          - "81:81"
+          - "80:80"
+          - "443:443"
         image: docker.io/jc21/nginx-proxy-manager:latest
         env:
           DISABLE_IPV6: true
