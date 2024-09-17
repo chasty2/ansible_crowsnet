@@ -20,8 +20,8 @@ base_services:
   - sshd
   - cron
 
-removed_packages:
-  - ufw
+# removed_packages:
+#   - ufw
 
 # disabled_services:
 #   - ufw

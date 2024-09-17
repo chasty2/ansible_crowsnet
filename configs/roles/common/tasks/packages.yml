@@ -10,8 +10,8 @@
         state: present
       with_items: "{{ base_packages }}"
 
-    - name: Remove unnecessary packages
-      ansible.builtin.package:
-        name: "{{ item }}"
-        state: absent
-      with_items: "{{ removed_packages }}"
+    # - name: Remove unnecessary packages
+    #   ansible.builtin.package:
+    #     name: "{{ item }}"
+    #     state: absent
+    #   with_items: "{{ removed_packages }}"
