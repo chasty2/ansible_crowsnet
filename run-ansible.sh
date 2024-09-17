@@ -16,4 +16,4 @@
 # ansible_crowsnet					        specify container
 # $@ 							            specify a playbook at command line when running this script (and optionally tags, etc)           
 
-podman run -it --rm --network host --volume /home/chasty2/ansible_crowsnet/configs:/etc/ansible -w /etc/ansible ansible-crowsnet $@
+podman run -it --rm --network host --volume /home/chasty2/Documents/ansible_crowsnet/configs:/etc/ansible -w /etc/ansible ansible-crowsnet $@
