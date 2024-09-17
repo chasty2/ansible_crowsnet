@@ -1,0 +1,14 @@
+---
+# Configure firewalld
+- name: Firewall Config block
+  become: true
+  tags: firewall
+  block:
+    - name: Open permitted ports on firewalld zone 'internal'
+      ansible.posix.firewalld:
+        zone: internal
+        port: "{{ item }}"
+        state: enabled
+        permanent: true
+        immediate: true
+      with_items: "{{ desktop_ports }}"

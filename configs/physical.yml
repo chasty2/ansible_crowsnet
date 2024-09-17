@@ -7,3 +7,8 @@
   hosts: esper
   roles:
     - proxmox
+
+- name: desktop
+  hosts: abzan
+  roles:
+    - desktop

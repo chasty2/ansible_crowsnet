@@ -1,0 +1,13 @@
+---
+# tasks file for desktop
+- name: Package Config
+  ansible.builtin.include_tasks: desktop_packages.yml
+  tags: packages
+
+- name: Service Config
+  ansible.builtin.include_tasks: desktop_services.yml
+  tags: services
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: desktop_firewalld.yml
+  tags: firewall

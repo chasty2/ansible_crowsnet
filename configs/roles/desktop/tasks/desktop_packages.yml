@@ -1,0 +1,12 @@
+---
+## package config for desktop
+- name: Package Config block
+  become: true
+  tags: packages
+  block:
+    # Sunshine is installed manually on Pop!_OS 22.04 through pop shop
+    - name: Install desktop software
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ desktop_packages }}"
