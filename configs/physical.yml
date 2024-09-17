@@ -2,4 +2,8 @@
   hosts: physical
   roles:
     - common
+
+- name: Hypervisor
+  hosts: esper
+  roles:
     - proxmox
