@@ -6,8 +6,8 @@
   block:
     - name: Configure SSH
       ansible.builtin.copy:
-        dest: /etc/ssh/sshd_config
-        src: sshd_config
+        dest: /etc/ssh/sshd_config.d/common.conf
+        src: sshd_common
         owner: root
         group: root
         mode: "0600"

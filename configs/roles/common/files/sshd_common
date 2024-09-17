@@ -1,0 +1,6 @@
+
+# This is managed by Ansible. Local changes to this file will be overwritten
+
+PermitRootLogin no
+PubkeyAuthentication yes
+PasswordAuthentication no
