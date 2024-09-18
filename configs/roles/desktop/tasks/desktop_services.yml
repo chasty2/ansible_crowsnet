@@ -4,21 +4,23 @@
   become: true
   tags: services
   block:
-    - name: Create systemd unit for sunshine
-      ansible.builtin.copy:
-        dest: /etc/systemd/user/sunshine.service
-        src: sunshine_systemd
-        owner: root
-        group: root
-        mode: "0755"
-      notify: Reload systemd
+    # TODO: configure sunshine
 
-    - name: Start/enable sunshine
-      ansible.builtin.systemd_service:
-        name: sunshine
-        state: started
-        enabled: true
-        scope: user
+    # - name: Create systemd unit for sunshine
+    #   ansible.builtin.copy:
+    #     dest: /etc/systemd/user/sunshine.service
+    #     src: sunshine_systemd
+    #     owner: root
+    #     group: root
+    #     mode: "0755"
+    #   notify: Reload systemd
+
+    # - name: Start/enable sunshine
+    #   ansible.builtin.systemd_service:
+    #     name: sunshine
+    #     state: started
+    #     enabled: true
+    #     scope: user
 
     - name: Start/enable desktop services
       ansible.builtin.service:
