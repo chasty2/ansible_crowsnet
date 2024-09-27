@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ansible-playbook $@
+ansible-playbook --vault-password-file vault.pass $@
