@@ -27,8 +27,8 @@
         image: docker.io/felddy/foundryvtt
         network: host
         env:
-          FOUNDRY_USERNAME="{{ foundry_login.username }}"
-          FOUNDRY_PASSWORD="{{ foundry_login.password }}"
+          FOUNDRY_USERNAME="{{ foundry_login }}"
+          FOUNDRY_PASSWORD="{{ foundry_login_password }}"
           CONTAINER_PRESERVE_CONFIG='true'
         mount:
           - "type=bind,source=/mnt/foundry,destination=/data,rw=true"
