@@ -10,10 +10,8 @@
         state: present
       with_items: "{{ base_packages }}"
 
-    ## ufw cannot be removed on Pop!_OS
     - name: Remove unnecessary packages
       ansible.builtin.package:
         name: "{{ item }}"
         state: absent
       with_items: "{{ removed_packages }}"
-      ignore_errors: yes
