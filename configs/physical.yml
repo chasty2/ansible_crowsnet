@@ -8,7 +8,7 @@
   roles:
     - proxmox
 
-- name: desktop
-  hosts: abzan
-  roles:
-    - desktop
+# - name: Desktop
+#   hosts: abzan
+#   roles:
+#     - desktop
