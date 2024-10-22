@@ -1,6 +1,6 @@
 
 # This is managed by Ansible. Local changes to this file will be overwritten
-
+AddressFamily inet
 PermitRootLogin no
 PubkeyAuthentication yes
 PasswordAuthentication no
