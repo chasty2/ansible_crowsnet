@@ -12,6 +12,8 @@ physical:
   hosts:
     esper:
       ansible_host: 192.168.4.11
+    simic:
+      ansible_host: 192.168.4.12
     abzan:
       ansible_host: 192.168.4.25
 
