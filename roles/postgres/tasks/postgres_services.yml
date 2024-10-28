@@ -31,18 +31,19 @@
           PGDATA: "/var/lib/postgresql/data/pgdata"
         mount:
           - "type=bind,source=/mnt/postgres,destination=/var/lib/postgresql/data/pgdata,rw=true"
+        state: created
+        rm: true
+
+    - name: Generate systemd unit file for postgres container
+      containers.podman.podman_generate_systemd:
+        name: postgres
+        new: true
+        no_header: true
+        dest: /etc/systemd/system
+
+    - name: Ensure postgres container is started and enabled
+      ansible.builtin.systemd:
+        name: container-postgres
+        daemon_reload: true
         state: started
-
-    # - name: Generate systemd unit file for postgres container
-    #   containers.podman.podman_generate_systemd:
-    #     name: postgres
-    #     new: true
-    #     no_header: true
-    #     dest: /etc/systemd/system
-
-    # - name: Ensure postgres container is started and enabled
-    #   ansible.builtin.systemd:
-    #     name: container-postgres
-    #     daemon_reload: true
-    #     state: started
-    #     enabled: true
+        enabled: true
