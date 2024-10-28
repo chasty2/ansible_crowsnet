@@ -1,3 +1,4 @@
 .vscode/settings.json
 ssh-keys/
-configs/vault.pass
+vault.pass
+hosts

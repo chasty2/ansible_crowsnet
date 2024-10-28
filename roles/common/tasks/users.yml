@@ -21,7 +21,7 @@
     - name: Add SSH public key for local user
       ansible.posix.authorized_key:
         user: chasty2
-        key: "{{ lookup('file', 'id_ed25519.pub') }}"
+        key: "{{ lookup('file', 'id_ed25519_chasty2.pub') }}"
         state: present
 
     - name: Add sudoer rule for local user
