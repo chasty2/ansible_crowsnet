@@ -1,2 +1,2 @@
 # ansible_crowsnet
-Utilizes the docker image chasty2/ansible to run configuration management for the crowsnet
+Configuration management for my homelab. Utilizes the docker image chasty2/ansible for development. Feel free to use anything here that you find helpful
