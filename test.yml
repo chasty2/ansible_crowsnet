@@ -8,4 +8,4 @@
   hosts: lab
   roles:
     - podman
-    - foundry
+    - postgres
