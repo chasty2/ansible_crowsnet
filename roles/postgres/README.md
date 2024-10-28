@@ -8,6 +8,7 @@ Role Variables
 
 - postgres_ports
 - postgres_users
+- postgres_password
 
 Dependencies
 ------------
