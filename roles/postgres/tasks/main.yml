@@ -1,0 +1,13 @@
+---
+# tasks file for postgres
+- name: User Config
+  ansible.builtin.include_tasks: postgres_users.yml
+  tags: users
+
+- name: Service Config
+  ansible.builtin.include_tasks: postgres_services.yml
+  tags: services
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: postgres_firewalld.yml
+  tags: firewall

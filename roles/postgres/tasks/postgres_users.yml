@@ -1,0 +1,22 @@
+- name: User Config block
+  become: true
+  tags: users
+  block:
+    - name: Add users to postgres group
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: postgres
+        append: true
+      with_items: "{{ postgres_users }}"
+
+    - name: Add users to postgres group on NFS server
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: postgres
+        append: true
+      with_items: "{{ postgres_users }}"
+      delegate_to: "{{ nfs_server }}"
+      notify: Reload NFS
+
+    - name: Flush handlers
+      ansible.builtin.meta: flush_handlers

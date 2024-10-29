@@ -19,3 +19,5 @@ nfs_mounts:
       group: proxy, mode: "0770"}
   - { path: "/ssd_mirror/foundry", owner: ansible,
       group: foundry, mode: "0770"}
+  - { path: "/ssd_mirror/postgres", owner: ansible,
+      group: postgres, mode: "0770"}

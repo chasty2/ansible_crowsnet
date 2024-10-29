@@ -1,5 +1,5 @@
 ---
-# handlers file for jellyfin
+# handlers file for postgres
 - name: Reload NFS
   become: true
   ansible.builtin.command: 'exportfs -arv'

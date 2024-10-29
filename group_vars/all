@@ -5,3 +5,4 @@ all_groups:
   - { name: "jellyfin", gid: "2000" }
   - { name: "proxy", gid: "2001" }
   - { name: "foundry", gid: "2002"}
+  - { name: "postgres", gid: "2003"}
