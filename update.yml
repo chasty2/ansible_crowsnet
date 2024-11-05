@@ -2,6 +2,10 @@
   hosts: virtual
   become: true
   tasks:
+    - name: Update repository caches
+      ansible.builtin.apt:
+        update_cache: true
+
     - name: Update all packages
       ansible.builtin.package:
         name: '*'
