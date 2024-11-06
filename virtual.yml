@@ -18,6 +18,7 @@
 - name: Database Server
   hosts: library
   roles:
+    - podman
     - postgres
 
 - name: Web Proxy
