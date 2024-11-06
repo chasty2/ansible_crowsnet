@@ -14,13 +14,18 @@
   roles:
     - gate
 
+# As of now, all applications depend on podman role
+- name: Database Server
+  hosts: library
+  roles:
+    - postgres
+
 - name: Web Proxy
   hosts: proxy
   roles:
     - podman
     - proxy
 
-# As of now, all web services depend on podman
 - name: Web services
   hosts: bailey
   roles:

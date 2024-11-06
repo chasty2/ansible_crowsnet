@@ -1,5 +1,6 @@
 nfs_server: esper
 proxy_server: proxy
+database_server: library
 
 all_groups:
   - { name: "jellyfin", gid: "2000" }
