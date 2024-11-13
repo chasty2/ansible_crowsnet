@@ -33,7 +33,7 @@
         user: "{{ item.name }}"
         key: "{{ item.public_ssh_key }}"
         state: present
-      with_items: "{{ ssh_keys }}"
+      with_items: "{{ admin_ssh_keys }}"
 
     - name: Add sudoer rule for admin user(s)
       ansible.builtin.template:
@@ -45,12 +45,12 @@
         validate: /usr/sbin/visudo -csf %s
       with_items: "{{ admin_users }}"
 
-    # - name: Add service user(s)
-    #   ansible.builtin.user:
-    #     name: "{{ service_users.name }}"
-    #     uid: "{{ service_users.uid }}"
-    #     group: "{{ service_users.gid }}"
-    #     shell: /bin/bash
-    #     create_home: true
-    #     state: present
-    #   with_items: "{{ admin_users }}"
+    - name: Add service user(s)
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        group: "{{ item.gid }}"
+        shell: /bin/bash
+        create_home: true
+        state: present
+      with_items: "{{ service_users }}"
