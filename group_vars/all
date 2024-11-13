@@ -3,7 +3,18 @@ proxy_server: proxy
 database_server: library
 
 all_groups:
+  - { name: "chasty2", gid: "1001" }
   - { name: "jellyfin", gid: "2000" }
   - { name: "proxy", gid: "2001" }
   - { name: "foundry", gid: "2002"}
   - { name: "postgres", gid: "2003"}
+  - { name: "podman", gid: "2004"}
+
+admin_users:
+  - { name: "chasty2", uid: "1001", gid: "1001" }
+
+ssh_keys:
+  - { name: "chasty2", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBbguD7QoF6kNwqKRaxIkVAy6XwMxKJZ5vK71T/0mg1 abzan SSH key"}
+
+# service_users:
+#   - { name: "podman", uid: "2004", gid: "2004"}
