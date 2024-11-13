@@ -8,5 +8,3 @@
   hosts: lab
   roles:
     - common
-    - podman
-    - postgres
