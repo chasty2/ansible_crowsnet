@@ -9,3 +9,4 @@
   roles:
     - common
     - podman
+    - postgres
