@@ -28,13 +28,6 @@
         state: present
       with_items: "{{ admin_users }}"
 
-    - name: Add SSH public key for admin user(s)
-      ansible.posix.authorized_key:
-        user: "{{ item.name }}"
-        key: "{{ item.public_ssh_key }}"
-        state: present
-      with_items: "{{ admin_ssh_keys }}"
-
     - name: Add sudoer rule for admin user(s)
       ansible.builtin.template:
         dest: "/etc/sudoers.d/{{ item.name }}"
@@ -54,3 +47,10 @@
         create_home: true
         state: present
       with_items: "{{ service_users }}"
+
+    - name: Add SSH public keys to authorized users
+      ansible.posix.authorized_key:
+        user: "{{ item.name }}"
+        key: "{{ item.public_ssh_key }}"
+        state: present
+      with_items: "{{ ssh_keys }}"
