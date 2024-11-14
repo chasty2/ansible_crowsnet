@@ -1,6 +1,6 @@
 ---
 # Setup NFS mounts and jellyfin container
-- name: Service Config block
+- name: Service Config Block (root user)
   become: true
   tags: services
   block:
@@ -8,7 +8,7 @@
       ansible.builtin.file:
         path: /mnt/jellyfin
         state: directory
-        owner: ansible
+        owner: podman
         group: jellyfin
         mode: "0770"
 
@@ -20,7 +20,17 @@
         state: mounted
         fstype: nfs
 
-    ## TODO: put mount points in a loop
+    - name: Create mount points for jellyfin container
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: podman
+        group: jellyfin
+        mode: "0770"
+      loop:
+        - "/mnt/jellyfin/cache"
+        - "/mnt/jellyfin/config"
+
     - name: Create /mnt/media
       ansible.builtin.file:
         path: /mnt/media
@@ -37,11 +47,14 @@
         state: mounted
         fstype: nfs
 
-    ## TODO: Configure rootless mode
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
     - name: Start jellyfin container
       containers.podman.podman_container:
         name: jellyfin
-        image: docker.io/jellyfin/jellyfin
+        image: docker.io/jellyfin/jellyfin:10.10.1
         network: host
         mount:
           - "type=bind,source=/mnt/media,destination=/media,rw=true"
@@ -49,12 +62,3 @@
           - "type=bind,source=/mnt/jellyfin/config,destination=/config,rw=true"
         state: started
         restart_policy: on-failure:3
-
-# - name: disable unnecessary services
-#   become: true
-#   ansible.builtin.service:
-#     name: "{{ item }}"
-#     state: stopped
-#     enabled: no
-#   with_items: "{{ disabled_services }}"
-#   ignore_errors: yes

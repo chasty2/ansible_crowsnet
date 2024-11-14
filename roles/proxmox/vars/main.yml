@@ -13,7 +13,7 @@ proxmox_ports:
 nfs_mounts:
   - { path: "/hdd_mirror/media", owner: chasty2,
       group: jellyfin, mode: "0770" }
-  - { path: "/ssd_mirror/jellyfin", owner: ansible,
+  - { path: "/ssd_mirror/jellyfin", owner: podman,
       group: jellyfin, mode: "0770" }
   - { path: "/ssd_mirror/proxy", owner: ansible,
       group: proxy, mode: "0770"}
