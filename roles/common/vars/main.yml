@@ -16,7 +16,7 @@ service_users:
 
 ssh_keys:
   - { name: "chasty2", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBbguD7QoF6kNwqKRaxIkVAy6XwMxKJZ5vK71T/0mg1 abzan SSH key" }
-  - { name: "podman", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM86Mz9WmQrTyHRrJMGk4Y1phxGDrb0bohaNgZLsBXVj podman system user" }
+  - { name: "podman", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGj0KFGQuRcbeX+P9z/O+nYDSu7NRSCx0BMDg5TwF5QJ CrowsNet ansible user" }
 
 base_packages:
   - sudo
