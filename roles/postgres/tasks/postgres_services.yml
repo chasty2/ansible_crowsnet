@@ -23,14 +23,14 @@
     - name: Create mount point for postgres container data
       ansible.builtin.file:
         path: /mnt/postgres/data
-        mode: "0700"
         state: directory
+        mode: "0700"
 
     - name: Create mount point for postgres container logs
       ansible.builtin.file:
         path: /mnt/postgres/logs
-        mode: "0755"
         state: directory
+        mode: "0755"
 
     # NOTE: This is a rooted container. It will start on boot due to restart=always
     - name: Create postgres container
