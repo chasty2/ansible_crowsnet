@@ -14,6 +14,8 @@ admin_users:
 service_users:
   - { name: "podman", uid: "2004", gid: "2004"}
 
+# podman user has the same public key as the ansible user
+# This is because I am using ssh to create a login session for the podman user to run containers
 ssh_keys:
   - { name: "chasty2", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBbguD7QoF6kNwqKRaxIkVAy6XwMxKJZ5vK71T/0mg1 abzan SSH key" }
   - { name: "podman", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGj0KFGQuRcbeX+P9z/O+nYDSu7NRSCx0BMDg5TwF5QJ CrowsNet ansible user" }
