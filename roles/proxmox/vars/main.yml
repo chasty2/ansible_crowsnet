@@ -10,6 +10,8 @@ proxmox_ports:
   - 8006/tcp # proxmox web app
   - 2049/tcp # nfs
 
+# 770 on this directory restricts access to authorized users, but
+# won't affect permissions of container data within the directory
 nfs_mounts:
   - { path: "/hdd_mirror/media", owner: chasty2,
       group: jellyfin, mode: "0770" }
