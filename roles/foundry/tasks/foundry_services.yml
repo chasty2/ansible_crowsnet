@@ -20,6 +20,14 @@
         state: mounted
         fstype: nfs
 
+    - name: Create mount point for foundry container data
+      ansible.builtin.file:
+        path: /mnt/foundry/data
+        state: directory
+        owner: podman
+        group: podman
+        mode: "0755"
+
 - name: Service Config Block (podman user)
   remote_user: podman
   tags: services
@@ -43,6 +51,6 @@
           CONTAINER_CACHE_SIZE=3
           CONTAINER_PRESERVE_CONFIG='true'
         mount:
-          - "type=bind,source=/mnt/foundry,destination=/data,rw=true"
+          - "type=bind,source=/mnt/foundry/data,destination=/data,rw=true"
         state: started
         restart_policy: on-failure:3
