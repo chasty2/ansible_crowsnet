@@ -32,7 +32,7 @@
   remote_user: podman
   tags: services
   block:
-    - name: Create postgres container
+    - name: Start postgres container
       containers.podman.podman_container:
         name: postgres
         image: docker.io/postgres:15.8
