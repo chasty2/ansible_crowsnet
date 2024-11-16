@@ -50,3 +50,5 @@
           - "type=bind,source=/mnt/postgres/pgdata,destination=/var/lib/postgresql/data/pgdata,rw=true"
           - "type=bind,source=/etc/passwd,destination=/etc/passwd,ro=true"
         state: started
+        # bug in podman 4.9 with userns: keep-id and restart_policy: always
+        # restart_policy: always
