@@ -8,7 +8,7 @@
       ansible.builtin.file:
         path: /mnt/postgres
         state: directory
-        owner: ansible
+        owner: podman
         group: postgres
         mode: "0770"
 
@@ -22,42 +22,31 @@
 
     - name: Create mount point for postgres container data
       ansible.builtin.file:
-        path: /mnt/postgres/data
+        path: /mnt/postgres/pgdata
         state: directory
+        owner: podman
+        group: postgres
         mode: "0700"
 
-    # This is a rooted container. It will start at boot due to 'restart_policy: always'
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
     - name: Create postgres container
       containers.podman.podman_container:
         name: postgres
         image: docker.io/postgres:15.8
+        # run as podman user, mapped to same uid in postgres container
+        user: podman
+        userns: "keep-id"
         ports:
           - "5432:5432"
+        # pgdata is mounted one directory lower than the default due to perm setting behavior at init
         env:
           POSTGRES_PASSWORD: "{{ postgres_password }}"
+          PGDATA: "/var/lib/postgresql/data/pgdata"
+        # /etc/passwd of OS mounted read-only to container as workaround to ensure podman user exists in /etc/passwd at init
         mount:
-          - "type=bind,source=/mnt/postgres/data,destination=/var/lib/postgresql/data,rw=true"
+          - "type=bind,source=/mnt/postgres/pgdata,destination=/var/lib/postgresql/data/pgdata,rw=true"
+          - "type=bind,source=/etc/passwd,destination=/etc/passwd,ro=true"
         state: started
-        restart_policy: always
-
-# Working rootless config. A litle too hack-ey at this moment, but I want to hang on to it for now
-
-# - name: Service Config Block (podman user)
-#   remote_user: podman
-#   tags: services
-#   block:
-#     - name: Create postgres container
-#       containers.podman.podman_container:
-#         name: postgres
-#         image: docker.io/postgres:15.8
-#         user: podman
-#         userns: "keep-id"
-#         ports:
-#           - "5432:5432"
-#         env:
-#           POSTGRES_PASSWORD: "{{ postgres_password }}"
-#           PGDATA: "/var/lib/postgresql/data/pgdata"
-#         mount:
-#           - "type=bind,source=/mnt/postgres/data,destination=/var/lib/postgresql/data,rw=true"
-#           - "type=bind,source=/etc/passwd,destination=/etc/passwd,ro=true"
-#         state: started

@@ -6,6 +6,7 @@ postgres_ports:
 postgres_users:
   - ansible
   - chasty2
+  - podman
 
 postgres_password: !vault |
                    $ANSIBLE_VAULT;1.1;AES256
