@@ -26,22 +26,38 @@
         state: directory
         mode: "0700"
 
-    - name: Create mount point for postgres container logs
-      ansible.builtin.file:
-        path: /mnt/postgres/logs
-        state: directory
-        mode: "0755"
-
-    # NOTE: This is a rooted container. It will start on boot due to restart=always
+    # This is a rooted container. It will start at boot due to 'restart_policy: always'
     - name: Create postgres container
       containers.podman.podman_container:
         name: postgres
         image: docker.io/postgres:15.8
-        network: host
+        ports:
+          - "5432:5432"
         env:
           POSTGRES_PASSWORD: "{{ postgres_password }}"
         mount:
           - "type=bind,source=/mnt/postgres/data,destination=/var/lib/postgresql/data,rw=true"
-          - "type=bind,source=/mnt/postgres/logs,destination=/var/log/postgresql,rw=true"
         state: started
         restart_policy: always
+
+# Working rootless config. A litle too hack-ey at this moment, but I want to hang on to it for now
+
+# - name: Service Config Block (podman user)
+#   remote_user: podman
+#   tags: services
+#   block:
+#     - name: Create postgres container
+#       containers.podman.podman_container:
+#         name: postgres
+#         image: docker.io/postgres:15.8
+#         user: podman
+#         userns: "keep-id"
+#         ports:
+#           - "5432:5432"
+#         env:
+#           POSTGRES_PASSWORD: "{{ postgres_password }}"
+#           PGDATA: "/var/lib/postgresql/data/pgdata"
+#         mount:
+#           - "type=bind,source=/mnt/postgres/data,destination=/var/lib/postgresql/data,rw=true"
+#           - "type=bind,source=/etc/passwd,destination=/etc/passwd,ro=true"
+#         state: started
