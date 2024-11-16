@@ -17,7 +17,7 @@ nfs_mounts:
       group: jellyfin, mode: "0770" }
   - { path: "/ssd_mirror/proxy", owner: ansible,
       group: proxy, mode: "0770"}
-  - { path: "/ssd_mirror/foundry", owner: ansible,
+  - { path: "/ssd_mirror/foundry", owner: podman,
       group: foundry, mode: "0770"}
   - { path: "/ssd_mirror/postgres", owner: ansible,
       group: postgres, mode: "0770"}

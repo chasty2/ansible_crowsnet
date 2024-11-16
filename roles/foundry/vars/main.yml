@@ -6,6 +6,7 @@ foundry_ports:
 foundry_users:
   - ansible
   - chasty2
+  - podman
 
 foundry_login: "chasty2"
 
