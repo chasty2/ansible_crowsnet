@@ -10,3 +10,4 @@ public_ports:
 proxy_users:
   - ansible
   - chasty2
+  - podman

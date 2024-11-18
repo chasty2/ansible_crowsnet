@@ -8,7 +8,7 @@
       ansible.builtin.file:
         path: /mnt/proxy
         state: directory
-        owner: ansible
+        owner: podman
         group: proxy
         mode: "0770"
 
@@ -25,15 +25,17 @@
         path: "{{ item }}"
         state: directory
         owner: podman
-        group: jellyfin
-        mode: "0770"
+        group: podman
+        mode: "0750"
       loop:
         - "/mnt/proxy/data"
         - "/mnt/proxy/letsencrypt"
 
   ## TODO: Mount jellyfin logs for fail2ban?
-  ## TODO: Adjust kernel parameters to expose port >= 80
-  ## TODO: Rootless mode
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
     - name: Start npm container
       containers.podman.podman_container:
         name: proxy
@@ -41,6 +43,7 @@
           - "81:81"
           - "80:80"
           - "443:443"
+        userns: host
         image: docker.io/jc21/nginx-proxy-manager:latest
         env:
           DISABLE_IPV6: true

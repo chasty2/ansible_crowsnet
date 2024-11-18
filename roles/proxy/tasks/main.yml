@@ -4,6 +4,10 @@
   ansible.builtin.include_tasks: proxy_users.yml
   tags: users
 
+- name: System Config
+  ansible.builtin.include_tasks: proxy_system.yml
+  tags: system
+
 - name: Service Config
   ansible.builtin.include_tasks: proxy_services.yml
   tags: services
