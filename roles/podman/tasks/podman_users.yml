@@ -1,7 +1,15 @@
-- name: User Config block
+- name: User Config Block
   become: true
   tags: users
   block:
+    # Use SSH to initiate podman user session
+    # This allows the podman user to start rootless containers
+    - name: Add SSH public key for podman user
+      ansible.posix.authorized_key:
+        user: "podman"
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGj0KFGQuRcbeX+P9z/O+nYDSu7NRSCx0BMDg5TwF5QJ CrowsNet ansible user"
+        state: present
+
     # Allow podman user to run containers for extended periods of time
     - name: Enable persistent user-sessions for podman user
       ansible.builtin.command:
