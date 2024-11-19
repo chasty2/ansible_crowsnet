@@ -1,14 +1,12 @@
 ---
 # tasks file for common
-- name: Set hostname
-  become: true
-  ansible.builtin.hostname:
-    name: "{{ inventory_hostname }}" ## See hosts file for naming convention
-    use: systemd
-
 - name: User Config
   ansible.builtin.include_tasks: users.yml
   tags: users
+
+- name: System Config
+  ansible.builtin.include_tasks: system.yml
+  tags: system
 
 - name: Package Config
   ansible.builtin.include_tasks: packages.yml
