@@ -1,6 +1,6 @@
 ---
 # Setup NFS mounts and npm container
-- name: Service Config block
+- name: Service Config Block (root user)
   become: true
   tags: services
   block:
@@ -8,7 +8,7 @@
       ansible.builtin.file:
         path: /mnt/proxy
         state: directory
-        owner: ansible
+        owner: podman
         group: proxy
         mode: "0770"
 
@@ -20,10 +20,22 @@
         state: mounted
         fstype: nfs
 
-    ## TODO: Mount jellyfin logs for fail2ban?
+    - name: Create mount points for proxy container
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: podman
+        group: podman
+        mode: "0750"
+      loop:
+        - "/mnt/proxy/data"
+        - "/mnt/proxy/letsencrypt"
 
-    ## TODO: Configure rootless mode
-    ## TODO: dont use host networking
+  ## TODO: Mount jellyfin logs for fail2ban?
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
     - name: Start npm container
       containers.podman.podman_container:
         name: proxy
@@ -31,6 +43,7 @@
           - "81:81"
           - "80:80"
           - "443:443"
+        userns: host
         image: docker.io/jc21/nginx-proxy-manager:latest
         env:
           DISABLE_IPV6: true
@@ -39,12 +52,3 @@
           - "type=bind,source=/mnt/proxy/letsencrypt,destination=/etc/letsencrypt,rw=true"
         state: started
         restart_policy: on-failure:3
-
-# - name: disable unnecessary services
-#   become: true
-#   ansible.builtin.service:
-#     name: "{{ item }}"
-#     state: stopped
-#     enabled: no
-#   with_items: "{{ disabled_services }}"
-#   ignore_errors: yes

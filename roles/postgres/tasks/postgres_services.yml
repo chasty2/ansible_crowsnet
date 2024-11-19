@@ -1,6 +1,6 @@
 ---
 # Setup NFS mounts and postgres container
-- name: Service Config block
+- name: Service Config Block (root user)
   become: true
   tags: services
   block:
@@ -8,7 +8,7 @@
       ansible.builtin.file:
         path: /mnt/postgres
         state: directory
-        owner: ansible
+        owner: podman
         group: postgres
         mode: "0770"
 
@@ -20,30 +20,35 @@
         state: mounted
         fstype: nfs
 
-    ## TODO: Configure rootless mode
-    - name: Create postgres container
+    - name: Create mount point for postgres container data
+      ansible.builtin.file:
+        path: /mnt/postgres/pgdata
+        state: directory
+        owner: podman
+        group: postgres
+        mode: "0700"
+
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
+    - name: Start postgres container
       containers.podman.podman_container:
         name: postgres
         image: docker.io/postgres:15.8
-        network: host
+        # run as podman user, mapped to same uid in postgres container
+        user: podman
+        userns: "keep-id"
+        ports:
+          - "5432:5432"
+        # pgdata is mounted one directory lower than the default due to perm setting behavior at init
         env:
           POSTGRES_PASSWORD: "{{ postgres_password }}"
           PGDATA: "/var/lib/postgresql/data/pgdata"
+        # /etc/passwd of OS mounted read-only to container as workaround to ensure podman user exists in /etc/passwd at init
         mount:
-          - "type=bind,source=/mnt/postgres,destination=/var/lib/postgresql/data/pgdata,rw=true"
-        state: created
-        rm: true
-
-    - name: Generate systemd unit file for postgres container
-      containers.podman.podman_generate_systemd:
-        name: postgres
-        new: true
-        no_header: true
-        dest: /etc/systemd/system
-
-    - name: Ensure postgres container is started and enabled
-      ansible.builtin.systemd:
-        name: container-postgres
-        daemon_reload: true
+          - "type=bind,source=/mnt/postgres/pgdata,destination=/var/lib/postgresql/data/pgdata,rw=true"
+          - "type=bind,source=/etc/passwd,destination=/etc/passwd,ro=true"
         state: started
-        enabled: true
+        # bug in podman 4.9 with userns: keep-id and restart_policy: always
+        # restart_policy: always

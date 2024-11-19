@@ -9,33 +9,48 @@
         name: sudo
         state: present
 
-    - name: Add local user
-      ansible.builtin.user:
-        name: chasty2
-        group: sudo
-        shell: /bin/bash
-        home: /home/chasty2
-        create_home: true
-        state: present
-
-    - name: Add SSH public key for local user
-      ansible.posix.authorized_key:
-        user: chasty2
-        key: "{{ chasty2_ssh_key }}"
-        state: present
-
-    - name: Add sudoer rule for local user
-      ansible.builtin.copy:
-        dest: /etc/sudoers.d/chasty2
-        src: sudoer_chasty2
-        owner: root
-        group: root
-        mode: "0440"
-        validate: /usr/sbin/visudo -csf %s
-
-    - name: Create user groups
+    - name: Add user groups
       ansible.builtin.group:
         name: "{{ item.name }}"
         gid: "{{ item.gid }}"
         state: present
       with_items: "{{ all_groups }}"
+
+    - name: Add admin user(s)
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        group: "{{ item.gid }}"
+        groups: sudo
+        append: true
+        shell: /bin/bash
+        create_home: true
+        state: present
+      with_items: "{{ admin_users }}"
+
+    - name: Add sudoer rule for admin user(s)
+      ansible.builtin.template:
+        dest: "/etc/sudoers.d/{{ item.name }}"
+        src: sudoer_file.j2
+        owner: root
+        group: root
+        mode: "0440"
+        validate: /usr/sbin/visudo -csf %s
+      with_items: "{{ admin_users }}"
+
+    - name: Add service user(s)
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        group: "{{ item.gid }}"
+        shell: /bin/bash
+        create_home: true
+        state: present
+      with_items: "{{ service_users }}"
+
+    - name: Add SSH public keys to authorized users
+      ansible.posix.authorized_key:
+        user: "{{ item.name }}"
+        key: "{{ item.public_ssh_key }}"
+        state: present
+      with_items: "{{ ssh_keys }}"

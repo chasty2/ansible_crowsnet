@@ -1,5 +1,25 @@
 ---
 # vars file for common
+all_groups:
+  - { name: "chasty2", gid: "1001" }
+  - { name: "jellyfin", gid: "2000" }
+  - { name: "proxy", gid: "2001" }
+  - { name: "foundry", gid: "2002"}
+  - { name: "postgres", gid: "2003"}
+  - { name: "podman", gid: "2004"}
+
+admin_users:
+  - { name: "chasty2", uid: "1001", gid: "1001" }
+
+service_users:
+  - { name: "podman", uid: "2004", gid: "2004"}
+
+# podman user has the same public key as the ansible user
+# This is because I am using ssh to create a login session for the podman user to run containers
+ssh_keys:
+  - { name: "chasty2", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBbguD7QoF6kNwqKRaxIkVAy6XwMxKJZ5vK71T/0mg1 abzan SSH key" }
+  - { name: "podman", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGj0KFGQuRcbeX+P9z/O+nYDSu7NRSCx0BMDg5TwF5QJ CrowsNet ansible user" }
+
 base_packages:
   - sudo
   - vim
@@ -37,15 +57,3 @@ closed_ports:
 
 permitted_networks:
   - 192.168.4.0/22
-
-chasty2_ssh_key: !vault |
-                 $ANSIBLE_VAULT;1.1;AES256
-                 39336364323361393464656366373531666531363537393761343966313333316361396134363931
-                 6338633036376633643263336466303230346633653362360a613732363762303861303861313531
-                 61656535366636663037366436616530623337346134343235326362343036303938333864623536
-                 3666313661393266660a643939353036386332343936623066373638373035393532396334393739
-                 64393762336238313630313264323039303739323532623634363863393565653165303964336363
-                 38623334623430303539396562373863306564633963623931653935386663366130373330633033
-                 37646162316530626638343537643631363265666231383366376266383530636138633461643230
-                 35346236353462386230636634383534656532356232363638323362326437623237616165353036
-                 3136

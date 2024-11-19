@@ -6,3 +6,4 @@ jellyfin_ports:
 jellyfin_users:
   - ansible
   - chasty2
+  - podman

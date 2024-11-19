@@ -10,14 +10,16 @@ proxmox_ports:
   - 8006/tcp # proxmox web app
   - 2049/tcp # nfs
 
+# 770 on this directory restricts access to authorized users, but
+# won't affect permissions of container data within the directory
 nfs_mounts:
   - { path: "/hdd_mirror/media", owner: chasty2,
       group: jellyfin, mode: "0770" }
-  - { path: "/ssd_mirror/jellyfin", owner: ansible,
+  - { path: "/ssd_mirror/jellyfin", owner: podman,
       group: jellyfin, mode: "0770" }
-  - { path: "/ssd_mirror/proxy", owner: ansible,
+  - { path: "/ssd_mirror/proxy", owner: podman,
       group: proxy, mode: "0770"}
-  - { path: "/ssd_mirror/foundry", owner: ansible,
+  - { path: "/ssd_mirror/foundry", owner: podman,
       group: foundry, mode: "0770"}
-  - { path: "/ssd_mirror/postgres", owner: ansible,
+  - { path: "/ssd_mirror/postgres", owner: podman,
       group: postgres, mode: "0770"}

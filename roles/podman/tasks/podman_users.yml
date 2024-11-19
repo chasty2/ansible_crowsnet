@@ -1,0 +1,9 @@
+- name: User Config block
+  become: true
+  tags: users
+  block:
+    # Allow podman user to run containers for extended periods of time
+    - name: Enable persistent user-sessions for podman user
+      ansible.builtin.command:
+        cmd: "loginctl enable-linger podman"
+        creates: /var/lib/systemd/linger/podman
