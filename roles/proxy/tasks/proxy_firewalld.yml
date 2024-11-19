@@ -1,22 +1,24 @@
 ---
-- name: Open permitted ports on firewalld zone 'internal'
+- name: Firewall Config Block
   become: true
-  ansible.posix.firewalld:
-    zone: internal
-    port: "{{ item }}"
-    state: enabled
-    permanent: true
-    immediate: true
-  with_items: "{{ internal_ports }}"
   tags: firewall
+  block:
+    - name: Open permitted ports on firewalld zone 'internal'
+      become: true
+      ansible.posix.firewalld:
+        zone: internal
+        port: "{{ item }}"
+        state: enabled
+        permanent: true
+        immediate: true
+      with_items: "{{ internal_ports }}"
 
-- name: Open permitted ports on firewalld zone 'public'
-  become: true
-  ansible.posix.firewalld:
-    zone: public
-    service: "{{ item }}"
-    state: enabled
-    permanent: true
-    immediate: true
-  with_items: "{{ public_ports }}"
-  tags: firewall
+    - name: Open permitted ports on firewalld zone 'public'
+      become: true
+      ansible.posix.firewalld:
+        zone: public
+        service: "{{ item }}"
+        state: enabled
+        permanent: true
+        immediate: true
+      with_items: "{{ public_ports }}"

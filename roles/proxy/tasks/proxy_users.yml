@@ -1,5 +1,5 @@
 ---
-- name: User Config block
+- name: User Config Block
   become: true
   tags: users
   block:

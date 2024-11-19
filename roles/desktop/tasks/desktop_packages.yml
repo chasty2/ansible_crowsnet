@@ -1,6 +1,6 @@
 ---
 ## package config for desktop
-- name: Package Config block
+- name: Package Config Block
   become: true
   tags: packages
   block:
