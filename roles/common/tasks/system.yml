@@ -9,3 +9,5 @@
       ansible.builtin.hostname:
         name: "{{ inventory_hostname }}" ## See hosts file for naming convention
         use: systemd
+
+# TODO: Disable ipv6 here instead of in template
