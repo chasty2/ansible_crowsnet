@@ -7,7 +7,7 @@
     # Having the podman user own data mounted to containers, but stored on esper, makes permissions nicer inside the containers
     - name: Add admin users to podman group
       ansible.builtin.user:
-        name: "{{ item }}"
+        name: "{{ item.name }}"
         groups: podman
         append: true
       with_items: "{{ admin_users }}"
