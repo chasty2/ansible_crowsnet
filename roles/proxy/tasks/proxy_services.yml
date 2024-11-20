@@ -20,6 +20,11 @@
         state: mounted
         fstype: nfs
 
+  ## TODO: Mount jellyfin logs for fail2ban?
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
     - name: Create mount points for proxy container
       ansible.builtin.file:
         path: "{{ item }}"
@@ -31,11 +36,6 @@
         - "/mnt/proxy/data"
         - "/mnt/proxy/letsencrypt"
 
-  ## TODO: Mount jellyfin logs for fail2ban?
-- name: Service Config Block (podman user)
-  remote_user: podman
-  tags: services
-  block:
     - name: Start npm container
       containers.podman.podman_container:
         name: proxy

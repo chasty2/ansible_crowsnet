@@ -20,6 +20,10 @@
         state: mounted
         fstype: nfs
 
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
     - name: Create mount point for foundry container data
       ansible.builtin.file:
         path: /mnt/foundry/data
@@ -28,10 +32,6 @@
         group: podman
         mode: "0770"
 
-- name: Service Config Block (podman user)
-  remote_user: podman
-  tags: services
-  block:
     - name: Start foundry container
       containers.podman.podman_container:
         name: foundry
