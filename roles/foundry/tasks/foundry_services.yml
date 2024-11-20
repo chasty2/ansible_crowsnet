@@ -26,7 +26,7 @@
         state: directory
         owner: podman
         group: podman
-        mode: "0755"
+        mode: "0770"
 
 - name: Service Config Block (podman user)
   remote_user: podman

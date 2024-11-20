@@ -25,7 +25,7 @@
         path: "{{ item }}"
         state: directory
         owner: podman
-        group: jellyfin
+        group: podman
         mode: "0770"
       loop:
         - "/mnt/jellyfin/cache"
@@ -35,7 +35,7 @@
       ansible.builtin.file:
         path: /mnt/media
         state: directory
-        owner: chasty2
+        owner: podman
         group: jellyfin
         mode: "0770"
 

@@ -25,7 +25,7 @@
         path: /mnt/postgres/pgdata
         state: directory
         owner: podman
-        group: postgres
+        group: podman
         mode: "0700"
 
 - name: Service Config Block (podman user)
@@ -36,7 +36,7 @@
       containers.podman.podman_container:
         name: postgres
         image: docker.io/postgres:15.8
-        # run as podman user, mapped to same uid in postgres container
+        # Preserve OS-level user permissions by running as podman user, mapped to same uid in postgres container
         user: podman
         userns: "keep-id"
         ports:
