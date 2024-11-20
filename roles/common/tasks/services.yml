@@ -1,6 +1,6 @@
 ---
 ## Base configuration
-- name: Service Config block
+- name: Service Config Block
   become: true
   tags: services
   block:

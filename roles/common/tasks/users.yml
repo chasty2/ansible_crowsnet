@@ -1,6 +1,6 @@
 ---
 # Configure local users
-- name: User Config block
+- name: User Config Block
   become: true
   tags: users
   block:
@@ -16,7 +16,7 @@
         state: present
       with_items: "{{ all_groups }}"
 
-    - name: Add admin user(s)
+    - name: Add admin users
       ansible.builtin.user:
         name: "{{ item.name }}"
         uid: "{{ item.uid }}"
@@ -28,7 +28,7 @@
         state: present
       with_items: "{{ admin_users }}"
 
-    - name: Add sudoer rule for admin user(s)
+    - name: Add sudoer rule for admin users
       ansible.builtin.template:
         dest: "/etc/sudoers.d/{{ item.name }}"
         src: sudoer_file.j2
@@ -38,7 +38,7 @@
         validate: /usr/sbin/visudo -csf %s
       with_items: "{{ admin_users }}"
 
-    - name: Add service user(s)
+    - name: Add service users
       ansible.builtin.user:
         name: "{{ item.name }}"
         uid: "{{ item.uid }}"

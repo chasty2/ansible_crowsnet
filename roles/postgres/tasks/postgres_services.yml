@@ -20,23 +20,23 @@
         state: mounted
         fstype: nfs
 
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
     - name: Create mount point for postgres container data
       ansible.builtin.file:
         path: /mnt/postgres/pgdata
         state: directory
         owner: podman
-        group: postgres
+        group: podman
         mode: "0700"
 
-- name: Service Config Block (podman user)
-  remote_user: podman
-  tags: services
-  block:
     - name: Start postgres container
       containers.podman.podman_container:
         name: postgres
         image: docker.io/postgres:15.8
-        # run as podman user, mapped to same uid in postgres container
+        # Preserve OS-level user permissions by running as podman user, mapped to same uid in postgres container
         user: podman
         userns: "keep-id"
         ports:

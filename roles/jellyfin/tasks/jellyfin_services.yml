@@ -20,22 +20,11 @@
         state: mounted
         fstype: nfs
 
-    - name: Create mount points for jellyfin container
-      ansible.builtin.file:
-        path: "{{ item }}"
-        state: directory
-        owner: podman
-        group: jellyfin
-        mode: "0770"
-      loop:
-        - "/mnt/jellyfin/cache"
-        - "/mnt/jellyfin/config"
-
     - name: Create /mnt/media
       ansible.builtin.file:
         path: /mnt/media
         state: directory
-        owner: chasty2
+        owner: podman
         group: jellyfin
         mode: "0770"
 
@@ -51,6 +40,17 @@
   remote_user: podman
   tags: services
   block:
+    - name: Create mount points for jellyfin container
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: podman
+        group: podman
+        mode: "0770"
+      loop:
+        - "/mnt/jellyfin/cache"
+        - "/mnt/jellyfin/config"
+
     - name: Start jellyfin container
       containers.podman.podman_container:
         name: jellyfin
