@@ -1,3 +1,6 @@
 nfs_server: esper
 proxy_server: proxy
 database_server: library
+
+admin_users:
+  - { name: "chasty2", uid: "1001", gid: "1001" }
