@@ -1,0 +1,56 @@
+---
+# Setup NFS mounts and pihole container
+- name: Service Config Block (root user)
+  become: true
+  tags: services
+  block:
+    - name: Create /mnt/pihole
+      ansible.builtin.file:
+        path: /mnt/foundry
+        state: directory
+        owner: podman
+        group: pihole
+        mode: "0770"
+
+    - name: Mount pihole NFS volume
+      ansible.posix.mount:
+        src: 192.168.4.11:/ssd_mirror/pihole
+        path: /mnt/pihole
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
+    - name: Create mount point for pihole container data
+      ansible.builtin.file:
+        path: /mnt/pihole/data
+        state: directory
+        owner: podman
+        group: podman
+        mode: "0770"
+
+    # - name: Start pihole container
+    #   containers.podman.podman_container:
+    #     name: foundry
+    #     image: docker.io/felddy/foundryvtt:release
+    #     ports:
+    #       - "30000:30000"
+        # Map podman user to root in container
+        # userns: host
+        # # Run foundry as root within container
+        # # This preserves all files being owned by podman user
+        # env:
+        #   FOUNDRY_USERNAME="{{ foundry_login }}"
+        #   FOUNDRY_PASSWORD="{{ foundry_login_password }}"
+        #   FOUNDRY_PROTOCOL=4
+        #   FOUNDRY_UID=0
+        #   FOUNDRY_GID=0
+        #   CONTAINER_CACHE_SIZE=3
+        #   CONTAINER_PRESERVE_CONFIG='true'
+        # mount:
+        #   - "type=bind,source=/mnt/foundry/data,destination=/data,rw=true"
+        # state: started
+        # restart_policy: on-failure:3
