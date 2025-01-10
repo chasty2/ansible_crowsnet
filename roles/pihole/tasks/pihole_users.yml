@@ -1,0 +1,23 @@
+---
+- name: User Config Block
+  become: true
+  tags: users
+  block:
+    - name: Add users to pihole group
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: pihole
+        append: true
+      with_items: "{{ pihole_users }}"
+
+    - name: Add users to pihole group on NFS server
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: pihole
+        append: true
+      with_items: "{{ pihole_users }}"
+      delegate_to: "{{ nfs_server }}"
+      notify: Reload NFS
+
+    - name: Flush handlers
+      ansible.builtin.meta: flush_handlers

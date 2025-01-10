@@ -1,0 +1,7 @@
+---
+# handlers file for pihole
+- name: Reload NFS
+  become: true
+  ansible.builtin.command: 'exportfs -arv'
+  changed_when: true # only runs when handler is called
+  delegate_to: "{{ nfs_server }}"

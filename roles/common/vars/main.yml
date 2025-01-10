@@ -7,6 +7,7 @@ all_groups:
   - { name: "foundry", gid: "2002"}
   - { name: "postgres", gid: "2003"}
   - { name: "podman", gid: "2004"}
+  - { name: "pihole", gid: "2005"}
 
 service_users:
   - { name: "podman", uid: "2004", gid: "2004"}
