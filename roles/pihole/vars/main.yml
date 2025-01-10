@@ -1,0 +1,7 @@
+---
+# vars file for pihole
+pihole_ports:
+  - "53:53/tcp" # DNS
+  - "53:53/udp" # DNS
+  - "67:67/udp" # DHCP
+  - "80:80/tcp" # Web Portal
