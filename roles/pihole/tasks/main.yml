@@ -1,0 +1,17 @@
+---
+# tasks file for pihole
+- name: User Config
+  ansible.builtin.include_tasks: pihole_users.yml
+  tags: users
+
+- name: System Config
+  ansible.builtin.include_tasks: pihole_system.yml
+  tags: system
+
+- name: Service Config
+  ansible.builtin.include_tasks: pihole_services.yml
+  tags: services
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: pihole_firewalld.yml
+  tags: firewall

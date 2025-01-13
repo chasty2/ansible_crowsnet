@@ -1,0 +1,63 @@
+---
+# Setup NFS mounts and pihole container
+- name: Service Config Block (root user)
+  become: true
+  tags: services
+  block:
+    - name: Create /mnt/pihole
+      ansible.builtin.file:
+        path: /mnt/foundry
+        state: directory
+        owner: podman
+        group: pihole
+        mode: "0770"
+
+    - name: Mount pihole NFS volume
+      ansible.posix.mount:
+        src: 192.168.4.11:/ssd_mirror/pihole
+        path: /mnt/pihole
+        opts: rw,sync,hard
+        state: mounted
+        fstype: nfs
+
+- name: Service Config Block (podman user)
+  remote_user: podman
+  tags: services
+  block:
+    - name: Create mount points for pihole container data
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: podman
+        group: podman
+        mode: "0770"
+      with_items:
+        - "/mnt/pihole/etc-pihole"
+        - "/mnt/pihole/etc-dnsmasq"
+
+    - name: Start pihole container
+      containers.podman.podman_container:
+        name: pihole
+        image: docker.io/pihole/pihole:latest
+        ports:
+          ## Prevent conflict with systemd-resolved on 0.0.0.0:53
+          - "{{ ansible_default_ipv4.address }}:53:53/tcp"
+          - "{{ ansible_default_ipv4.address }}:53:53/udp"
+          - "67:67/udp"
+          - "80:80/tcp"
+        userns: host  # Map podman user to root inside container
+        env:
+          TZ='America/Chicago'
+          WEBPASSWORD="{{ pihole_web_password }}"
+          PIHOLE_DNS_='208.59.247.45;208.59.247.46'
+          FTLCONF_LOCAL_IPV4='{{ ansible_default_ipv4.address }}'
+          INTERFACE='tap0'
+          DNSMASQ_USER='root'
+          IPv6='false'
+        mount:
+          - "type=bind,source=/mnt/pihole/etc-pihole,destination=/etc/pihole,rw=true"
+          - "type=bind,source=/mnt/pihole/etc-dnsmasq,destination=/etc/dnsmasq.d,rw=true"
+        # cap_add:
+        #   - NET_ADMIN  # Required for DHCP, but optional
+        state: started
+        restart_policy: on-failure:3
