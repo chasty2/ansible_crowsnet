@@ -15,11 +15,12 @@
     - gate
 
 # As of now, all applications depend on podman role
-- name: Database Server
+- name: DNS & Database Server
   hosts: library
   roles:
     - podman
     - postgres
+    - pihole
 
 - name: Web Proxy
   hosts: proxy
