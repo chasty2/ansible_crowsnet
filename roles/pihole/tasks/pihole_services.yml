@@ -24,33 +24,40 @@
   remote_user: podman
   tags: services
   block:
-    - name: Create mount point for pihole container data
+    - name: Create mount points for pihole container data
       ansible.builtin.file:
-        path: /mnt/pihole/data
+        path: "{{ item }}"
         state: directory
         owner: podman
         group: podman
         mode: "0770"
+      with_items:
+        - "/mnt/pihole/etc-pihole"
+        - "/mnt/pihole/etc-dnsmasq"
 
-    # - name: Start pihole container
-    #   containers.podman.podman_container:
-    #     name: foundry
-    #     image: docker.io/felddy/foundryvtt:release
-    #     ports:
-    #       - "30000:30000"
-        # Map podman user to root in container
-        # userns: host
-        # # Run foundry as root within container
-        # # This preserves all files being owned by podman user
-        # env:
-        #   FOUNDRY_USERNAME="{{ foundry_login }}"
-        #   FOUNDRY_PASSWORD="{{ foundry_login_password }}"
-        #   FOUNDRY_PROTOCOL=4
-        #   FOUNDRY_UID=0
-        #   FOUNDRY_GID=0
-        #   CONTAINER_CACHE_SIZE=3
-        #   CONTAINER_PRESERVE_CONFIG='true'
-        # mount:
-        #   - "type=bind,source=/mnt/foundry/data,destination=/data,rw=true"
-        # state: started
-        # restart_policy: on-failure:3
+    - name: Start pihole container
+      containers.podman.podman_container:
+        name: pihole
+        image: docker.io/pihole/pihole:latest
+        ports:
+          ## Prevent conflict with systemd-resolved on 0.0.0.0:53
+          - "{{ ansible_default_ipv4.address }}:53:53/tcp"
+          - "{{ ansible_default_ipv4.address }}:53:53/udp"
+          - "67:67/udp"
+          - "80:80/tcp"
+        userns: host  # Map podman user to root inside container
+        env:
+          TZ='America/Chicago'
+          WEBPASSWORD="{{ pihole_web_password }}"
+          PIHOLE_DNS_='208.59.247.45;208.59.247.46'
+          FTLCONF_LOCAL_IPV4='{{ ansible_default_ipv4.address }}'
+          INTERFACE='tap0'
+          DNSMASQ_USER='root'
+          IPv6='false'
+        mount:
+          - "type=bind,source=/mnt/pihole/etc-pihole,destination=/etc/pihole,rw=true"
+          - "type=bind,source=/mnt/pihole/etc-dnsmasq,destination=/etc/dnsmasq.d,rw=true"
+        # cap_add:
+        #   - NET_ADMIN  # Required for DHCP, but optional
+        state: started
+        restart_policy: on-failure:3

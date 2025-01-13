@@ -1,0 +1,12 @@
+# System-level configuration for pihole role
+- name: System Config Block
+  become: true
+  tags: system
+  block:
+    - name: Configure DNS ports to be exposable by rootless user
+      ansible.posix.sysctl:
+        name: net.ipv4.ip_unprivileged_port_start
+        value: 53
+        sysctl_set: true
+        state: present
+        reload: true
