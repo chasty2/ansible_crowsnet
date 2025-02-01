@@ -3,8 +3,8 @@
 pihole_ports:
   - 53/tcp # DNS
   - 53/udp # DNS
-  - 67/udp # DHCP
   - 80/tcp # Web Portal
+  # - 67/udp # DHCP
 
 pihole_users:
   - ansible

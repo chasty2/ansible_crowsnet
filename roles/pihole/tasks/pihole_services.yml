@@ -39,14 +39,13 @@
       containers.podman.podman_container:
         name: pihole
         image: docker.io/pihole/pihole:latest
-        # ports:
-        #   ## Prevent conflict with systemd-resolved on 0.0.0.0:53
-        #   - "{{ ansible_default_ipv4.address }}:53:53/tcp"
-        #   - "{{ ansible_default_ipv4.address }}:53:53/udp"
-        #   - "67:67/udp"
-        #   - "80:80/tcp"
-        # userns: host  # Map podman user to root inside container
-        network: host    # Better metrics when listening to host network
+        ports:
+          ## Prevent conflict with systemd-resolved on 0.0.0.0:53
+          - "{{ ansible_default_ipv4.address }}:53:53/tcp"
+          - "{{ ansible_default_ipv4.address }}:53:53/udp"
+          - "80:80/tcp"
+          # - "67:67/udp" # Only required for DHCP
+        userns: host     # Map podman user to root inside container
         env:
           TZ='America/Chicago'
           WEBPASSWORD="{{ pihole_web_password }}"
