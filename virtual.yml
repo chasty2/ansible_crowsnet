@@ -15,12 +15,12 @@
     - gate
 
 # As of now, all applications depend on podman role
-- name: DNS & Database Server
-  hosts: library
-  roles:
-    - podman
-    - postgres
-    - pihole
+# - name: DNS & Database Server
+#   hosts: library
+#   roles:
+#     - podman
+#     - postgres
+#     - pihole
 
 - name: Web Proxy
   hosts: proxy
@@ -33,4 +33,4 @@
   roles:
     - podman
     - jellyfin
-    - foundry
+    # - foundry
