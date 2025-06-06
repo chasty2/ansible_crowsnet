@@ -3,3 +3,4 @@ ssh-keys/
 vault.pass
 hosts
 .venv/
+.python-version
