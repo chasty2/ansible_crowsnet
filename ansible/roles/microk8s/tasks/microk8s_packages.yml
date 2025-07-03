@@ -1,3 +1,4 @@
+---
 - name: Package Config Block
   become: true
   tags: packages
