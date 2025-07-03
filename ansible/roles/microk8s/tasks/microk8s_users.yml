@@ -1,10 +1,19 @@
+---
 - name: User Config Block
   become: true
   tags: users
   block:
-    - name: Add users to microk8s group
+    - name: Add user(s) to microk8s group
       ansible.builtin.user:
         name: "{{ item }}"
         groups: microk8s
         append: true
+      with_items: "{{ microk8s_users }}"
+
+    - name: Configure access to .kube caching directory(s)
+      ansible.builtin.file:
+        path: "/home/{{ item }}/.kube"
+        owner: "{{ item }}"
+        group: "{{ item }}"
+        state: directory
       with_items: "{{ microk8s_users }}"
