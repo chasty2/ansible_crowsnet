@@ -1,2 +1,7 @@
 ---
 # vars file for microk8s
+microk8s_packages:
+  - microk8s
+
+microk8s_users:
+  - chasty2

@@ -1,0 +1,10 @@
+- name: Package Config Block
+  become: true
+  tags: packages
+  block:
+    - name: Install microk8s
+      community.general.snap:
+        name: "{{ item }}"
+        classic: true
+        channel: 1.32
+      with_items: "{{ microk8s_packages }}"

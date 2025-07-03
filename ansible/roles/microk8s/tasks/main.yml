@@ -1,21 +1,21 @@
 ---
 # tasks file for microk8s
-- name: User Config
-  ansible.builtin.include_tasks: users.yml
-  tags: users
+# - name: User Config
+#   ansible.builtin.include_tasks: users.yml
+#   tags: users
 
-- name: System Config
-  ansible.builtin.include_tasks: system.yml
-  tags: system
+# - name: System Config
+#   ansible.builtin.include_tasks: system.yml
+#   tags: system
 
 - name: Package Config
-  ansible.builtin.include_tasks: packages.yml
+  ansible.builtin.include_tasks: microk8s_packages.yml
   tags: packages
 
-- name: Service Config
-  ansible.builtin.include_tasks: services.yml
-  tags: services
+# - name: Service Config
+#   ansible.builtin.include_tasks: services.yml
+#   tags: services
 
-- name: Firewall Config
-  ansible.builtin.include_tasks: firewalld.yml
-  tags: firewall
+# - name: Firewall Config
+#   ansible.builtin.include_tasks: firewalld.yml
+#   tags: firewall
