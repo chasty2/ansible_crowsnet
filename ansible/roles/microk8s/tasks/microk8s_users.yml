@@ -1,0 +1,10 @@
+- name: User Config Block
+  become: true
+  tags: users
+  block:
+    - name: Add users to microk8s group
+      ansible.builtin.user:
+        name: "{{ item }}"
+        groups: microk8s
+        append: true
+      with_items: "{{ microk8s_users }}"

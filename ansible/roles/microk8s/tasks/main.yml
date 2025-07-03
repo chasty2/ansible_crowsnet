@@ -1,8 +1,5 @@
 ---
 # tasks file for microk8s
-# - name: User Config
-#   ansible.builtin.include_tasks: users.yml
-#   tags: users
 
 # - name: System Config
 #   ansible.builtin.include_tasks: system.yml
@@ -11,6 +8,10 @@
 - name: Package Config
   ansible.builtin.include_tasks: microk8s_packages.yml
   tags: packages
+
+- name: User Config
+  ansible.builtin.include_tasks: microk8s_users.yml
+  tags: users
 
 # - name: Service Config
 #   ansible.builtin.include_tasks: services.yml
