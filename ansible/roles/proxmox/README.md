@@ -9,7 +9,7 @@ Requirements
 - Host is running firewalld (installed in common role)
 - System user who owns the nfs mount data must exist on this host and remote hosts
 - Host is running Proxmox Virtual Environment (PVE)
-- PVE hosts contains manually configured ZFS datasets
+- PVE host contains manually configured ZFS datasets
 - PVE host is configured to access a Proxmox Backup Server (PBS)
 
 Role Variables
