@@ -17,12 +17,19 @@ Role Variables
 
 A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
+*vars used in vars/main.yml:*
+
 - proxmox_packages: List of required packages to install
 - proxmox_services: List of required services to start on boot
 - proxmox_ports: List of ports to open on firewalld
-- nfs_mounts: Dictionary of NFS mount data, has the folowing format:
+- nfs_mounts: Dictionary of NFS mount data, has the following format:
   { path: "/mount/path", owner: remote_user,
       group: nfs_group, mode: "0770" }
+
+*vars used in group_vars/all:*
+
+- admin_users: Dictionary of admin users given access to NFS data, has the following format:
+  { name: "chasty2", uid: "1001", gid: "1001" }
 
 Example Playbook
 ----------------
