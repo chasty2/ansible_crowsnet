@@ -13,6 +13,6 @@
 #
 # sharenfs must be set on these ZFS volumes
 
-{% for mount in nfs_mounts %}
+{% for mount in proxmox_nfs_mounts %}
 {{ mount.path }}                192.168.4.0/22(rw,sync,no_subtree_check)
 {% endfor %}

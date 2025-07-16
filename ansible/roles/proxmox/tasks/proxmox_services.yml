@@ -11,7 +11,7 @@
         owner: "{{ item.owner }}"
         group: "{{ item.group }}"
         mode: "{{ item.mode }}"
-      with_items: "{{ nfs_mounts }}"
+      with_items: "{{ proxmox_nfs_mounts }}"
       notify: Reload NFS
 
     - name: Configure NFS exports

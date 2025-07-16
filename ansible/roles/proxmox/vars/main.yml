@@ -12,7 +12,7 @@ proxmox_ports:
 
 # 770 on this directory restricts access to authorized users, but
 # won't affect permissions of container data within the directory
-nfs_mounts:
+proxmox_nfs_mounts:
   - { path: "/hdd_mirror/media", owner: podman,
       group: jellyfin, mode: "0770" }
   - { path: "/ssd_mirror/jellyfin", owner: podman,

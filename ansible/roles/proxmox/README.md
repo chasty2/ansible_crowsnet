@@ -22,7 +22,7 @@ A description of the settable variables for this role should go here, including 
 - proxmox_packages: List of required packages to install
 - proxmox_services: List of required services to start on boot
 - proxmox_ports: List of ports to open on firewalld
-- nfs_mounts: Dictionary of NFS mount data, has the following format:
+- proxmox_nfs_mounts: Dictionary of NFS mount data, has the following format:
   { path: "/mount/path", owner: remote_user,
       group: nfs_group, mode: "0770" }
 
