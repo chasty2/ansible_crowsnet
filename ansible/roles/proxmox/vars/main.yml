@@ -21,7 +21,7 @@ proxmox_nfs_mounts:
       group: proxy, mode: "0770" }
   - { path: "/ssd_mirror/foundry", owner: podman,
       group: foundry, mode: "0770" }
-  - { path: "/ssd_mirror/postgres", owner: podman,
-      group: postgres, mode: "0770" }
-  - { path: "/ssd_mirror/pihole", owner: podman,
-      group: pihole, mode: "0770" }
+  # - { path: "/ssd_mirror/postgres", owner: podman,
+  #     group: postgres, mode: "0770" }
+  # - { path: "/ssd_mirror/pihole", owner: podman,
+  #     group: pihole, mode: "0770" }
