@@ -4,3 +4,4 @@ vault.pass
 hosts
 .venv/
 .python-version
+.ansible
