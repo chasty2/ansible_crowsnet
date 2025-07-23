@@ -23,19 +23,20 @@
         mode: "0644"
       notify: Reload NFS
 
+    - name: Schedule backups
+      ansible.builtin.cron:
+        name: "{{ item.name }}"
+        minute: "{{ item.minute }}"
+        hour: "{{ item.hour }}"
+        weekday: "{{ item.weekday }}"
+        job: "{{ item.job }}"
+        user: root
+        state: present
+      loop: "{{ proxmox_cron_jobs }}"
+
     - name: Start/enable base services
       ansible.builtin.service:
         name: "{{ item }}"
         state: started
         enabled: true
       with_items: "{{ proxmox_services }}"
-
-
-# - name: disable unnecessary services
-#   become: true
-#   ansible.builtin.service:
-#     name: "{{ item }}"
-#     state: stopped
-#     enabled: no
-#   with_items: "{{ disabled_services }}"
-#   ignore_errors: yes
