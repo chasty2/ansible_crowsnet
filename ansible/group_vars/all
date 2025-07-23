@@ -1,6 +1,7 @@
 nfs_server: esper
 proxy_server: proxy
-database_server: library
+backup_server: simic
+
 
 admin_users:
   - { name: "chasty2", uid: "1001", gid: "1001" }
