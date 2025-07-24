@@ -24,12 +24,35 @@ proxmox_nfs_mounts:
 
 # 0 = Sunday, 1 = Monday, ..., 6 = Saturday
 proxmox_cron_jobs:
-  - {
-    name: "Backup media, Monday at 3AM",
-    minute: "0",
-    hour: "3",
-    weekday: "1",
-    job: "proxmox-backup-client backup media.pxar:/hdd_mirror/media --repository root@pam@192.168.4.12:backup --ns media"
+  - { name: "Backup jellyfin config data, daily at 12AM",
+      minute: "0",
+      hour: "0",
+      weekday: "*",
+      job: "proxmox-backup-client backup jellyfin.pxar:/ssd_mirror/jellyfin --repository root@pam@192.168.4.12:backup --ns jellyfin"
+  }
+  - { name: "Backup proxy config data, daily at 1215AM",
+      minute: "15",
+      hour: "0",
+      weekday: "*",
+      job: "proxmox-backup-client backup proxy.pxar:/ssd_mirror/proxy --repository root@pam@192.168.4.12:backup --ns proxy"
+  }
+  - { name: "Backup foundry config data, daily at 1230AM",
+      minute: "30",
+      hour: "0",
+      weekday: "*",
+      job: "proxmox-backup-client backup foundry.pxar:/ssd_mirror/foundry --repository root@pam@192.168.4.12:backup --ns foundry"
+  }
+  - { name: "Backup media, Monday at 3AM",
+      minute: "0",
+      hour: "3",
+      weekday: "1",
+      job: "proxmox-backup-client backup media.pxar:/hdd_mirror/media --repository root@pam@192.168.4.12:backup --ns media"
+  }
+  - { name: "Trim ssd_mirror pool, Wednesday at 3AM",
+      minute: "0",
+      hour: "3",
+      weekday: "3",
+      job: "zpool trim ssd_mirror"
   }
 
 proxmox_pbs_password: !vault |
