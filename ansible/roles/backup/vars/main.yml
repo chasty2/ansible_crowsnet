@@ -1,4 +1,4 @@
 ---
 # vars file for backup_pbs
 backup_permitted_ports:
-  - 8007/tcp
+  - 8007/tcp # proxmox backups and web portal
