@@ -1,0 +1,6 @@
+---
+- name: Test backup server configuration
+  hosts: lab
+  roles:
+    - common # noqa syntax-check[specific]
+    - pbs # noqa syntax-check[specific]

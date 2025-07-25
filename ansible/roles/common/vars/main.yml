@@ -1,15 +1,17 @@
 ---
 # vars file for common
 all_groups:
+  - { name: "ansible", gid: "1000"}
   - { name: "chasty2", gid: "1001" }
-  - { name: "jellyfin", gid: "2000" }
-  - { name: "proxy", gid: "2001" }
-  - { name: "foundry", gid: "2002"}
-  - { name: "postgres", gid: "2003"}
   - { name: "podman", gid: "2004"}
-  - { name: "pihole", gid: "2005"}
+  # - { name: "jellyfin", gid: "2000" }
+  # - { name: "proxy", gid: "2001" }
+  # - { name: "foundry", gid: "2002"}
+  # - { name: "postgres", gid: "2003"}
+  # - { name: "pihole", gid: "2005"}
 
 service_users:
+  - { name: "ansible", uid: "1000", gid: "1000"}
   - { name: "podman", uid: "2004", gid: "2004"}
 
 ssh_keys:

@@ -25,6 +25,14 @@ A description of the settable variables for this role should go here, including 
 - proxmox_nfs_mounts: Dictionary of NFS mount data, has the following format:
   { path: "/mount/path", owner: remote_user,
       group: nfs_group, mode: "0770" }
+- proxmox_cron_jobs: Dictionary of cron jobs used to run backup jobs, has the format:
+  { name: "Backup media, Monday at 3AM",
+      minute: "0",
+      hour: "3",
+      weekday: "1",
+      job: "proxmox-backup-client backup media.pxar:/hdd_mirror/media 
+  }
+- proxmox_pbs_password: Vaulted string used to connect to Proxmox Backup Server (PBS)
 
 *vars used in group_vars/all:*
 

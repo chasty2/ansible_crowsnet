@@ -1,0 +1,5 @@
+---
+# tasks file for backup_pbs
+- name: Firewall Config
+  ansible.builtin.include_tasks: backup_firewalld.yml
+  tags: firewall

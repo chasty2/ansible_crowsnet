@@ -2,6 +2,7 @@
 # vars file for proxmox role
 proxmox_packages:
   - nfs-kernel-server
+  - tmux
 
 proxmox_services:
   - nfs-kernel-server
