@@ -10,4 +10,4 @@
         state: enabled
         permanent: true
         immediate: true
-      with_items: "{{ backup_permitted_ports }}"
+      with_items: "{{ pbs_permitted_ports }}"

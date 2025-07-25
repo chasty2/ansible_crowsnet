@@ -3,4 +3,4 @@
   hosts: lab
   roles:
     - common # noqa syntax-check[specific]
-    - backup # noqa syntax-check[specific]
+    - pbs # noqa syntax-check[specific]
