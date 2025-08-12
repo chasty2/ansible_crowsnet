@@ -17,3 +17,11 @@
         path: /root/.bashrc
         line: "export PBS_PASSWORD={{ proxmox_pbs_password }}"
         state: present
+
+    - name: Copy backup script to root directory
+      ansible.builtin.copy:
+        src: backup.sh
+        dest: /root/backup.sh
+        owner: root
+        group: root
+        mode: "0700"
