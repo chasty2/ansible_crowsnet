@@ -23,7 +23,7 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: lab
       roles:
          - common
-         - backup_pbs
+         - pbs
 
 License
 -------
