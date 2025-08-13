@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
-  remote_user: root
+- name: Test microk8s role configuration
+  hosts: lab
   roles:
-    - microk8s
+    - common # noqa syntax-check[specific]
+    - microk8s # noqa syntax-check[specific]

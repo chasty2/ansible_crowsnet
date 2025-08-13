@@ -11,7 +11,7 @@
         state: enabled
         permanent: true
         immediate: true
-      with_items: "{{ internal_ports }}"
+      with_items: "{{ proxy_internal_ports }}"
 
     - name: Open permitted ports on firewalld zone 'public'
       become: true
@@ -21,4 +21,4 @@
         state: enabled
         permanent: true
         immediate: true
-      with_items: "{{ public_ports }}"
+      with_items: "{{ proxy_public_ports }}"

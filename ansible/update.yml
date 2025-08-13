@@ -6,7 +6,7 @@
       ansible.builtin.apt:
         update_cache: true
 
-    - name: Update all packages
+    - name: Update all packages # noqa package-latest
       ansible.builtin.package:
         name: '*'
         state: latest

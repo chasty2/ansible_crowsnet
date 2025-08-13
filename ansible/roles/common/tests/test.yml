@@ -1,0 +1,5 @@
+---
+- name: Test common role configuration
+  hosts: lab
+  roles:
+    - common # noqa syntax-check[specific]

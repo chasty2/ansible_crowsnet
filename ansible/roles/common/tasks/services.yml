@@ -23,7 +23,7 @@
         name: "{{ item }}"
         state: started
         enabled: true
-      with_items: "{{ base_services }}"
+      with_items: "{{ common_services }}"
 
 
 # - name: disable unnecessary services

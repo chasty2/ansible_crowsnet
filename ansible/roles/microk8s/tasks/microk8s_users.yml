@@ -15,5 +15,6 @@
         path: "/home/{{ item }}/.kube"
         owner: "{{ item }}"
         group: "{{ item }}"
+        mode: "0644"
         state: directory
       with_items: "{{ microk8s_users }}"

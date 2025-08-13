@@ -11,7 +11,7 @@
         state: enabled
         permanent: true
         immediate: true
-      with_items: "{{ permitted_ports }}"
+      with_items: "{{ common_permitted_ports }}"
 
     - name: Close unnecessary ports on firewalld zone 'internal'
       ansible.posix.firewalld:
@@ -20,7 +20,7 @@
         state: disabled
         permanent: true
         immediate: true
-      with_items: "{{ closed_ports }}"
+      with_items: "{{ common_closed_ports }}"
 
     - name: Add permitted network(s) to firewalld zone 'internal'
       ansible.posix.firewalld:
@@ -29,4 +29,4 @@
         state: enabled
         permanent: true
         immediate: true
-      with_items: "{{ permitted_networks }}"
+      with_items: "{{ common_permitted_networks }}"

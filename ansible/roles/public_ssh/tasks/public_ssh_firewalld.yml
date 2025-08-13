@@ -1,5 +1,5 @@
 ---
-# Configure gate public zone
+# Configure public firewalld zone for ssh use
 - name: Firewall Config Block
   become: true
   tags: firewall
@@ -11,4 +11,4 @@
         state: enabled
         permanent: true
         immediate: true
-      with_items: "{{ public_permitted_ports }}"
+      with_items: "{{ public_ssh_permitted_ports }}"

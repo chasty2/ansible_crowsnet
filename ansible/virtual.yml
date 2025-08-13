@@ -12,7 +12,7 @@
 - name: SSH Bastion
   hosts: gate
   roles:
-    - gate
+    - public_ssh
 
 # As of now, all applications depend on podman role
 # - name: DNS & Database Server
