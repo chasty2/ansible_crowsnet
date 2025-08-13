@@ -1,4 +1,4 @@
-# handlers file for gate
+# handlers file for public_ssh
 - name: Reload fail2ban
   become: true
   ansible.builtin.service:

@@ -1,0 +1,4 @@
+---
+# vars file for public_ssh role
+public_ssh_permitted_ports:
+  - ssh
