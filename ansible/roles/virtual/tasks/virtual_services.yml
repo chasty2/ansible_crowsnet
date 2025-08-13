@@ -5,5 +5,5 @@
     name: "{{ item }}"
     state: started
     enabled: true
-  with_items: "{{ vm_services }}"
+  with_items: "{{ virtual_services }}"
   tags: services
