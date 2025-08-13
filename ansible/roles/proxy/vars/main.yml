@@ -1,9 +1,9 @@
 ---
 # vars file for proxy role
-internal_ports:
+proxy_internal_ports:
   - 81/tcp  # npm web app
 
-public_ports:
+proxy_public_ports:
   - http
   - https
 
