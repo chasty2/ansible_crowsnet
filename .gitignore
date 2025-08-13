@@ -1,7 +1,8 @@
-.vscode/settings.json
+.vscode
 ssh-keys/
 vault.pass
 ansible/hosts
 .venv/
 .python-version
 .ansible
+.claude
