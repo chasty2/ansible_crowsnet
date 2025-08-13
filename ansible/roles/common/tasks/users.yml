@@ -14,7 +14,7 @@
         name: "{{ item.name }}"
         gid: "{{ item.gid }}"
         state: present
-      with_items: "{{ all_groups }}"
+      with_items: "{{ common_groups }}"
 
     - name: Add admin users
       ansible.builtin.user:
@@ -46,11 +46,11 @@
         shell: /bin/bash
         create_home: true
         state: present
-      with_items: "{{ service_users }}"
+      with_items: "{{ common_service_users }}"
 
     - name: Add SSH public keys to authorized users
       ansible.posix.authorized_key:
         user: "{{ item.name }}"
         key: "{{ item.public_ssh_key }}"
         state: present
-      with_items: "{{ ssh_keys }}"
+      with_items: "{{ common_ssh_keys }}"

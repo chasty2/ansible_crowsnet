@@ -1,6 +1,6 @@
 ---
 # vars file for common
-all_groups:
+common_groups:
   - { name: "ansible", gid: "1000"}
   - { name: "chasty2", gid: "1001" }
   - { name: "podman", gid: "2004"}
@@ -10,15 +10,15 @@ all_groups:
   # - { name: "postgres", gid: "2003"}
   # - { name: "pihole", gid: "2005"}
 
-service_users:
+common_service_users:
   - { name: "ansible", uid: "1000", gid: "1000"}
   - { name: "podman", uid: "2004", gid: "2004"}
 
-ssh_keys:
+common_ssh_keys:
   - { name: "chasty2", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBbguD7QoF6kNwqKRaxIkVAy6XwMxKJZ5vK71T/0mg1 abzan SSH key" }
   - { name: "ansible", public_ssh_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGj0KFGQuRcbeX+P9z/O+nYDSu7NRSCx0BMDg5TwF5QJ CrowsNet ansible user" }
 
-base_packages:
+common_packages:
   - sudo
   - vim
   - nmap
@@ -33,25 +33,25 @@ base_packages:
   - cron
   - ncdu
 
-base_services:
+common_services:
   - firewalld
   - sshd
   - cron
 
-removed_packages:
+common_removed_packages:
   - ufw
   - vim-tiny
 
 # disabled_services:
 #   - ufw
 
-permitted_ports:
+common_permitted_ports:
   - ssh
 
-closed_ports:
+common_closed_ports:
   - dhcpv6-client
   - mdns
   - samba-client
 
-permitted_networks:
+common_permitted_networks:
   - 192.168.4.0/22
