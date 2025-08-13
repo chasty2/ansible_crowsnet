@@ -1,0 +1,6 @@
+---
+- name: Test virtual machine configuration
+  hosts: lab
+  roles:
+    - common # noqa syntax-check[specific]
+    - virtual # noqa syntax-check[specific]
