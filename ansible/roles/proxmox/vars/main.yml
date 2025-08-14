@@ -54,7 +54,7 @@ proxmox_cron_jobs:
       hour: "3",
       weekday: "3",
       job: "/usr/sbin/zpool trim ssd_mirror"
-No  }
+  }
 
 proxmox_pbs_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
