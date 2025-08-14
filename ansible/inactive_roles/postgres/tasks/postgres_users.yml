@@ -5,14 +5,14 @@
     - name: Add users to postgres group
       ansible.builtin.user:
         name: "{{ item }}"
-        groups: postgres
+        groups: podman
         append: true
       with_items: "{{ postgres_users }}"
 
     - name: Add users to postgres group on NFS server
       ansible.builtin.user:
         name: "{{ item }}"
-        groups: postgres
+        groups: podman
         append: true
       with_items: "{{ postgres_users }}"
       delegate_to: "{{ nfs_server }}"
