@@ -9,7 +9,7 @@
         path: /mnt/proxy
         state: directory
         owner: podman
-        group: proxy
+        group: podman
         mode: "0770"
 
     - name: Mount proxy NFS volume

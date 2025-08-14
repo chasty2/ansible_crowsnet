@@ -19,7 +19,7 @@ proxmox_nfs_mounts:
   - { path: "/ssd_mirror/jellyfin", owner: podman,
       group: podman, mode: "0770" }
   - { path: "/ssd_mirror/proxy", owner: podman,
-      group: proxy, mode: "0770" }
+      group: podman, mode: "0770" }
   - { path: "/ssd_mirror/foundry", owner: podman,
       group: foundry, mode: "0770" }
 
