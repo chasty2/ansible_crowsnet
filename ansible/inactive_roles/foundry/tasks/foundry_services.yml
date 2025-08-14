@@ -9,7 +9,7 @@
         path: /mnt/foundry
         state: directory
         owner: podman
-        group: foundry
+        group: podman
         mode: "0770"
 
     - name: Mount foundry NFS volume
