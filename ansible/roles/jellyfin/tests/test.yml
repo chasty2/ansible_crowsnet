@@ -1,0 +1,7 @@
+---
+- name: Test jellyfin server configuration
+  hosts: lab
+  roles:
+    - common # noqa syntax-check[specific]
+    - podman # noqa syntax-check[specific]
+    - jellyfin # noqa syntax-check[specific]
