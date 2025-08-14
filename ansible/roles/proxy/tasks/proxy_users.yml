@@ -6,14 +6,14 @@
     - name: Add users to proxy group
       ansible.builtin.user:
         name: "{{ item }}"
-        groups: proxy
+        groups: podman
         append: true
       with_items: "{{ proxy_users }}"
 
     - name: Add users to proxy group on NFS server
       ansible.builtin.user:
         name: "{{ item }}"
-        groups: proxy
+        groups: podman
         append: true
       with_items: "{{ proxy_users }}"
       delegate_to: "{{ nfs_server }}"

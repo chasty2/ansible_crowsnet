@@ -6,14 +6,14 @@
     - name: Add users to foundry group
       ansible.builtin.user:
         name: "{{ item }}"
-        groups: foundry
+        groups: podman
         append: true
       with_items: "{{ foundry_users }}"
 
     - name: Add users to foundry group on NFS server
       ansible.builtin.user:
         name: "{{ item }}"
-        groups: foundry
+        groups: podman
         append: true
       with_items: "{{ foundry_users }}"
       delegate_to: "{{ nfs_server }}"

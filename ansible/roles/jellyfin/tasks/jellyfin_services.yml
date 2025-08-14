@@ -9,7 +9,7 @@
         path: /mnt/jellyfin
         state: directory
         owner: podman
-        group: jellyfin
+        group: podman
         mode: "0770"
 
     - name: Mount jellyfin NFS volume
@@ -25,7 +25,7 @@
         path: /mnt/media
         state: directory
         owner: podman
-        group: jellyfin
+        group: podman
         mode: "0770"
 
     - name: Mount media NFS volume
@@ -54,7 +54,7 @@
     - name: Start jellyfin container
       containers.podman.podman_container:
         name: jellyfin
-        image: docker.io/jellyfin/jellyfin:10.10.1
+        image: docker.io/jellyfin/jellyfin:10.10.7
         network: host
         mount:
           - "type=bind,source=/mnt/media,destination=/media,rw=true"

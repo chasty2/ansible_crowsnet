@@ -8,6 +8,5 @@ proxy_public_ports:
   - https
 
 proxy_users:
-  - ansible
   - chasty2
   - podman

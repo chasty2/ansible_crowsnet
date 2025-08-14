@@ -2,7 +2,6 @@
 # vars file for proxmox role
 proxmox_packages:
   - nfs-kernel-server
-  - tmux
 
 proxmox_services:
   - nfs-kernel-server
@@ -15,13 +14,13 @@ proxmox_ports:
 # won't affect permissions of container data within the directory
 proxmox_nfs_mounts:
   - { path: "/hdd_mirror/media", owner: podman,
-      group: jellyfin, mode: "0770" }
+      group: podman, mode: "0770" }
   - { path: "/ssd_mirror/jellyfin", owner: podman,
-      group: jellyfin, mode: "0770" }
+      group: podman, mode: "0770" }
   - { path: "/ssd_mirror/proxy", owner: podman,
-      group: proxy, mode: "0770" }
+      group: podman, mode: "0770" }
   - { path: "/ssd_mirror/foundry", owner: podman,
-      group: foundry, mode: "0770" }
+      group: podman, mode: "0770" }
 
 # 0 = Sunday, 1 = Monday, ..., 6 = Saturday
 proxmox_cron_jobs:

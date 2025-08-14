@@ -9,7 +9,7 @@
         path: /mnt/postgres
         state: directory
         owner: podman
-        group: postgres
+        group: podman
         mode: "0770"
 
     - name: Mount postgres NFS volume

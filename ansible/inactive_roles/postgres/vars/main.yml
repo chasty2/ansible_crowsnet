@@ -4,7 +4,6 @@ postgres_ports:
   - 5432/tcp  # postgres default port
 
 postgres_users:
-  - ansible
   - chasty2
   - podman
 
