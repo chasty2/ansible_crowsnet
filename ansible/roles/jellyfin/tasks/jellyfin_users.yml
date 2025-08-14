@@ -3,17 +3,17 @@
   become: true
   tags: users
   block:
-    - name: Add users to jellyfin group
+    - name: Add users to podman group
       ansible.builtin.user:
         name: "{{ item }}"
-        groups: jellyfin
+        groups: podman
         append: true
       with_items: "{{ jellyfin_users }}"
 
-    - name: Add users to jellyfin group on NFS server
+    - name: Add users to podman group on NFS server
       ansible.builtin.user:
         name: "{{ item }}"
-        groups: jellyfin
+        groups: podman
         append: true
       with_items: "{{ jellyfin_users }}"
       delegate_to: "{{ nfs_server }}"

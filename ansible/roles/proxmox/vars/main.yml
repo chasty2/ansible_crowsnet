@@ -15,9 +15,9 @@ proxmox_ports:
 # won't affect permissions of container data within the directory
 proxmox_nfs_mounts:
   - { path: "/hdd_mirror/media", owner: podman,
-      group: jellyfin, mode: "0770" }
+      group: podman, mode: "0770" }
   - { path: "/ssd_mirror/jellyfin", owner: podman,
-      group: jellyfin, mode: "0770" }
+      group: podman, mode: "0770" }
   - { path: "/ssd_mirror/proxy", owner: podman,
       group: proxy, mode: "0770" }
   - { path: "/ssd_mirror/foundry", owner: podman,
@@ -54,7 +54,7 @@ proxmox_cron_jobs:
       hour: "3",
       weekday: "3",
       job: "/usr/sbin/zpool trim ssd_mirror"
-  }
+No  }
 
 proxmox_pbs_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
