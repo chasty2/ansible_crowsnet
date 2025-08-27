@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Backup file system to Proxmox Backup Server using proxmox-backup-client
+# Written by Cody Hasty
+#
+# Usage: backup.sh namespace file_system
+
+export PBS_REPOSITORY={{ proxmox_pbs_repository }}
+export PBS_PASSWORD={{ proxmox_pbs_password }}
+
+/usr/bin/proxmox-backup-client backup $1.pxar:$2 --ns $1
