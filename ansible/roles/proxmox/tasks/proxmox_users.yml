@@ -12,12 +12,6 @@
         append: true
       with_items: "{{ admin_users }}"
 
-    - name: Add proxmox backup info to root .bashrc
-      ansible.builtin.lineinfile:
-        path: /root/.bashrc
-        line: "export PBS_PASSWORD={{ proxmox_pbs_password }}"
-        state: present
-
     - name: Copy backup script to root directory
       ansible.builtin.copy:
         src: backup.sh
