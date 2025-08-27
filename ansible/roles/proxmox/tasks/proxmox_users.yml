@@ -13,8 +13,8 @@
       with_items: "{{ admin_users }}"
 
     - name: Copy backup script to root directory
-      ansible.builtin.copy:
-        src: backup.sh
+      ansible.builtin.template:
+        src: backup_script.j2
         dest: /root/backup.sh
         owner: root
         group: root
