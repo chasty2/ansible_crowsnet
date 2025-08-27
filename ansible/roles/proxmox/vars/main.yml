@@ -28,25 +28,25 @@ proxmox_cron_jobs:
       minute: "0",
       hour: "0",
       weekday: "*",
-      job: "/root/backup.sh jellyfin /ssd_mirror/jellyfin"
+      job: "/root/backup.sh jellyfin /ssd_mirror/jellyfin >> /var/log/cron.log 2>&1"
   }
   - { name: "Backup proxy config data, daily at 1215AM",
       minute: "15",
       hour: "0",
       weekday: "*",
-      job: "/root/backup.sh proxy /ssd_mirror/proxy"
+      job: "/root/backup.sh proxy /ssd_mirror/proxy >> /var/log/cron.log 2>&1"
   }
   - { name: "Backup foundry config data, daily at 1230AM",
       minute: "30",
       hour: "0",
       weekday: "*",
-      job: "/root/backup.sh foundry /ssd_mirror/foundry"
+      job: "/root/backup.sh foundry /ssd_mirror/foundry >> /var/log/cron.log 2>&1"
   }
   - { name: "Backup media, Monday at 3AM",
       minute: "0",
       hour: "3",
       weekday: "1",
-      job: "/root/backup.sh media /hdd_mirror/media"
+      job: "/root/backup.sh media /hdd_mirror/media >> /var/log/cron.log 2>&1"
   }
   - { name: "Trim ssd_mirror pool, Wednesday at 3AM",
       minute: "0",
