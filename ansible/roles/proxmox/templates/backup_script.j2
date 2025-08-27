@@ -4,8 +4,7 @@
 # Written by Cody Hasty
 #
 # Usage: backup.sh namespace file_system
+export PBS_REPOSITORY={{ proxmox_pbs_repository }}
+export PBS_PASSWORD='Rabbitstudydirectory'
 
-/usr/bin/proxmox-backup-client backup $1.pxar:$2 \
-    --repository {{ proxmox_pbs_repository }} \
-    --password {{ proxmox_pbs_password }} \
-    --ns $1
+/usr/bin/proxmox-backup-client backup $1.pxar:$2 --ns $1
