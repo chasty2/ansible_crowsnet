@@ -5,5 +5,7 @@
 #
 # Usage: backup.sh namespace file_system
 
-
-/usr/bin/proxmox-backup-client backup $1.pxar:$2 --repository root@pam@192.168.4.12:backup --ns $1
+/usr/bin/proxmox-backup-client backup $1.pxar:$2 \
+    --repository {{ proxmox_pbs_repository }} \
+    --password {{ proxmox_pbs_password }} \
+    --ns $1
