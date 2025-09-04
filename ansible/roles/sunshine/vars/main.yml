@@ -9,11 +9,10 @@ sunshine_os_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else 'arm64' }
 sunshine_download_url:
   - "https://github.com/LizardByte/Sunshine/releases/latest/download/sunshine-{{ sunshine_os }}-{{ sunshine_os_version }}-{{ sunshine_os_arch }}.deb"
 
-# Service configuration
-sunshine_services:
-  - sunshine
-
 # Firewall configuration
 sunshine_permitted_ports:
   - 47989/tcp
-  - 47990/tcp
+  - 47990/tcp     # web ui
+  - 47984/tcp
+  - 48010/tcp
+  - 47998-48000/udp

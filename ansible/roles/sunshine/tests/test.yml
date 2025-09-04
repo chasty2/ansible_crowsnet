@@ -3,5 +3,4 @@
   hosts: lab
   roles:
     - common # noqa syntax-check[specific]
-    - podman # noqa syntax-check[specific]
     - sunshine # noqa syntax-check[specific]
