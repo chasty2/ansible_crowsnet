@@ -16,4 +16,7 @@ sunshine_services:
 # Firewall configuration
 sunshine_permitted_ports:
   - 47989/tcp
-  - 47990/tcp
+  - 47990/tcp     # web ui
+  - 47984/tcp
+  - 48010/tcp
+  - 47998-48000/udp
