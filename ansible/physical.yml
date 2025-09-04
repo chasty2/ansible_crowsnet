@@ -12,3 +12,9 @@
   hosts: simic
   roles:
     - pbs
+
+- name: GPU/Development Server
+  hosts: abzan
+  roles:
+    - podman
+    - sunshine

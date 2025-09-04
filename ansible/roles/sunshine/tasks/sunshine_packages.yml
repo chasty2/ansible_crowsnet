@@ -1,0 +1,10 @@
+---
+- name: Package Config Block
+  become: true
+  tags: packages
+  block:
+    - name: Install Sunshine server from .deb package
+      ansible.builtin.apt:
+        deb: "{{ item }}"
+        state: present
+      with_items: "{{ sunshine_download_url }}"

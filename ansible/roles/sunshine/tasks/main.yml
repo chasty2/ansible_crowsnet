@@ -1,0 +1,11 @@
+---
+# tasks file for sunshine
+- name: Package Config
+  ansible.builtin.include_tasks: sunshine_packages.yml
+  tags: packages
+
+## As of now, sunshine service must be started manually from a physical login
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: sunshine_firewalld.yml
+  tags: firewall
