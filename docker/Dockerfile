@@ -20,20 +20,16 @@ RUN addgroup -S ansible && adduser -S ansible -G ansible \
   && mkdir -p /home/ansible/.ssh && chown ansible:ansible /home/ansible/.ssh \
   && chmod 0700 /home/ansible/.ssh
 
-# Copy SSH keys to ansible .ssh directory
+# Copy SSH private keys to ansible .ssh directory
 COPY ./ssh-keys/ansible_ed25519 /home/ansible/.ssh/id_ed25519
-COPY ./ssh-keys/ansible_ed25519.pub /home/ansible/.ssh/id_ed25519.pub
 COPY ./ssh-keys/azure_id_rsa /home/ansible/.ssh/id_rsa
-COPY ./ssh-keys/azure_id_rsa.pub /home/ansible/.ssh/id_rsa.pub
 COPY ./ssh-keys/chasty2_ed25519 /home/ansible/.ssh/chasty2_id_ed25519
 
 # Set SSH key permissions
-RUN chown ansible:ansible /home/ansible/.ssh/id_ed25519* \
+RUN chown ansible:ansible /home/ansible/.ssh/id_ed25519 \
   && chmod 600 /home/ansible/.ssh/id_ed25519 \
-  && chmod 644 /home/ansible/.ssh/id_ed25519.pub \
-  && chown ansible:ansible /home/ansible/.ssh/id_rsa* \
+  && chown ansible:ansible /home/ansible/.ssh/id_rsa \
   && chmod 600 /home/ansible/.ssh/id_rsa \
-  && chmod 644 /home/ansible/.ssh/id_rsa.pub \
   && chown ansible:ansible /home/ansible/.ssh/chasty2_id_ed25519 \
   && chmod 600 /home/ansible/.ssh/chasty2_id_ed25519
 
