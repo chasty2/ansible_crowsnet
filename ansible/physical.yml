@@ -17,4 +17,5 @@
   hosts: abzan
   roles:
     - podman
+    - podman_jupyter
     - sunshine
