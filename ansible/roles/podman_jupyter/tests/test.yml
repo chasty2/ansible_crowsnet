@@ -1,6 +1,6 @@
 ---
 - name: Test podman_jupyter role configuration
-  hosts: lab
+  hosts: abzan
   roles:
     - common # noqa syntax-check[specific]
     - podman # noqa syntax-check[specific]
