@@ -10,7 +10,7 @@
         ports:
           - "8888:8888"
         mount:
-          - "type=bind,source={{ jupyter_bind_mount }},destination=/home/jovyan/work,rw=true"
+          - "type=bind,source={{ podman_jupyter_bind_mount }},destination=/home/jovyan/work,rw=true"
         device:
           - "nvidia.com/gpu=all"
         state: started
