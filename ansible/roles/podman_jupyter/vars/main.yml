@@ -1,6 +1,6 @@
 ---
 # vars file for podman_jupyter role
-jupyter_ports:
+podman_jupyter_ports:
   - 8888/tcp  # jupyter notebook web interface
 
-jupyter_bind_mount: /home/chasty2/Documents
+podman_jupyter_bind_mount: /home/chasty2/Documents
