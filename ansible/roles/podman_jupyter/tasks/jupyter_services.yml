@@ -9,10 +9,12 @@
       containers.podman.podman_container:
         name: jupyter-notebook
         image: quay.io/jupyter/pytorch-notebook
+        # Map chasty2 uid:gid into container to preserve OS-level user permissions
+        userns: "keep-id"
         ports:
           - "8888:8888"
         mount:
-          - "type=bind,source={{ podman_jupyter_bind_mount }},destination=/home/jovyan/work,rw=true"
+          - "type=bind,source={{ podman_jupyter_bind_mount }}/test,destination=/home/jovyan/work,rw=true"
         device:
           - "nvidia.com/gpu=all"
         state: started
