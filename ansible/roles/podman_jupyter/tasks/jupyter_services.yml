@@ -1,0 +1,17 @@
+---
+- name: Service Config Block (chasty2 user)
+  remote_user: chasty2
+  tags: services
+  block:
+    - name: Start jupyter notebook container
+      containers.podman.podman_container:
+        name: jupyter-notebook
+        image: quay.io/jupyter/pytorch-notebook
+        ports:
+          - "8888:8888"
+        mount:
+          - "type=bind,source={{ jupyter_bind_mount }},destination=/home/jovyan/work,rw=true"
+        device:
+          - "nvidia.com/gpu=all"
+        state: started
+        restart_policy: on-failure:3
