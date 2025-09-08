@@ -3,4 +3,4 @@
 podman_jupyter_ports:
   - 8888/tcp  # jupyter notebook web interface
 
-podman_jupyter_bind_mount: /home/chasty2/Documents
+podman_jupyter_bind_mount: /home/chasty2/Documents/jupyter_repos
