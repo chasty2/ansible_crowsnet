@@ -7,5 +7,5 @@
     state: enabled
     permanent: true
     immediate: true
-  with_items: "{{ jupyter_ports }}"
+  with_items: "{{ podman_jupyter_ports }}"
   tags: firewall
