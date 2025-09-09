@@ -9,8 +9,9 @@
       containers.podman.podman_container:
         name: jupyter-notebook
         image: quay.io/jupyter/pytorch-notebook
-        # Map chasty2 uid:gid into container to preserve OS-level user permissions
-        userns: "keep-id"
+        # Map chasty2 uid:gid to default container user (jovyan, uid=1000, gid=100)
+        # This preserves OS-level permissions inside container
+        userns: "keep-id:uid=1000,gid=100"
         ports:
           - "8888:8888"
         mount:
