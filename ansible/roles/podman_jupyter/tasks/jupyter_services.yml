@@ -18,5 +18,8 @@
           - "type=bind,source={{ podman_jupyter_bind_mount }},destination=/home/jovyan/work,rw=true"
         device:
           - "nvidia.com/gpu=all"
+        env:
+          GEN_CERT: "yes"
+          JUPYTER_TOKEN: "{{ podman_jupyter_token }}"
         state: started
         restart_policy: on-failure:3
