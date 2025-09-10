@@ -1,0 +1,13 @@
+---
+# tasks file for podman_jupyter
+- name: User Config
+  ansible.builtin.include_tasks: jupyter_users.yml
+  tags: users
+
+- name: Service Config
+  ansible.builtin.include_tasks: jupyter_services.yml
+  tags: services
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: jupyter_firewalld.yml
+  tags: firewall

@@ -1,0 +1,25 @@
+---
+- name: Service Config Block (chasty2 user)
+  remote_user: chasty2
+  vars:
+    ansible_ssh_private_key_file: /home/ansible/.ssh/chasty2_id_ed25519
+  tags: services
+  block:
+    - name: Start jupyter notebook container
+      containers.podman.podman_container:
+        name: jupyter-notebook
+        image: quay.io/jupyter/pytorch-notebook
+        # Map chasty2 uid:gid to default container user (jovyan, uid=1000, gid=100)
+        # This preserves OS-level permissions inside container
+        userns: "keep-id:uid=1000,gid=100"
+        ports:
+          - "8888:8888"
+        mount:
+          - "type=bind,source={{ podman_jupyter_bind_mount }},destination=/home/jovyan/work,rw=true"
+        device:
+          - "nvidia.com/gpu=all"
+        env:
+          GEN_CERT: "yes"
+          JUPYTER_TOKEN: "{{ podman_jupyter_token }}"
+        state: started
+        restart_policy: on-failure:3

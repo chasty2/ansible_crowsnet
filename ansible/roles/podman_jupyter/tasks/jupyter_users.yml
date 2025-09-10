@@ -1,0 +1,10 @@
+---
+- name: User Config Block
+  become: true
+  tags: users
+  block:
+    # Allow chasty2 user to run containers for extended periods of time
+    - name: Enable persistent user-sessions for chasty2 user
+      ansible.builtin.command:
+        cmd: "loginctl enable-linger chasty2"
+        creates: /var/lib/systemd/linger/chasty2
