@@ -33,6 +33,7 @@ common_packages:
   - cron
   - ncdu
   - tmux
+  - fzf
 
 common_services:
   - firewalld
