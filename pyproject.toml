@@ -8,4 +8,5 @@ dependencies = [
     "ansible>=11.6.0",
     "ansible-lint>=25.6.1",
     "molecule>=25.5.0",
+    "molecule-plugins[vagrant]>=25.8.12",
 ]
