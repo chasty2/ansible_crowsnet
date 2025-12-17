@@ -1,0 +1,20 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+
+platforms:
+  - name: instance
+    box: ubuntu/noble64
+    memory: 2048
+    cpus: 2
+
+provisioner:
+  name: ansible
+
+verifier:
+  name: ansible
