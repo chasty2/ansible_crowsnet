@@ -1,5 +1,5 @@
 ---
-# Install testing dependencies (virtualbox, vagrant)
+# Install dependencies to run Molecule testing
 - name: Package Config Block
   become: true
   tags: packages
