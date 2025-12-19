@@ -1,0 +1,6 @@
+---
+- name: Test testing role configuration
+  hosts: abzan
+  roles:
+    - common # noqa syntax-check[specific]
+    - testing # noqa syntax-check[specific]

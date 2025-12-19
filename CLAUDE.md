@@ -28,11 +28,11 @@ Each role splits tasks into up to 5 standardized task files, each with a specifi
 role_name/
 ├── tasks/
 │   ├── main.yml          # Entry point with includes and tags
-│   ├── users.yml         # User management tasks
-│   ├── system.yml        # System configuration tasks
-│   ├── packages.yml      # Package management tasks
-│   ├── services.yml      # Service management tasks
-│   └── firewalld.yml     # Firewall configuration tasks
+│   ├── role_name_users.yml         # User management tasks
+│   ├── role_name_system.yml        # System configuration tasks
+│   ├── role_name_packages.yml      # Package management tasks
+│   ├── role_name_services.yml      # Service management tasks
+│   └── role_name_firewalld.yml     # Firewall configuration tasks
 ├── vars/main.yml         # Role variables
 ├── handlers/main.yml     # Event handlers
 ├── templates/            # Jinja2 templates
