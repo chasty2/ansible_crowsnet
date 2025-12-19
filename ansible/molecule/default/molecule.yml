@@ -9,12 +9,12 @@ driver:
 
 platforms:
   - name: instance
-    box: ubuntu/noble64
+    box: generic/ubuntu2204
     memory: 2048
     cpus: 2
 
 provisioner:
   name: ansible
 
-verifier:
-  name: ansible
+# verifier:
+#   name: ansible
