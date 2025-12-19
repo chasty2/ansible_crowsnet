@@ -14,12 +14,10 @@ Variables defined in `vars/main.yml`:
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `testing_packages` | Packages to install | `[virtualbox, vagrant]` |
-| `testing_services` | Services to enable | `[vboxdrv]` |
 
 ## Tags
 
 - `packages` - Install VirtualBox and Vagrant
-- `services` - Enable VirtualBox kernel module service
 
 ## Example Playbook
 
