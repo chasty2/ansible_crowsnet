@@ -3,6 +3,3 @@
 testing_packages:
   - virtualbox
   - vagrant
-
-testing_services:
-  - vboxdrv
