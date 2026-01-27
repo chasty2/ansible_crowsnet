@@ -41,12 +41,12 @@ role_name/
 └── files/               # Static files
 ```
 
+This standardization allows predictable role structure and granular control over which aspects of configuration to apply during playbook runs.
+
 ### Role Testing
 Each role should have a `tests/` directory containing a `test.yml` playbook that:
 - Runs the role and its dependencies
 - Targets the host `lab`
-
-This standardization allows predictable role structure and granular control over which aspects of configuration to apply during playbook runs.
 
 ## Formatting
 - End each `.yml` file with a newline
