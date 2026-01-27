@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 
 [[package]]
@@ -49,10 +49,11 @@ wheels = [
 [[package]]
 name = "ansible-crowsnet"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "ansible" },
     { name = "ansible-lint" },
+    { name = "click" },
     { name = "molecule" },
     { name = "molecule-plugins", extra = ["vagrant"] },
 ]
@@ -61,6 +62,7 @@ dependencies = [
 requires-dist = [
     { name = "ansible", specifier = ">=11.6.0" },
     { name = "ansible-lint", specifier = ">=25.6.1" },
+    { name = "click", specifier = ">=8.1.0" },
     { name = "molecule", specifier = ">=25.5.0" },
     { name = "molecule-plugins", extras = ["vagrant"], specifier = ">=25.8.12" },
 ]

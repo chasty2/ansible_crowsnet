@@ -1,0 +1,73 @@
+"""Utilities for building and running the Ansible container."""
+
+import subprocess
+import sys
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).parent.parent
+DOCKER_DIR = PROJECT_ROOT / "docker"
+ANSIBLE_DIR = PROJECT_ROOT / "ansible"
+CONTAINER_NAME = "ansible-crowsnet"
+
+
+def build_container(extra_args: list[str] | None = None) -> int:
+    """Build the ansible container with podman.
+
+    Args:
+        extra_args: Additional arguments to pass to podman build.
+
+    Returns:
+        The return code from podman build.
+    """
+    cmd = ["podman", "build", ".", "-t", f"{CONTAINER_NAME}:latest"]
+    if extra_args:
+        cmd.extend(extra_args)
+
+    result = subprocess.run(cmd, cwd=DOCKER_DIR)
+    return result.returncode
+
+
+def run_playbook(
+    playbook: str,
+    limit: str | None = None,
+    tags: str | None = None,
+    check: bool = False,
+    diff: bool = False,
+    extra_args: list[str] | None = None,
+) -> int:
+    """Run an ansible playbook inside the container.
+
+    Args:
+        playbook: Path to the playbook file (relative to ansible directory).
+        limit: Limit execution to specific host(s).
+        tags: Only run tasks with these tags.
+        check: Run in check mode (dry-run).
+        diff: Show differences in changed files.
+        extra_args: Additional arguments to pass to ansible-playbook.
+
+    Returns:
+        The return code from podman run.
+    """
+    cmd = [
+        "podman", "run", "-it", "--rm",
+        "--network", "host",
+        "--volume", f"{ANSIBLE_DIR}:/etc/ansible",
+        "-w", "/etc/ansible",
+        CONTAINER_NAME,
+        playbook,
+    ]
+
+    if limit:
+        cmd.extend(["--limit", limit])
+    if tags:
+        cmd.extend(["--tags", tags])
+    if check:
+        cmd.append("--check")
+    if diff:
+        cmd.append("--diff")
+    if extra_args:
+        cmd.extend(extra_args)
+
+    result = subprocess.run(cmd)
+    return result.returncode
