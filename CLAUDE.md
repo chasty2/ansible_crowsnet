@@ -9,29 +9,12 @@
 ## Commands
 
 ```bash
-# Build the ansible container
-./crowsnet.py build
-uv run crowsnet build
-
-# Run full site deployment
-./crowsnet.py site
-uv run crowsnet site
-
-# Run physical hosts only
-./crowsnet.py physical
-uv run crowsnet physical
-
-# Run virtual hosts only
-./crowsnet.py virtual
-uv run crowsnet virtual
-
-# Update and reboot all VMs
-./crowsnet.py update
-uv run crowsnet update
-
-# Run a custom playbook
-./crowsnet.py run <playbook>
-uv run crowsnet run <playbook>
+./crowsnet.py build              # Build the ansible container
+./crowsnet.py site               # Run full site deployment
+./crowsnet.py physical           # Run physical hosts only
+./crowsnet.py virtual            # Run virtual hosts only
+./crowsnet.py update             # Update and reboot all VMs
+./crowsnet.py run <playbook>     # Run a custom playbook
 ```
 
 ### Common Options

@@ -11,13 +11,3 @@ dependencies = [
     "molecule>=25.5.0",
     "molecule-plugins[vagrant]>=25.8.12",
 ]
-
-[project.scripts]
-crowsnet = "crowsnet:cli"
-
-[tool.setuptools]
-py-modules = ["crowsnet"]
-packages = ["utilities"]
-
-[tool.uv]
-package = true
