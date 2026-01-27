@@ -33,10 +33,20 @@ role_name/
 │   ├── role_name_packages.yml      # Package management tasks
 │   ├── role_name_services.yml      # Service management tasks
 │   └── role_name_firewalld.yml     # Firewall configuration tasks
+├── tests/
+│   └── test.yml          # Test playbook for the role
 ├── vars/main.yml         # Role variables
 ├── handlers/main.yml     # Event handlers
 ├── templates/            # Jinja2 templates
 └── files/               # Static files
 ```
 
+### Role Testing
+Each role should have a `tests/` directory containing a `test.yml` playbook that:
+- Runs the role and its dependencies
+- Targets the host `lab`
+
 This standardization allows predictable role structure and granular control over which aspects of configuration to apply during playbook runs.
+
+## Formatting
+- End each `.yml` file with a newline
