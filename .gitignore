@@ -6,3 +6,5 @@ ansible/hosts
 .python-version
 .ansible
 .claude
+__pycache__/
+*.egg-info/

@@ -6,14 +6,34 @@
 - **Stack**: Python (uv), Ansible, Podman
 
 
-## Commands (TODO after implementing site.py script)
+## Commands
+
+```bash
+./crowsnet.py build              # Build the ansible container
+./crowsnet.py site               # Run full site deployment
+./crowsnet.py physical           # Run physical hosts only
+./crowsnet.py virtual            # Run virtual hosts only
+./crowsnet.py update             # Update and reboot all VMs
+./crowsnet.py run <playbook>     # Run a custom playbook
+```
+
+### Common Options
+| Option | Description |
+|--------|-------------|
+| `--limit`, `-l` | Limit execution to specific host(s) |
+| `--tags`, `-t` | Only run tasks with these tags |
+| `--check`, `-C` | Dry-run mode (no changes) |
 
 ## Workflow Patterns (TODO after implementing molecule testing)
 
 ## Directory Structure
+```
 ansible_crowsnet/
 ├── ansible/            # Configures servers and containers
-├── docker/             # Infrastructure-related containers built via Podman
+├── docker/             # Container definition and legacy scripts
+├── utilities/          # Python utilities for container operations
+└── crowsnet.py         # CLI entry point for all operations
+```
 
 
 ## Core Principles
