@@ -25,6 +25,12 @@ ansible_crowsnet/
 5. **Match existing patterns** - Follow the file's conventions exactly
 
 
+## Git Conventions
+
+- All work should be done in a branch outside of main
+- Commit early and often, after each meaningful change
+
+
 ## Before You Start
 
 | File | When to Read |
