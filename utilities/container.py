@@ -1,7 +1,6 @@
 """Utilities for building and running the Ansible container."""
 
 import subprocess
-import sys
 from pathlib import Path
 
 
@@ -48,10 +47,16 @@ def run_playbook(
         The return code from podman run.
     """
     cmd = [
-        "podman", "run", "-it", "--rm",
-        "--network", "host",
-        "--volume", f"{ANSIBLE_DIR}:/etc/ansible",
-        "-w", "/etc/ansible",
+        "podman",
+        "run",
+        "-it",  # Interactive mode
+        "--rm",  # Delete container after use
+        "--network",
+        "host",  # Use IP address of host machine
+        "--volume",
+        f"{ANSIBLE_DIR}:/etc/ansible",  # Point /etc/ansible in container to ansible dir in host
+        "-w",
+        "/etc/ansible",  # Set /etc/ansible as working directory inside container
         CONTAINER_NAME,
         playbook,
     ]
