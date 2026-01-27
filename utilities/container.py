@@ -33,7 +33,6 @@ def run_playbook(
     limit: str | None = None,
     tags: str | None = None,
     check: bool = False,
-    diff: bool = False,
     extra_args: list[str] | None = None,
 ) -> int:
     """Run an ansible playbook inside the container.
@@ -43,7 +42,6 @@ def run_playbook(
         limit: Limit execution to specific host(s).
         tags: Only run tasks with these tags.
         check: Run in check mode (dry-run).
-        diff: Show differences in changed files.
         extra_args: Additional arguments to pass to ansible-playbook.
 
     Returns:
@@ -64,8 +62,6 @@ def run_playbook(
         cmd.extend(["--tags", tags])
     if check:
         cmd.append("--check")
-    if diff:
-        cmd.append("--diff")
     if extra_args:
         cmd.extend(extra_args)
 

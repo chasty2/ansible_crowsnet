@@ -23,7 +23,6 @@
 | `--limit`, `-l` | Limit execution to specific host(s) |
 | `--tags`, `-t` | Only run tasks with these tags |
 | `--check`, `-C` | Dry-run mode (no changes) |
-| `--diff`, `-D` | Show file differences |
 
 ## Workflow Patterns (TODO after implementing molecule testing)
 
