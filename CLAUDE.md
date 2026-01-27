@@ -6,8 +6,9 @@
 - **Stack**: Python (uv), Ansible, Podman
 
 
-## Commands (TODO)
+## Commands (TODO after implementing site.py script)
 
+## Workflow Patterns (TODO after implementing molecule testing)
 
 ## Directory Structure
 ansible_crowsnet/
