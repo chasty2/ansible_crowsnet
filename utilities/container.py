@@ -24,7 +24,7 @@ def build_container(extra_args: list[str] | None = None) -> int:
     if extra_args:
         cmd.extend(extra_args)
 
-    result = subprocess.run(cmd, cwd=DOCKER_DIR)
+    result = subprocess.run(cmd, cwd=DOCKER_DIR, check=False)
     return result.returncode
 
 
@@ -69,5 +69,5 @@ def run_playbook(
     if extra_args:
         cmd.extend(extra_args)
 
-    result = subprocess.run(cmd)
+    result = subprocess.run(cmd, check=False)
     return result.returncode
