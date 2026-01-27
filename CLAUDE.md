@@ -1,42 +1,38 @@
-# Ansible Homelab Project Memory
+# Project Guidelines
 
 ## Project Overview
-This is an Ansible codebase for managing a homelab environment. The ansible directory is attached to a container that runs ansible to configure the homelab infrastructure.
+- **Name**: CrowsNet
+- **Purpose**: Self-hosted homelab, runs entirely out of infrastructure-as-code
+- **Stack**: Python (uv), Ansible, Podman
 
-## Ansible Role Structure Standards
 
-All Ansible roles in this project follow a standardized 5-task organization pattern:
+## Commands (TODO after implementing site.py script)
 
-### Task Organization
-Each role splits tasks into up to 5 standardized task files, each with a specific tag:
+## Workflow Patterns (TODO after implementing molecule testing)
 
-1. **`users.yml`** - `tags: users` - User/group management, SSH keys, sudo configuration
-2. **`system.yml`** - `tags: system` - System-level configuration (hostname, etc.)  
-3. **`packages.yml`** - `tags: packages` - Package installation/removal
-4. **`services.yml`** - `tags: services` - Service management (start/stop/enable)
-5. **`firewalld.yml`** - `tags: firewall` - Firewall configuration
+## Directory Structure
+ansible_crowsnet/
+├── ansible/            # Configures servers and containers
+├── docker/             # Infrastructure-related containers built via Podman
 
-### Key Patterns
-- `tasks/main.yml` includes each task file with `ansible.builtin.include_tasks` and assigns the corresponding tag
-- Roles don't need to implement all 5 files - only what's needed
-- Tags enable selective execution (e.g., `ansible-playbook --tags users,firewall`)
-- Individual task files use `block:` structure to ensure tags are properly applied to all tasks
-- Ensures consistent organization across all roles in the homelab
 
-### Standard Role Structure
-```
-role_name/
-├── tasks/
-│   ├── main.yml          # Entry point with includes and tags
-│   ├── role_name_users.yml         # User management tasks
-│   ├── role_name_system.yml        # System configuration tasks
-│   ├── role_name_packages.yml      # Package management tasks
-│   ├── role_name_services.yml      # Service management tasks
-│   └── role_name_firewalld.yml     # Firewall configuration tasks
-├── vars/main.yml         # Role variables
-├── handlers/main.yml     # Event handlers
-├── templates/            # Jinja2 templates
-└── files/               # Static files
-```
+## Core Principles
 
-This standardization allows predictable role structure and granular control over which aspects of configuration to apply during playbook runs.
+1. **Simplicity over cleverness** - Write code that's immediately understandable
+2. **Leverage existing solutions** - Use standard libraries, don't reinvent
+3. **Single responsibility** - Functions do one thing, under 50 lines
+4. **Early returns** - Guard clauses over nested conditionals
+5. **Match existing patterns** - Follow the file's conventions exactly
+
+
+## Git Conventions
+
+- All work should be done in a branch outside of main
+- Commit early and often, after each meaningful change
+
+
+## Before You Start
+
+| File | When to Read |
+|------|--------------|
+| ansible/CLAUDE.md | Writing new Ansible and Ansible-related code |
