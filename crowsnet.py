@@ -6,18 +6,6 @@ import click
 from utilities.container import build_container, run_playbook
 
 
-def playbook_options(func):
-    """Common options for playbook commands."""
-    func = click.option("--limit", "-l", help="Limit execution to specific host(s)")(
-        func
-    )
-    func = click.option("--tags", "-t", help="Only run tasks with these tags")(func)
-    func = click.option(
-        "--check", "-C", is_flag=True, help="Run in check mode (dry-run)"
-    )(func)
-    return func
-
-
 @click.group()
 def cli():
     """CrowsNet infrastructure management CLI."""
@@ -32,47 +20,38 @@ def build(extra_args):
 
 @cli.command()
 @click.argument("playbook")
-@playbook_options
 @click.argument("extra_args", nargs=-1)
-def run(playbook, limit, tags, check, extra_args):
+def run(playbook, extra_args):
     """Run a custom ansible playbook."""
-    sys.exit(
-        run_playbook(
-            playbook,
-            limit=limit,
-            tags=tags,
-            check=check,
-            extra_args=list(extra_args) if extra_args else None,
-        )
-    )
+    sys.exit(run_playbook(playbook, list(extra_args) if extra_args else None))
 
 
 @cli.command()
-@playbook_options
-def site(limit, tags, check):
+@click.argument("extra_args", nargs=-1)
+def site(extra_args):
     """Run the full site deployment (site.yml)."""
-    sys.exit(run_playbook("site.yml", limit=limit, tags=tags, check=check))
+    sys.exit(run_playbook("site.yml", list(extra_args) if extra_args else None))
 
 
 @cli.command()
-@playbook_options
-def physical(limit, tags, check):
+@click.argument("extra_args", nargs=-1)
+def physical(extra_args):
     """Run physical hosts deployment (physical.yml)."""
-    sys.exit(run_playbook("physical.yml", limit=limit, tags=tags, check=check))
+    sys.exit(run_playbook("physical.yml", list(extra_args) if extra_args else None))
 
 
 @cli.command()
-@playbook_options
-def virtual(limit, tags, check):
+@click.argument("extra_args", nargs=-1)
+def virtual(extra_args):
     """Run virtual hosts deployment (virtual.yml)."""
-    sys.exit(run_playbook("virtual.yml", limit=limit, tags=tags, check=check))
+    sys.exit(run_playbook("virtual.yml", list(extra_args) if extra_args else None))
 
 
 @cli.command()
-@playbook_options
-def update(limit, tags, check):
+@click.argument("extra_args", nargs=-1)
+def update(extra_args):
     """Update and reboot all VMs (update.yml)."""
-    sys.exit(run_playbook("update.yml", limit=limit, tags=tags, check=check))
+    sys.exit(run_playbook("update.yml", list(extra_args) if extra_args else None))
 
 
 if __name__ == "__main__":
