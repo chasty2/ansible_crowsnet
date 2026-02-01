@@ -27,20 +27,11 @@ def build_container(extra_args: list[str] | None = None) -> int:
     return result.returncode
 
 
-def run_playbook(
-    playbook: str,
-    limit: str | None = None,
-    tags: str | None = None,
-    check: bool = False,
-    extra_args: list[str] | None = None,
-) -> int:
+def run_playbook(playbook: str, extra_args: list[str] | None = None) -> int:
     """Run an ansible playbook inside the container.
 
     Args:
         playbook: Path to the playbook file (relative to ansible directory).
-        limit: Limit execution to specific host(s).
-        tags: Only run tasks with these tags.
-        check: Run in check mode (dry-run).
         extra_args: Additional arguments to pass to ansible-playbook.
 
     Returns:
@@ -52,21 +43,15 @@ def run_playbook(
         "-it",  # Interactive mode
         "--rm",  # Delete container after use
         "--network",
-        "host",  # Use IP address of host machine
+        "host",  # Use host networking
         "--volume",
-        f"{ANSIBLE_DIR}:/etc/ansible",  # Point /etc/ansible in container to ansible dir in host
+        f"{ANSIBLE_DIR}:/etc/ansible",  # point /etc/ansible in container to same directory in host
         "-w",
-        "/etc/ansible",  # Set /etc/ansible as working directory inside container
+        "/etc/ansible",  # Set /etc/ansible as container working directory
         CONTAINER_NAME,
         playbook,
     ]
 
-    if limit:
-        cmd.extend(["--limit", limit])
-    if tags:
-        cmd.extend(["--tags", tags])
-    if check:
-        cmd.append("--check")
     if extra_args:
         cmd.extend(extra_args)
 

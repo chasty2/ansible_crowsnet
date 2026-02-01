@@ -17,12 +17,7 @@
 ./crowsnet.py run <playbook>     # Run a custom playbook
 ```
 
-### Common Options
-| Option | Description |
-|--------|-------------|
-| `--limit`, `-l` | Limit execution to specific host(s) |
-| `--tags`, `-t` | Only run tasks with these tags |
-| `--check`, `-C` | Dry-run mode (no changes) |
+Additional arguments are passed directly to the underlying operation (`ansible-playbook` for playbook commands, `podman build` for build).
 
 ## Workflow Patterns (TODO after implementing molecule testing)
 
@@ -30,7 +25,7 @@
 ```
 ansible_crowsnet/
 ├── ansible/            # Configures servers and containers
-├── docker/             # Container definition and legacy scripts
+├── docker/             # Container definition
 ├── utilities/          # Python utilities for container operations
 └── crowsnet.py         # CLI entry point for all operations
 ```
@@ -48,6 +43,7 @@ ansible_crowsnet/
 
 ## Git Conventions
 
+- Unless told otherwise, start each plan with creating a new branch
 - All work should be done in a branch outside of main
 - Each goal should be accomplished in its own branch
 - Commit early and often, after each meaningful change
