@@ -40,14 +40,14 @@ def run_playbook(playbook: str, extra_args: list[str] | None = None) -> int:
     cmd = [
         "podman",
         "run",
-        "-it",
-        "--rm",
+        "-it",  # Interactive mode
+        "--rm",  # Delete container after use
         "--network",
-        "host",
+        "host",  # Use host networking
         "--volume",
-        f"{ANSIBLE_DIR}:/etc/ansible",
+        f"{ANSIBLE_DIR}:/etc/ansible",  # point /etc/ansible in container to same directory in host
         "-w",
-        "/etc/ansible",
+        "/etc/ansible",  # Set /etc/ansible as container working directory
         CONTAINER_NAME,
         playbook,
     ]
