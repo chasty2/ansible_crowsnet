@@ -38,17 +38,21 @@ ansible_crowsnet/
 
 ## Core Principles
 
-1. **Simplicity over cleverness** - Write code that's immediately understandable
-2. **Leverage existing solutions** - Use standard libraries, don't reinvent
-3. **Single responsibility** - Functions do one thing, under 50 lines
-4. **Early returns** - Guard clauses over nested conditionals
-5. **Match existing patterns** - Follow the file's conventions exactly
+1. **Start by forming a plan** - Do not begin work until I approve your plan
+2. **Simplicity over cleverness** - Write code that's immediately understandable
+3. **Leverage existing solutions** - Use standard libraries, don't reinvent
+4. **Single responsibility** - Functions do one thing, under 50 lines
+5. **Early returns** - Guard clauses over nested conditionals
+6. **Match existing patterns** - Follow the file's conventions exactly
 
 
 ## Git Conventions
 
 - All work should be done in a branch outside of main
+- Each goal should be accomplished in its own branch
 - Commit early and often, after each meaningful change
+- When done, check in with the user for approval
+- Submit a PR to merge into main
 
 
 ## Before You Start
