@@ -52,7 +52,7 @@ ansible_crowsnet/
 - Each goal should be accomplished in its own branch
 - Commit early and often, after each meaningful change
 - When done, check in with the user for approval
-- Submit a PR to merge into main
+- Submit a PR to merge into main with a semantic tag in the title (e.g., `feat:`, `fix:`, `refactor:`, `docs:`)
 
 
 ## Before You Start
