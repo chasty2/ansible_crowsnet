@@ -43,6 +43,7 @@ ansible_crowsnet/
 
 ## Git Conventions
 
+- Unless told otherwise, start each plan with creating a new branch
 - All work should be done in a branch outside of main
 - Each goal should be accomplished in its own branch
 - Commit early and often, after each meaningful change
