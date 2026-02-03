@@ -7,8 +7,8 @@
       ansible.builtin.command:
         cmd: nvidia-smi
       changed_when: false
-      register: nvidia_smi_result
+      register: jupyter_nvidia_smi_result
 
     - name: Display nvidia-smi output
       ansible.builtin.debug:
-        var: nvidia_smi_result.stdout_lines
+        var: jupyter_nvidia_smi_result.stdout_lines
