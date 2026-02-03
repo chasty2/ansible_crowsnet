@@ -5,5 +5,6 @@
   block:
     - name: Install physical monitoring packages
       ansible.builtin.apt:
-        name: "{{ physical_packages }}"
+        name: "{{ item }}"
         state: present
+      loop: "{{ physical_packages }}"
