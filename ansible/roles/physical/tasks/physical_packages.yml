@@ -1,0 +1,9 @@
+---
+- name: Package Config Block
+  become: true
+  tags: packages
+  block:
+    - name: Install physical monitoring packages
+      ansible.builtin.dnf:
+        name: "{{ physical_packages }}"
+        state: present
