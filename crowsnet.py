@@ -1,4 +1,4 @@
-#!/home/chasty2/Documents/ansible_crowsnet/.venv/bin/python3
+#!.venv/bin/python3
 """CLI entry point for CrowsNet infrastructure management."""
 
 import sys
