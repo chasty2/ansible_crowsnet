@@ -1,0 +1,5 @@
+---
+- name: Test physical role configuration
+  hosts: lab
+  roles:
+    - physical

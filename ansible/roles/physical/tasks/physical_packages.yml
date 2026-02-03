@@ -1,0 +1,10 @@
+---
+- name: Package Config Block
+  become: true
+  tags: packages
+  block:
+    - name: Install physical monitoring packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ physical_packages }}"

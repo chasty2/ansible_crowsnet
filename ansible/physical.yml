@@ -2,6 +2,7 @@
   hosts: physical
   roles:
     - common
+    - physical
 
 - name: Hypervisor
   hosts: esper
