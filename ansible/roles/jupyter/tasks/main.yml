@@ -1,0 +1,9 @@
+---
+# tasks file for jupyter
+- name: System Config
+  ansible.builtin.include_tasks: jupyter_system.yml
+  tags: system
+
+- name: Firewall Config
+  ansible.builtin.include_tasks: jupyter_firewalld.yml
+  tags: firewall

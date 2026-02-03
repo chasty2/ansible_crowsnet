@@ -1,0 +1,14 @@
+---
+- name: System Config Block
+  become: true
+  tags: system
+  block:
+    - name: Verify NVIDIA drivers are accessible via nvidia-smi
+      ansible.builtin.command:
+        cmd: nvidia-smi
+      changed_when: false
+      register: nvidia_smi_result
+
+    - name: Display nvidia-smi output
+      ansible.builtin.debug:
+        var: nvidia_smi_result.stdout_lines
