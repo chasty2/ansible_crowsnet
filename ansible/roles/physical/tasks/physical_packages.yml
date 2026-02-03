@@ -4,6 +4,6 @@
   tags: packages
   block:
     - name: Install physical monitoring packages
-      ansible.builtin.dnf:
+      ansible.builtin.apt:
         name: "{{ physical_packages }}"
         state: present
