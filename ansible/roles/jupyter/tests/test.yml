@@ -1,0 +1,6 @@
+---
+- name: Test jupyter role configuration
+  hosts: abzan
+  roles:
+    - common # noqa syntax-check[specific]
+    - jupyter # noqa syntax-check[specific]
