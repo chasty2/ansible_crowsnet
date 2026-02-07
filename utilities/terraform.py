@@ -86,18 +86,29 @@ def deploy_vms(target: str, extra_args: list[str] | None = None) -> int:
     for env in environments:
         print(f"Deploying {env}...")
 
-        # Initialize terraform
-        result = run_terraform(env, ["init"])
-        if result != 0:
-            return result
-
-        # Apply terraform
-        apply_args = ["apply", "-auto-approve"]
+        # Build apply command with extra args
+        apply_cmd = "terraform apply -auto-approve"
         if extra_args:
-            apply_args.extend(extra_args)
+            apply_cmd += " " + " ".join(extra_args)
 
-        result = run_terraform(env, apply_args)
-        if result != 0:
-            return result
+        # Run init and apply in same container (init creates .terraform/ state)
+        workdir = f"/terraform/{env}"
+        cmd = [
+            "podman",
+            "run",
+            "-it",
+            "--rm",
+            "-w",
+            workdir,
+            "--entrypoint",
+            "/bin/sh",
+            CONTAINER_NAME,
+            "-c",
+            f"terraform init && {apply_cmd}",
+        ]
+
+        result = subprocess.run(cmd, check=False)
+        if result.returncode != 0:
+            return result.returncode
 
     return 0
