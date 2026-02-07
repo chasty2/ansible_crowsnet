@@ -4,6 +4,7 @@
 import sys
 import click
 from utilities.container import build_container, run_playbook
+from utilities.terraform import build_terraform_container, run_terraform, deploy_vms
 
 
 @click.group()
@@ -12,10 +13,15 @@ def cli():
 
 
 @cli.command(context_settings={"ignore_unknown_options": True})
+@click.option("--terraform", is_flag=True, help="Build the terraform container instead")
 @click.argument("extra_args", nargs=-1, type=click.UNPROCESSED)
-def build(extra_args):
-    """Build the ansible container."""
-    sys.exit(build_container(list(extra_args) if extra_args else None))
+def build(terraform, extra_args):
+    """Build the ansible or terraform container."""
+    args = list(extra_args) if extra_args else None
+    if terraform:
+        sys.exit(build_terraform_container(args))
+    else:
+        sys.exit(build_container(args))
 
 
 @cli.command(context_settings={"ignore_unknown_options": True})
@@ -52,6 +58,22 @@ def virtual(extra_args):
 def update(extra_args):
     """Update and reboot all VMs (update.yml)."""
     sys.exit(run_playbook("update.yml", list(extra_args) if extra_args else None))
+
+
+@cli.command(context_settings={"ignore_unknown_options": True})
+@click.argument("target", type=click.Choice(["prod", "stage", "all"]))
+@click.argument("extra_args", nargs=-1, type=click.UNPROCESSED)
+def deploy(target, extra_args):
+    """Deploy VMs (prod, stage, or all)."""
+    sys.exit(deploy_vms(target, list(extra_args) if extra_args else None))
+
+
+@cli.command(context_settings={"ignore_unknown_options": True})
+@click.option("--env", default="proxmox/prod", help="Terraform environment path")
+@click.argument("extra_args", nargs=-1, type=click.UNPROCESSED)
+def terraform(env, extra_args):
+    """Run terraform commands directly."""
+    sys.exit(run_terraform(env, list(extra_args) if extra_args else None))
 
 
 if __name__ == "__main__":
