@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:1.7
+FROM docker.io/hashicorp/terraform:1.7
 
 # Copy all terraform code (built from project root context)
 COPY terraform /terraform
