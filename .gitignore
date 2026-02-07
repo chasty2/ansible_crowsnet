@@ -8,3 +8,12 @@ ansible/hosts
 .claude
 __pycache__/
 *.egg-info/
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
+.terraform.lock.hcl
+docker/terraform/terraform.tfvars

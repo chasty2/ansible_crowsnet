@@ -3,18 +3,24 @@
 ## Project Overview
 - **Name**: CrowsNet
 - **Purpose**: Self-hosted homelab, runs entirely out of infrastructure-as-code
-- **Stack**: Python (uv), Ansible, Podman
+- **Stack**: Python (uv), Ansible, Terraform, Podman
 
 
 ## Commands
 
 ```bash
+# Ansible
 ./crowsnet.py build              # Build the ansible container
 ./crowsnet.py site               # Run full site deployment
 ./crowsnet.py physical           # Run physical hosts only
 ./crowsnet.py virtual            # Run virtual hosts only
 ./crowsnet.py update             # Update and reboot all VMs
 ./crowsnet.py run <playbook>     # Run a custom playbook
+
+# Terraform
+./crowsnet.py build --terraform           # Build the terraform container
+./crowsnet.py deploy <prod|stage|all>     # Deploy VMs (init + apply)
+./crowsnet.py terraform <args>            # Run terraform commands (--env option)
 ```
 
 Additional arguments are passed directly to the underlying operation (`ansible-playbook` for playbook commands, `podman build` for build).
@@ -23,9 +29,14 @@ Additional arguments are passed directly to the underlying operation (`ansible-p
 
 ## Directory Structure
 ```
-ansible_crowsnet/
+crowsnet/
 ├── ansible/            # Configures servers and containers
-├── docker/             # Container definition
+├── terraform/          # Infrastructure provisioning
+│   ├── azure/          # Azure cloud resources
+│   └── proxmox/        # Proxmox VM definitions (prod, stage)
+├── docker/             # Container definitions
+│   ├── Dockerfile      # Ansible container
+│   └── terraform/      # Terraform container
 ├── utilities/          # Python utilities for container operations
 └── crowsnet.py         # CLI entry point for all operations
 ```
